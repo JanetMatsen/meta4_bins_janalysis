@@ -1,0 +1,3 @@
+#!/bin/bash
+
+parallel --jobs 1 --joblog run_parallel.log < parallel.jobs

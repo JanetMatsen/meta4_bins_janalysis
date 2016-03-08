@@ -1,0 +1,17 @@
+#!/bin/bash
+
+source globals.sh
+
+mysql -h $HOST $DB << EOF > statistics.xls
+SELECT s.sample, si.shortd, s.total_reads, s.total_reads_mapped, s.total_reads_mapped / s.total_reads, 
+		s.reads_mapped_to_rRNA, s.reads_mapped_to_rRNA / s.total_reads_mapped,
+		s.reads_mapped_to_tRNA, s.reads_mapped_to_tRNA / s.total_reads_mapped,
+		s.reads_mapped_to_CDS, s.reads_mapped_to_CDS / s.total_reads_mapped,
+		s.reads_mapped_to_hypo, s.reads_mapped_to_hypo / s.total_reads_mapped,
+		s.CDS_max_hits_per_kb,
+		s.CDS_mean_hits_per_kb
+	FROM statistics AS s
+		INNER JOIN sample_info AS si ON s.sample = si.sample
+	ORDER BY s.sample
+;
+EOF

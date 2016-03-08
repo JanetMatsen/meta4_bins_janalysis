@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DIR=$0.dir
+
+mkdir -p $DIR
+cd $DIR
+
+infile=../assemble_summaries/summary.dat
+
+awk -F'\t' '{ if (line == 0) { header=$0; } else { if (file[$1] != 1) { split($1, a, "("); clean_name = a[1]; printf("%s\n", header) > clean_name".tsv" } file[$1] = 1; split($1, a, "("); clean_name = a[1]; printf("%s\n", $0) > clean_name".tsv" } ++line; }' $infile

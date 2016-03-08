@@ -1,0 +1,24 @@
+#!/bin/bash
+
+source ../globals.sh
+
+SQL=$0.sql
+
+cat << EOF > $SQL
+SELECT genome, locus_tag, product
+EOF
+table=summary_master
+fields=`echo "DESC $table;" | mysql -h $HOST $DB | awk '{ if (substr($1,1,1) == "L") print $1 }' | grep rpkm`
+for field in $fields
+do
+	printf "\t, $field\n" >> $SQL
+done
+
+cat << EOF >> $SQL
+	FROM summary_master AS s
+EOF
+cat << EOF >> $SQL
+;
+EOF
+
+mysql -h $HOST $DB < $SQL > summary_rpkm.xls

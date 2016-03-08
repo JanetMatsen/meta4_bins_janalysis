@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# -e fails when subcommands fail.  -u fails when unknown variable is referenced.  -x traces all commands after expansion. 
+set -eux  
+# 2/25/2016: I noticed Dave was using summary.dat for his network script.  
+# I switched but mine also failed on this file.  
+# What is the difference? 
+#file=../assemble_summaries/summary_counts.xls
+file=../assemble_summaries/summary.dat
+
+# this needs to be a for loop over the genome names that substitutes them in for $genome
+R --no-save --args $file < normalize_by_genome_bin.R

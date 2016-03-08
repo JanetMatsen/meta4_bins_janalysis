@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mysql -h `mysql_host` meta4 < extract_counts.sql > extract_counts.tsv
