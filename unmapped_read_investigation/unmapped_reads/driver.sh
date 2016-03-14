@@ -32,10 +32,10 @@ echo "gathered reads and made .fasta for 112_LOW13"
 
 # Blast Each of them.
 
-blastn -db /work/data/blast_db_untared/nt -query ./fasta_files/112_LOW13_unmapped.fasta -word_size 24 -ungapped -outfmt 6 -show_gis -max_target_seqs 1 -num_threads 12 > ./blast_output/112_LOW13.tsv
+blastn -db /work/data/blast_db/nt -query ./fasta_files/112_LOW13_unmapped.fasta -word_size 24 -ungapped -outfmt 6 -show_gis -max_target_seqs 1 -num_threads 12 > ./blast_output/112_LOW13.tsv
 echo "done BLASTing 112_LOW13_unmapped.fasta"
-blastn -db /work/data/blast_db_untared/nt -query ./fasta_files/70_HOW9_unmapped.fasta -word_size 24 -ungapped -outfmt 6 -show_gis -max_target_seqs 1 -num_threads 12 > ./blast_output/70_HOW9.tsv
+blastn -db /work/data/blast_db/nt -query ./fasta_files/70_HOW9_unmapped.fasta -word_size 24 -ungapped -outfmt 6 -show_gis -max_target_seqs 1 -num_threads 12 > ./blast_output/70_HOW9.tsv
 echo "done BLASTing 70_HOW9_unmapped.fasta"
-blastn -db /work/data/blast_db_untared/nt -query ./fasta_files/82_HOW10_unmapped.fasta -word_size 24 -ungapped -outfmt 6 -show_gis -max_target_seqs 1 -num_threads 12 > ./blast_output/82_HOW10.tsv
+blastn -db /work/data/blast_db/nt -query ./fasta_files/82_HOW10_unmapped.fasta -word_size 24 -ungapped -outfmt 6 -show_gis -max_target_seqs 1 -num_threads 12 > ./blast_output/82_HOW10.tsv
 echo "done BLASTing 32_HOW6_unmapped.fasta"
 
