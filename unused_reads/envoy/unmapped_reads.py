@@ -56,6 +56,7 @@ def run_pipeline(verbose=True):
                             dest_path=sample_fasta,
                             std_out_file=std_out,
                             sam_flag=4, header=True, subsample=0.01)
+        #ur.awk(1,2,3)
         # check that the file was made
         #assert(ur.check_file_exists(sample_fasta))
 
@@ -70,7 +71,7 @@ def run_pipeline(verbose=True):
 
 run_pipeline()
 
-ur.awk()
+
 
 
 

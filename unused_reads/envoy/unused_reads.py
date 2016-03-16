@@ -3,6 +3,9 @@ import time
 
 import envoy
 
+# TODO: assert that it is python 2.  envoy seemed to freak out with Python 3.
+# see demo on my laptop.
+
 def write_to_file(text, filename, prepend_datetime=True):
     with open(filename, 'a') as myfile:
             if prepend_datetime:
@@ -64,71 +67,36 @@ def sample_name_to_blasted_name(sample_name):
     return  './blast_results' + sample_name + '-blasted.tsv'
 
 
-# def bam_to_fasta(source_path, dest_path, std_out_file,
-#                  sam_flag=4, header=True, subsample=0.01):
-#     # make sure the .bam file exists
-#     print('convert bam to fasta: {}'.format(source_path))
-#     assert(os.path.exists(source_path))
-#
-#     # take an input .bam file, grab reads with flag=sam_flag, subsmple
-#     # those results, to the percent specified by subsample, and save a
-#     # .fasta with the selected reads
-#     # command_1 = "/work/software/samtools/bin/samtools view -f 4 {}".format(
-#     #     source_path)
-#     # print(command_1)
-#     # # can use triple quotes to have mixed ' and " in python.
-#     # command_2 = """ | awk '{OFS="\t"; print ">"$1"\n"$10}' """
-#     # print(command_2)
-#     # command_3 = """ - > ./fasta_files/{}""".format(dest_path)
-#     # command_string = command_1 + command_2 + command_3
-#
-#     # # demo of shell, which wraps envoy, which runs shell.
-#     # shell("""tree""", outfile=std_out_file)
-#     # shell("""echo "hello Janet" """, outfile=std_out_file)
-#     # shell('echo "hello Janet - single quotes"', outfile=std_out_file)
-#     # shell("""echo 'Janet says "Hello!". "!' """, outfile=std_out_file)
-#
-#     #command_string = """ /work/software/samtools/bin/samtools view -f 4 /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam | awk '{OFS="\t"; print ">"$1"\n"$10}' """
-#     # don't run the >.  Use envoy, wrapped in shell() to do this.
-#     # - > ./fasta_files/112_LOW13_unmapped.fasta """
-#
-#     print('abcd')
-#     print 'abcde'
-#     command_string = """ /work/software/samtools/bin/samtools view -f 4 /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam """
-#     print("run this shell command: ")
-#     print(command_string)
-#     shell(command_string, outfile=dest_path, prepend_datetime=False)
-#
-#     # do the awk part.
-#     # I wanted to do this: """awk '{OFS="\t"; print ">"$1"\n"$10}'  """
-#     # But it splits on all the spaces.  I tested removing the spaces in shell,
-#     # then tried them here.
-#     # Motivation to remove spaces came from:
-#     # http://stackoverflow.com/questions/15414244/awk-from-python-wrong-subprocess-arguments
-#     command_string2a = """awk '{OFS="\t";print">"$1"\n"$10}'"""
-#     command_string2 = command_string2a + dest_path
-#
-#     # print the 5_lines.sam file to the terminal
-#     command_string2 = """awk '{OFS="\t";print">"$1"\n"$10}' ./dev/5_lines.sam"""
-#     shell('cat ./dev/5_lines.sam')
-#     print("command string 2:")
-#     print(command_string2)
-#     outfile2=dest_path + "2"
-#     print(outfile2)
-#     shell(command_string2, outfile=outfile2, prepend_datetime=False)
+def bam_to_fasta(source_path, dest_path, std_out_file,
+                 sam_flag=4, header=True, subsample=0.01):
+    # make sure the .bam file exists
+    print('convert bam to fasta: {}'.format(source_path))
+    assert(os.path.exists(source_path))
 
+    # take an input .bam file, grab reads with flag=sam_flag, subsmple
+    # those results, to the percent specified by subsample, and save a
+    # .fasta with the selected reads
+    command_1 = "/work/software/samtools/bin/samtools view -f {} {}".format(
+        sam_flag, source_path)
+    print(command_1)
+    # can use triple quotes to have mixed ' and " in python.
+    # NEED TO USE \\n not \n
+    # source: http://stackoverflow.com/questions/15280050/calling-awk-from-python
+    command_2 = """ | awk '{OFS="\t"; print ">"$1"\\n"$10}' """
+    print(command_2)
+    command_3 = """ - > ./fasta_files/{}""".format(dest_path)
+    command_string = command_1 + command_2 + command_3
 
-def awk():
-    print "can print without call"
-    print("but can also print with a call")
-
-    command_string2 = """awk '{OFS="\t";print">"$1"\\n"$10}' ./dev/5_lines.sam"""
-    #shell('cat ./dev/5_lines.sam')
-    print("command string 2:")
-    print(command_string2)
-    shell(command_string2, debug=True)
-    shell(command_string2, outfile='awked.fasta',
-          debug=True, prepend_datetime=False)
+    # NEED TO USE \\n not \n
+    # source: http://stackoverflow.com/questions/15280050/calling-awk-from-python
+    # WORKS:
+    #command_string = """ /work/software/samtools/bin/samtools view -f 4 /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam | awk '{OFS="\t"; print ">"$1"\\n"$10}' """
+    #     # don't run the >.  Use envoy, wrapped in shell() to do this.
+    #     # - > ./fasta_files/112_LOW13_unmapped.fasta """
+    print("run this shell command: ")
+    print(command_string)
+    # run the command.
+    shell(command_string, outfile=dest_path, prepend_datetime=False)
 
     pass
 
