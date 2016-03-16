@@ -118,54 +118,18 @@ def sample_name_to_blasted_name(sample_name):
 #     shell(command_string2, outfile=outfile2, prepend_datetime=False)
 
 
-def printy(s):
-    print(s)
-    print('abcd')
+def awk():
     print "can print without call"
     print("but can also print with a call")
 
-    command_string2 = """awk '{OFS="\t";print">"$1"\n"$10}' ./dev/5_lines.sam"""
-    # is the newline killing it?   YES!
-    # http://stackoverflow.com/questions/15280050/calling-awk-from-python
-    command_string2 = """awk '{OFS="\t";print">"$1"----"$10}' ./dev/5_lines.sam"""
-    # try \\n instead of \n
     command_string2 = """awk '{OFS="\t";print">"$1"\\n"$10}' ./dev/5_lines.sam"""
     #shell('cat ./dev/5_lines.sam')
     print("command string 2:")
     print(command_string2)
     shell(command_string2, debug=True)
+    shell(command_string2, outfile='awked.fasta',
+          debug=True, prepend_datetime=False)
 
-    pass
-
-
-def bam_to_fasta(source_path, dest_path, std_out_file,
-                 sam_flag=4, header=True, subsample=0.01):
-    print('abcd')
-    print 'abcde'
-#     command_string = """ /work/software/samtools/bin/samtools view -f 4 /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam """
-#     print("run this shell command: ")
-#     print(command_string)
-#     shell(command_string, outfile=dest_path, prepend_datetime=False)
-#
-#     # do the awk part.
-#     # I wanted to do this: """awk '{OFS="\t"; print ">"$1"\n"$10}'  """
-#     # But it splits on all the spaces.  I tested removing the spaces in shell,
-#     # then tried them here.
-#     # Motivation to remove spaces came from:
-#     # http://stackoverflow.com/questions/15414244/awk-from-python-wrong-subprocess-arguments
-#     command_string2a = """awk '{OFS="\t";print">"$1"\n"$10}'"""
-#     command_string2 = command_string2a + dest_path
-#
-#     # print the 5_lines.sam file to the terminal
-#     command_string2 = """awk '{OFS="\t";print">"$1"\n"$10}' ./dev/5_lines.sam"""
-#     shell('cat ./dev/5_lines.sam')
-#     print("command string 2:")
-#     print(command_string2)
-#     outfile2=dest_path + "2"
-#     print(outfile2)
-#     shell(command_string2, outfile=outfile2, prepend_datetime=False)
-#
-    printy('rat')
     pass
 
 

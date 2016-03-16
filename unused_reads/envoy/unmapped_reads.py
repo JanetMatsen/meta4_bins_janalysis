@@ -70,7 +70,7 @@ def run_pipeline(verbose=True):
 
 run_pipeline()
 
-ur.printy('cat')
+ur.awk()
 
 
 
