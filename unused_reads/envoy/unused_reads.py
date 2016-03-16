@@ -77,6 +77,7 @@ def bam_to_fasta(source_path, dest_path, std_out_file,
     # take an input .bam file, grab reads with flag=sam_flag, subsmple
     # those results, to the percent specified by subsample, and save a
     # .fasta with the selected reads
+    # todo: implement subsampling.
     command_1 = "/work/software/samtools/bin/samtools view -f {} {}".format(
         sam_flag, source_path)
     print(command_1)
