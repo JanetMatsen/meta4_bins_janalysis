@@ -6,7 +6,7 @@ import envoy
 # TODO: assert that it is python 2.  envoy seemed to freak out with Python 3.
 # see demo on my laptop.
 
-def write_to_file(text, filename, prepend_datetime=True):
+def write_to_file(text, filename, prepend_datetime=False):
     with open(filename, 'a') as myfile:
             if prepend_datetime:
                 myfile.write("Current date & time " +
@@ -15,7 +15,8 @@ def write_to_file(text, filename, prepend_datetime=True):
     pass
 
 
-def shell(command, outfile=None,
+def shell(command,
+          outfile=None,
           prepend_datetime=True,
           debug=False):
     r = envoy.run(command)
@@ -96,20 +97,28 @@ def bam_to_fasta(source_path, dest_path, std_out_file,
     print("run this shell command: ")
     print(command_string)
     # run the command.
-    shell(command_string, outfile=dest_path, prepend_datetime=False)
+    shell(command_string, outfile=dest_path)
 
     pass
 
 
 def blast_fasta(in_file, out_file, outfmt=None):
     if not outfmt:
-        outfmt = "6 sscinames scomnames sblastnames stitle qseqid sseqid " \
-                 "pident length mismatch gapopen qstart qend sstart"
+        outfmt = '"6 sscinames scomnames sblastnames stitle qseqid sseqid ' \
+                 'pident length mismatch gapopen qstart qend sstart" '
+    print("blast output format: {}".format(outfmt))
 
-    blast_command = 'blastn -db /work/data/blast_db/nt -query {} ' \
-                    '-word_size 24 -ungapped -outfmt {} -show_gis -max_target_seqs 1 ' \
-                    '-num_threads 12 > {}'.format(in_file, outfmt, out_file)
+    blast_command = \
+        """
+        blastn -db /work/data/blast_db/nt -query {}
+        -word_size 24 -ungapped -outfmt {}
+        -show_gis -max_target_seqs 1 -num_threads 12
+        """.format(in_file, outfmt)
+        # 'blastn -db /work/data/blast_db/nt -query {} '.format(in_file) + \
+        # '-word_size 24 -ungapped -outfmt {}'.format(outfmt) + \
+        # '-show_gis -max_target_seqs 1 -num_threads 12 > {}'
     print(blast_command)
+    print('command to blast:'.format(blast_command))
     # qseqid   --> Query Seq-id    (default)
     # sseqid   --> Subject Seq-id  (default)
     # pident   --> Percentage of identical matches  (default)
@@ -119,6 +128,9 @@ def blast_fasta(in_file, out_file, outfmt=None):
     # qstart   --> Start of alignment in query (default)
     # qend     --> End of alignment in query (default)
     # sstart   --> Start of alignment in subject (default)
+
+    # run the shell command (envoy)
+    shell(blast_command, outfile=out_file)
     pass
 
 

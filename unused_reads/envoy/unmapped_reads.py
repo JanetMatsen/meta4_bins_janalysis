@@ -50,15 +50,19 @@ def run_pipeline(verbose=True):
         # identify a filepath/name for the output fasta
         sample_fasta = ur.sample_name_to_fasta_name(sample)
 
-        if not ur.check_file_exists(sample_fasta):
+        if ur.check_file_exists(sample_fasta):
+            print("fasta {} exists already; don't make from .bam".format(
+                sample_fasta))
+        else:
             print("generate .fasta for {}".format(sample))
             ur.bam_to_fasta(source_path = bam_file,
                             dest_path=sample_fasta,
                             std_out_file=std_out,
                             sam_flag=4, header=True, subsample=0.01)
-        #ur.awk(1,2,3)
-        # check that the file was made
-        #assert(ur.check_file_exists(sample_fasta))
+
+       # demo of blasting the results:
+        ur.blast_fasta(in_file='./dev/50.fasta',
+                       out_file='./dev/50_blasted.tsv')
 
         # # blast the results
         # sample_blasted = ur.sample_name_to_blasted_name(sample)
