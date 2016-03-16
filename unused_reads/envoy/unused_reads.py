@@ -65,7 +65,7 @@ def sample_name_to_fasta_name(sample_name):
 
 
 def sample_name_to_blasted_name(sample_name):
-    return  './blast_results' + sample_name + '-blasted.tsv'
+    return  './blast_results/' + sample_name + '-blasted.tsv'
 
 
 def bam_to_fasta(source_path, dest_path, std_out_file,
@@ -104,7 +104,7 @@ def bam_to_fasta(source_path, dest_path, std_out_file,
 
 def blast_fasta(in_file, out_file, outfmt=None):
     if not outfmt:
-        outfmt = '"6 sscinames scomnames sblastnames stitle qseqid sseqid ' \
+        outfmt = '"6 stitle qseqid sseqid ' \
                  'pident length mismatch gapopen qstart qend sstart" '
     print("blast output format: {}".format(outfmt))
 
@@ -118,7 +118,7 @@ def blast_fasta(in_file, out_file, outfmt=None):
         # '-word_size 24 -ungapped -outfmt {}'.format(outfmt) + \
         # '-show_gis -max_target_seqs 1 -num_threads 12 > {}'
     print(blast_command)
-    print('command to blast:'.format(blast_command))
+    print('command to blast: {}'.format(blast_command))
     # qseqid   --> Query Seq-id    (default)
     # sseqid   --> Subject Seq-id  (default)
     # pident   --> Percentage of identical matches  (default)

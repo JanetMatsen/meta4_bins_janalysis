@@ -60,18 +60,13 @@ def run_pipeline(verbose=True):
                             std_out_file=std_out,
                             sam_flag=4, header=True, subsample=0.01)
 
-       # demo of blasting the results:
-        ur.blast_fasta(in_file='./dev/50.fasta',
-                       out_file='./dev/50_blasted.tsv')
-
-        # # blast the results
-        # sample_blasted = ur.sample_name_to_blasted_name(sample)
-        # if not ur.check_file_exists(sample_blasted):
-        #     ur.blast_fasta(in_file = sample_fasta,
-        #                    out_file = sample_blasted,
-        #                    outfmt=None)
-        # # check that it exists now.
-        # assert(ur.check_file_exists(sample_blasted))
+        # blast the results
+        sample_blasted = ur.sample_name_to_blasted_name(sample)
+        if not ur.check_file_exists(sample_blasted):
+            ur.blast_fasta(in_file = sample_fasta,
+                           out_file = sample_blasted)
+        # check that it exists now.
+        assert(ur.check_file_exists(sample_blasted))
 
 run_pipeline()
 
