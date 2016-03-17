@@ -9,17 +9,19 @@ import os
 
 import unused_reads as ur
 
-
 #print the python path being used. 
 try:
     user_paths = os.environ['PYTHONPATH'].split(os.pathsep)
 except KeyError:
     user_paths = []
 
-std_out = 'run_history.out'
+# file to write messages/tests(?) to:
+STD_OUT = 'run_history.out'
+# path to the workspace dirs like LakWasM112_LOW13_2/
 
-ur.shell("uptime", std_out)
-ur.shell("pwd", std_out)
+
+ur.shell("uptime", STD_OUT)
+ur.shell("pwd", STD_OUT)
 
 # make sure the dirs I want exist.
 dirs = ['fasta_files', 'blast_results']
@@ -55,17 +57,19 @@ def run_pipeline(verbose=True):
                 sample_fasta))
         else:
             print("generate .fasta for {}".format(sample))
-            ur.bam_to_fasta(source_path = bam_file,
+            ur.bam_to_fasta(source_path=bam_file,
                             dest_path=sample_fasta,
-                            std_out_file=std_out,
+                            std_out_file=STD_OUT,
                             sam_flag=4, header=True, subsample=0.01)
+        # check that the blasted file exists now.
+        assert(ur.check_file_exists(sample_fasta))
 
         # blast the results
         sample_blasted = ur.sample_name_to_blasted_name(sample)
         if not ur.check_file_exists(sample_blasted):
-            ur.blast_fasta(in_file = sample_fasta,
-                           out_file = sample_blasted)
-        # check that it exists now.
+            ur.blast_fasta(in_file=sample_fasta,
+                           out_file=sample_blasted)
+        # check that the blasted file exists now.
         assert(ur.check_file_exists(sample_blasted))
 
 run_pipeline()
