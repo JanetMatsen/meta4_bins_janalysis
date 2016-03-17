@@ -25,7 +25,8 @@
 *.sql.*
 *.swp
 
-
+### PyCharm ###
+*.idea
 
 #### Python defaults ####
 # Byte-compiled / optimized / DLL files
