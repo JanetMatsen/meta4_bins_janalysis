@@ -35,12 +35,13 @@ for d in dirs:
 # /gscratch/lidstrom/meta4_bins/workspace/LakWasMe82_HOW10_2/bwa/LakWasMe82_HOW10_2.sorted.bam
 samples_to_investigate = ['112_LOW13']
 
-# todo: use function to get .bam file paths.
-bam_files = \
-    ['/gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam']
+FASTA_FOLDER = 'fasta_files'
+BLASTED_FOLDER = 'blasted'
 
+ur.create_dir(FASTA_FOLDER)
+ur.create_dir(BLASTED_FOLDER)
 
-def run_pipeline(verbose=True):
+def run_pipeline(verbose=True, downsample_fasta=1000):
     for sample in samples_to_investigate:
         if verbose:
             print("start work for sample: {}".format(sample))
@@ -60,14 +61,32 @@ def run_pipeline(verbose=True):
             print("generate .fasta for {}".format(sample))
             ur.bam_to_fasta(source_bam=bam_file,
                             dest_fasta=sample_fasta,
-                            sam_flag=4, header=True, subsample=0.01)
+                            sam_flag=4)
         # check that the blasted file exists now.
         assert(ur.check_file_exists(sample_fasta))
 
+        # downsample the fasta so BLAST doesn't take *forever*
+        # downsample_fasta() returns path to downsampled fasta.
+        downsampled_fasta = ur.downsample_fasta(sample_fasta, downsample_fasta)
+
+
         # blast the results
-        sample_blasted = ur.sample_name_to_blasted_name(sample)
-        if not ur.check_file_exists(sample_blasted):
-            ur.blast_fasta(in_file=sample_fasta,
+        sample_blasted = \
+            ur.sample_name_to_blasted_name(sample +
+                                           "_" + str(downsample_fasta))
+        print('blast downsampled fasta.  Store results as {}'.format(
+            sample_blasted))
+        # do the blasting
+        # remove old file if its length is zero
+        if ur.check_file_exists(sample_blasted):
+            with open(sample_blasted) as f:
+                num_lines = len(f.readlines())
+            if num_lines != 0:
+                print("fasta {} already exists.".format(sample_blasted))
+        else:
+            print("blast {} and save as {}".format(downsampled_fasta,
+                                                   sample_blasted))
+            ur.blast_fasta(in_file=downsampled_fasta,
                            out_file=sample_blasted)
         # check that the blasted file exists now.
         assert(ur.check_file_exists(sample_blasted))
