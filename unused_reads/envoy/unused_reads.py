@@ -17,7 +17,7 @@ def write_to_file(text, filename, prepend_datetime=False):
 
 def shell(command,
           outfile=None,
-          prepend_datetime=True,
+          prepend_datetime=False,
           debug=False):
     r = envoy.run(command)
     # print envoy results if desired.
@@ -106,6 +106,7 @@ def bam_to_fasta(source_path, dest_path, std_out_file,
 
 
 def blast_fasta(in_file, out_file, outfmt=None):
+    # TODO: I don't elive the triple quote wrapped lines below work.
     if not outfmt:
         outfmt = '"6 stitle qseqid sseqid ' \
                  'pident length mismatch gapopen qstart qend sstart" '
