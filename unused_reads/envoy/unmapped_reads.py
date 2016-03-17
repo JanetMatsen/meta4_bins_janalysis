@@ -1,5 +1,6 @@
 #! /usr/bin/env python
-# Note: you need to `source activate meta4` before running this script. 
+# Note: you need to `source activate py2` before running this script. 
+# So far, I have only shown envoy to run with python 2.
 
 # Note: you can't point to a virtualenv python in the shebang.  Boo!  
 # You need to `source_activate meta4` before calling the .py file. 
