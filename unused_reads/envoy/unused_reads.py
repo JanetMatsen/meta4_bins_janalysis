@@ -48,13 +48,34 @@ def create_dir(directory):
 
 
 def sample_name_to_bam_filepath(sample):
+    """
+    Convert a sample name like '112_LoW13' or just '112' to the file path of
+    that sample's bam file.
+
+     Note: returns the first match, so you need to start with a fully
+     specified string!
+
+    :param sample: string that specifies a sample uniquely
+    :return: file path to the original .bam file in /workspace/
+    """
     # convert something like XY_HOWZ --> a file path for the bam
-    # todo: fix this placeholder/
-    if sample=='112_LOW13':
-        return '/gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam'
+    home_dir = '/gscratch/lidstrom/meta4_bins/workspace/'
+    # make a list of candidate files.  Will check that length is 1.
+    candidate_files =[]
+    for root, dirs, files in os.walk(home_dir, topdown=False):
+        for name in files:
+            if sample in name:
+                if name.endswith('.bam'):
+                    path_to_bam = os.path.join(root, name)
+                    print('found path to sample {}: {}'.format(
+                        sample, path_to_bam))
+                    candidate_files.append(path_to_bam)
+    # check that only one file was found (was string fully specific?)
+    if len(candidate_files)==1:
+        return candidate_files[0]
     else:
-        print("FUNCTION NOT WRITTEN YET")
-        return None
+        return "error: many candidate files found. \n {}".format(
+            candidate_files)
 
 
 def check_file_exists(filepath):
@@ -72,6 +93,9 @@ def sample_name_to_blasted_name(sample_name):
 
 def bam_to_fasta(source_bam, dest_fasta, sam_flag=4, subsample=0.01,
                  debug=False, intermediate_file=False):
+    if not intermediate_file:
+        return "ERROR: I haven't proven this function works without writing " \
+               "an intermediates .sam file"
     # make sure the .bam file exists
     #print('convert bam to fasta: {}'.format(source_bam))
     assert(os.path.exists(source_bam))
@@ -100,12 +124,19 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4, subsample=0.01,
     command_2 = """ awk '{OFS="\\t"; print ">"$1"\\n"$10}' """
 
     if intermediate_file:
-        # run samtools on the intermediate file
+        # run samtools on the intermediate .sam file
         command = command_2 + intermediate_sam_path
         print('run sam to fasta command:')
         print(command)
         print('save to: {}'.format(dest_fasta))
         shell(command, dest_fasta, debug=debug)
+
+        # remove the intermediate .sam file
+        print('remove the intermediate .sam file: {}'.format(
+            intermediate_sam_path))
+        command= 'rm {}'.format(intermediate_sam_path)
+        print('rm command: \n {}')
+        shell(command, debug=debug)
     else:
         command_1 = \
             "/work/software/samtools/bin/samtools view -f {} {}".format(
@@ -134,16 +165,14 @@ def blast_fasta(in_file, out_file, outfmt=None):
     print("blast output format: {}".format(outfmt))
 
     blast_command = \
-        """
-        blastn -db /work/data/blast_db/nt -query {}
-        -word_size 24 -ungapped -outfmt {}
-        -show_gis -max_target_seqs 1 -num_threads 12
-        """.format(in_file, outfmt)
+        "blastn -db /work/data/blast_db/nt -query {}" \
+        "-word_size 24 -ungapped -outfmt {}" \
+        "-show_gis -max_target_seqs 1 -num_threads 12".format(in_file, outfmt)
         # 'blastn -db /work/data/blast_db/nt -query {} '.format(in_file) + \
         # '-word_size 24 -ungapped -outfmt {}'.format(outfmt) + \
         # '-show_gis -max_target_seqs 1 -num_threads 12 > {}'
-    print(blast_command)
     print('command to blast: {}'.format(blast_command))
+    print('save blast output to: {}'.format(out_file))
     # qseqid   --> Query Seq-id    (default)
     # sseqid   --> Subject Seq-id  (default)
     # pident   --> Percentage of identical matches  (default)
@@ -157,6 +186,7 @@ def blast_fasta(in_file, out_file, outfmt=None):
     # run the shell command (envoy)
     shell(blast_command, outfile=out_file)
     pass
+
 
 
 
