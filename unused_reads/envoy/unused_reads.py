@@ -1,3 +1,5 @@
+import itertools
+
 import os
 import time
 
@@ -91,8 +93,8 @@ def sample_name_to_blasted_name(sample_name):
     return './blast_results/' + sample_name + '-blasted.tsv'
 
 
-def bam_to_fasta(source_bam, dest_fasta, sam_flag=4, subsample=0.01,
-                 debug=False, intermediate_sam=False):
+def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
+                 debug=False, intermediate_sam=True):
     if intermediate_sam:
         print("run bam_to_fasta() by making an intermediate .sam file")
     else:
@@ -163,7 +165,7 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4, subsample=0.01,
     pass
 
 
-def blast_fasta(in_file, out_file, outfmt=None):
+def blast_fasta(in_file, out_file, outfmt=None, sample_frac=0.10):
     # TODO: I don't elive the triple quote wrapped lines below work.
     if not outfmt:
         outfmt = '"6 stitle qseqid sseqid ' \
@@ -171,7 +173,7 @@ def blast_fasta(in_file, out_file, outfmt=None):
     print("blast output format: {}".format(outfmt))
 
     blast_command = \
-        "blastn -db /work/data/blast_db/nt -query {}" \
+        "blastn -db /work/data/blast_db/nt -query {} " \
         "-word_size 24 -ungapped -outfmt {}" \
         "-show_gis -max_target_seqs 1 -num_threads 12".format(in_file, outfmt)
         # 'blastn -db /work/data/blast_db/nt -query {} '.format(in_file) + \
@@ -193,6 +195,57 @@ def blast_fasta(in_file, out_file, outfmt=None):
     shell(blast_command, outfile=out_file)
     pass
 
+
+def pairwise(iterable):
+    """
+    Take an iterable object (like a list) and return tuple pairs.
+
+    Used for .fasta files to return tuples of (seq_name, sequence), which
+    is helpful for downsampling.
+
+    # Example: ['a', 1, 'b', 2, 'c', 3] --> [('a', 1), ('b', 2), ('c', 3)]
+
+    :param iterable: The object (e.g. .fasta read in) to lump into pairs
+    :return: Iterable of tuples.
+    """
+
+    # "s -> (s0, s1), (s2, s3), (s4, s5), ..."
+    # http://stackoverflow.com/questions/5389507/iterating-over-every-two-elements-in-a-list
+    #  for l, d in pairwise(['a', 1, "b", 2, "c", 3]): print l
+    a = iter(iterable)
+    return itertools.izip(a, a)
+
+
+def downsample_fasta(fasta_path, n = 10):
+    """
+    BLAST is the slowest step in this analysis.
+    This function returns every nth sequence.
+    So if fasta_path points to a fasta file with 1000 sequences and n = 10,
+    a file with 1000/10 sequences is written.  That file's name is returned.
+
+    :param fasta_path: path to fasta file you want to downsample
+    :param n: downsampling severity.  Only keep (about) sequences/n sequences.
+    :return: filename to downsampled .fasta file.  Has the n appended,
+            like .fasta1000
+    """
+    # make output_filename
+    out_name = fasta_path + str(n)
+    print("output file name for fasta downsampling: {}".format(out_name))
+    with open(fasta_path, "r") as source_file, \
+            open(out_name, 'w') as dest_file:
+    # keep every nth line
+    # todo: shuffle it?
+        # loop over pairs of lines, and skip the lines that aren't the nth:
+        for desc, seq in itertools.islice(pairwise(source_file), 0, None, n):
+            # write these pairs of lines to a new file
+            # skip this line if n doesn't say keep.
+            dest_file.writelines(desc)
+            dest_file.writelines(seq)
+    # File writing complete.
+
+    # todo: Check that the correct number of lines was written.
+    # return the resulting filename
+    return(out_name)
 
 
 
