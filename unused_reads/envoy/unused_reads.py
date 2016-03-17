@@ -92,10 +92,11 @@ def sample_name_to_blasted_name(sample_name):
 
 
 def bam_to_fasta(source_bam, dest_fasta, sam_flag=4, subsample=0.01,
-                 debug=False, intermediate_file=False):
-    if not intermediate_file:
-        return "ERROR: I haven't proven this function works without writing " \
-               "an intermediates .sam file"
+                 debug=False, intermediate_sam=False):
+    if intermediate_sam:
+        print("run bam_to_fasta() by making an intermediate .sam file")
+    else:
+        print("run bam_to_fasta() without making an intermediate .sam file")
     # make sure the .bam file exists
     #print('convert bam to fasta: {}'.format(source_bam))
     assert(os.path.exists(source_bam))
@@ -105,7 +106,7 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4, subsample=0.01,
     # .fasta with the selected reads
     # todo: implement subsampling with -s command.
 
-    if intermediate_file:
+    if intermediate_sam:
         # run just the first command and save to an intermediate file
         intermediate_sam_path = './dev/temp_int_sam.sam'
         command_1 = \
@@ -123,7 +124,7 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4, subsample=0.01,
     # source: http://stackoverflow.com/questions/15280050/calling-awk-from-python
     command_2 = """ awk '{OFS="\\t"; print ">"$1"\\n"$10}' """
 
-    if intermediate_file:
+    if intermediate_sam:
         # run samtools on the intermediate .sam file
         command = command_2 + intermediate_sam_path
         print('run sam to fasta command:')
@@ -138,6 +139,9 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4, subsample=0.01,
         print('rm command: \n {}')
         shell(command, debug=debug)
     else:
+        # This loop runs if you don't make an intermediate file.
+        print("intermediate_file set to {}: don't write .sam "
+              "on way to .fasta".format(intermediate_sam))
         command_1 = \
             "/work/software/samtools/bin/samtools view -f {} {}".format(
                 sam_flag, source_bam)
@@ -147,6 +151,8 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4, subsample=0.01,
         print("save standard out to: {}".format(dest_fasta))
         # run the command.
         shell(command_string, outfile=dest_fasta, debug=debug)
+        print("!!!!!!!!  WARNING !!!!!!!!!!  Files are truncated to 8.0MB "
+              "if you don't write an intermediate .sam file")
 
     # WORKS:
     # command_string = """ /work/software/samtools/bin/samtools view -f 4

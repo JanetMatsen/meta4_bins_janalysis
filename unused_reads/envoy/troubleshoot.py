@@ -81,7 +81,7 @@ def test_bam_to_fasta():
     # Make the .fasta file
     print("Make {}".format(out_fasta))
     ur.bam_to_fasta(source_bam=in_bam, dest_fasta=out_fasta,
-                    debug=True, intermediate_file=True)
+                    debug=True, intermediate_sam=False)
     # Print the directory contents
     print('ls -lshR {}'.format(FILE_DIR))
     ur.shell('ls -lshR {}'.format(FILE_DIR))
