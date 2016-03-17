@@ -58,9 +58,8 @@ def run_pipeline(verbose=True):
                 sample_fasta))
         else:
             print("generate .fasta for {}".format(sample))
-            ur.bam_to_fasta(source_path=bam_file,
-                            dest_path=sample_fasta,
-                            std_out_file=STD_OUT,
+            ur.bam_to_fasta(source_bam=bam_file,
+                            dest_fasta=sample_fasta,
                             sam_flag=4, header=True, subsample=0.01)
         # check that the blasted file exists now.
         assert(ur.check_file_exists(sample_fasta))

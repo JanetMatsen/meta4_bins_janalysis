@@ -25,9 +25,11 @@ def shell(command,
         print("envoy command: {}".format(r.command))
         # standard convention: pass 0 for success, 1 or higher for fail
         print("envoy status: {}".format(r.status_code))
-        print("envoy std_out: {}".format(r.std_out))
+        # todo: print only if it is a reasonable length!
+        # print("envoy std_out: {}".format(r.std_out))
         print("envoy std_err: {}".format(r.std_err))
 
+    # todo: sometimes commands are failing and this doesn't print.
     if r.status_code > 0:
         print("error: {}".format(r.std_err))
     # print standard_out_if_no_outfile
@@ -68,39 +70,58 @@ def sample_name_to_blasted_name(sample_name):
     return './blast_results/' + sample_name + '-blasted.tsv'
 
 
-def bam_to_fasta(source_path, dest_path, std_out_file,
-                 sam_flag=4, header=True, subsample=0.01):
+def bam_to_fasta(source_bam, dest_fasta, sam_flag=4, subsample=0.01,
+                 debug=False, intermediate_file=False):
     # make sure the .bam file exists
-    print('convert bam to fasta: {}'.format(source_path))
-    assert(os.path.exists(source_path))
+    #print('convert bam to fasta: {}'.format(source_bam))
+    assert(os.path.exists(source_bam))
 
     # take an input .bam file, grab reads with flag=sam_flag, subsmple
     # those results, to the percent specified by subsample, and save a
     # .fasta with the selected reads
-    # todo: implement subsampling with -h command.
-    command_1 = "/work/software/samtools/bin/samtools view -f {} {}".format(
-        sam_flag, source_path)
+    # todo: implement subsampling with -s command.
+
+    if intermediate_file:
+        # run just the first command and save to an intermediate file
+        intermediate_sam_path = './dev/temp_int_sam.sam'
+        command_1 = \
+            "/work/software/samtools/bin/samtools view -f {} {}".format(
+                sam_flag, source_bam)
+        print("run shell command that makes intermediate .sam file:")
+        print(command_1)
+        print("save to: {}".format(intermediate_sam_path))
+        shell(command_1, intermediate_sam_path, debug=debug)
+        # confirm the .sam file was made.
+        print('file {} exists: {}'.format(
+            intermediate_sam_path, check_file_exists(intermediate_sam_path)))
     # can use triple quotes to have mixed ' and " in python.
     # NEED TO USE \\n not \n
     # source: http://stackoverflow.com/questions/15280050/calling-awk-from-python
-    command_2 = """ | awk '{OFS="\\t"; print ">"$1"\\n"$10}' """
-    # command_3 = """ - > {}""".format(dest_path + "_arrow")
-    command_string = command_1 + command_2 #+ command_3
+    command_2 = """ awk '{OFS="\\t"; print ">"$1"\\n"$10}' """
 
-    # test a small command with a > in it.
+    if intermediate_file:
+        # run samtools on the intermediate file
+        command = command_2 + intermediate_sam_path
+        print('run sam to fasta command:')
+        print(command)
+        print('save to: {}'.format(dest_fasta))
+        shell(command, dest_fasta, debug=debug)
+    else:
+        command_1 = \
+            "/work/software/samtools/bin/samtools view -f {} {}".format(
+                sam_flag, source_bam)
+        command_string = command_1 + " | " + command_2
+        print("run this shell command that takes .bam to .fasta: ")
+        print(command_string)
+        print("save standard out to: {}".format(dest_fasta))
+        # run the command.
+        shell(command_string, outfile=dest_fasta, debug=debug)
 
-    # NEED TO USE \\n not \n
-    # source: http://stackoverflow.com/questions/15280050/calling-awk-from-python
     # WORKS:
     # command_string = """ /work/software/samtools/bin/samtools view -f 4
     # /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam | awk '{OFS="\t"; print ">"$1"\\n"$10}' """
     #     # don't run the >.  Use envoy, wrapped in shell() to do this.
     #     # - > ./fasta_files/112_LOW13_unmapped.fasta """
-    print("run this shell command: ")
-    print(command_string)
-    print("save standard out to: {}".format(dest_path))
-    # run the command.
-    shell(command_string, outfile=dest_path)
 
     pass
 
