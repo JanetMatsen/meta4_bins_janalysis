@@ -65,7 +65,7 @@ def sample_name_to_fasta_name(sample_name):
 
 
 def sample_name_to_blasted_name(sample_name):
-    return  './blast_results/' + sample_name + '-blasted.tsv'
+    return './blast_results/' + sample_name + '-blasted.tsv'
 
 
 def bam_to_fasta(source_path, dest_path, std_out_file,
@@ -77,26 +77,28 @@ def bam_to_fasta(source_path, dest_path, std_out_file,
     # take an input .bam file, grab reads with flag=sam_flag, subsmple
     # those results, to the percent specified by subsample, and save a
     # .fasta with the selected reads
-    # todo: implement subsampling.
+    # todo: implement subsampling with -h command.
     command_1 = "/work/software/samtools/bin/samtools view -f {} {}".format(
         sam_flag, source_path)
-    print(command_1)
     # can use triple quotes to have mixed ' and " in python.
     # NEED TO USE \\n not \n
     # source: http://stackoverflow.com/questions/15280050/calling-awk-from-python
-    command_2 = """ | awk '{OFS="\t"; print ">"$1"\\n"$10}' """
-    print(command_2)
-    command_3 = """ - > ./fasta_files/{}""".format(dest_path)
-    command_string = command_1 + command_2 + command_3
+    command_2 = """ | awk '{OFS="\\t"; print ">"$1"\\n"$10}' """
+    # command_3 = """ - > {}""".format(dest_path + "_arrow")
+    command_string = command_1 + command_2 #+ command_3
+
+    # test a small command with a > in it.
 
     # NEED TO USE \\n not \n
     # source: http://stackoverflow.com/questions/15280050/calling-awk-from-python
     # WORKS:
-    #command_string = """ /work/software/samtools/bin/samtools view -f 4 /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam | awk '{OFS="\t"; print ">"$1"\\n"$10}' """
+    # command_string = """ /work/software/samtools/bin/samtools view -f 4
+    # /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam | awk '{OFS="\t"; print ">"$1"\\n"$10}' """
     #     # don't run the >.  Use envoy, wrapped in shell() to do this.
     #     # - > ./fasta_files/112_LOW13_unmapped.fasta """
     print("run this shell command: ")
     print(command_string)
+    print("save standard out to: {}".format(dest_path))
     # run the command.
     shell(command_string, outfile=dest_path)
 
