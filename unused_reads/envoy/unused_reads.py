@@ -315,7 +315,7 @@ def pairwise(iterable):
     return itertools.izip(a, a)
 
 
-def downsample_fasta(fasta_path, n=10):
+def downsample_fasta_islice(fasta_path, n=10):
     """
     BLAST is the slowest step in this analysis.
     This function returns every nth sequence.
@@ -403,8 +403,9 @@ def run_pipeline(samples_to_investigate, parent_directory,
         assert(check_file_exists(sample_fasta))
 
         # downsample the fasta so BLAST doesn't take *forever*
-        # downsample_fasta() returns path to downsampled fasta.
-        downsampled_fasta = downsample_fasta(sample_fasta, downsample_fasta)
+        # downsample_fasta_islice() returns path to downsampled fasta.
+        downsampled_fasta = downsample_fasta_islice(sample_fasta,
+                                                    downsample_fasta)
 
         # todo: the blast step takes the longest.  Only run if the
         # downsampled_fasta I want to blast is recent??
@@ -430,4 +431,4 @@ def run_pipeline(samples_to_investigate, parent_directory,
                            word_size=word_size,
                            max_target_seqs=max_target_seqs)
         # check that the blasted file exists now.
-        assert(eck_file_exists(sample_blasted))
+        assert(check_file_exists(sample_blasted))
