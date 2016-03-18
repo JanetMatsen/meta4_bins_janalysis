@@ -23,7 +23,7 @@ except KeyError:
 # Note it is for the initial match:
 # "Number of matching nucleotides in initial match."
 ur.run_pipeline(samples_to_investigate=ur.SAMPLES,
-                parent_directory='./multiply_mapped',
+                parent_directory='./multiply_mapped-final',
                 verbose=True, sam_flag='multiple',
                 downsample_fasta=10000, word_size=11,
                 max_target_seqs=3)

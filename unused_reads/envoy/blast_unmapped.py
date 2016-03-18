@@ -24,7 +24,7 @@ except KeyError:
 # "Number of matching nucleotides in initial match."
 
 ur.run_pipeline(samples_to_investigate=ur.SAMPLES,
-                parent_directory='./unmapped',
+                parent_directory='./unmapped-final',
                 verbose=True, sam_flag='unmapped',
                 downsample_fasta=10000, word_size=24,
                 max_target_seqs=1)
