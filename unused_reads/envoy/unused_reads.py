@@ -165,9 +165,15 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
     :return:
     """
 
-    # todo: make a dictionary to convert between name representation of
-    # samtools flags and bit flags.
-    # e.g. {'unmapped':4, 'multiply mapped':XXX}
+    # dictionary that converts description of a samtools flag into a
+    # numerical value used in the samtools call.
+    samtools_flag_converter = {'unmapped': 4, 'multiple': 256}
+    if type(sam_flag) == str:
+        try:
+            sam_flag = samtools_flag_converter[sam_flag]
+        except LookupError:
+            print "error: sam string {} could not be converted to " \
+                  "a samtools command".format(sam_flag)
 
     if intermediate_sam:
         print("run bam_to_fasta() by making an intermediate .sam file")

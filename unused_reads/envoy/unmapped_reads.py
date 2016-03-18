@@ -43,7 +43,8 @@ ur.create_dir(PARENT_DIR)
 ur.create_dir(FASTA_DIR)
 ur.create_dir(BLASTED_DIR)
 
-def run_pipeline(verbose=True, downsample_fasta=10000):
+
+def run_pipeline(verbose=True, sam_flag='unmapped', downsample_fasta=10000):
     for sample in samples_to_investigate:
         if verbose:
             print("start work for sample: {}".format(sample))
@@ -63,14 +64,13 @@ def run_pipeline(verbose=True, downsample_fasta=10000):
             print("generate .fasta for {}".format(sample))
             ur.bam_to_fasta(source_bam=bam_file,
                             dest_fasta=sample_fasta,
-                            sam_flag=4)
+                            sam_flag=sam_flag)
         # check that the blasted file exists now.
         assert(ur.check_file_exists(sample_fasta))
 
         # downsample the fasta so BLAST doesn't take *forever*
         # downsample_fasta() returns path to downsampled fasta.
         downsampled_fasta = ur.downsample_fasta(sample_fasta, downsample_fasta)
-
 
         # blast the results
         sample_blasted = \
