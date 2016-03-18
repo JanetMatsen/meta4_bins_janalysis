@@ -8,8 +8,17 @@ import envoy
 # TODO: assert that it is python 2.  envoy seemed to freak out with Python 3.
 # see demo on my laptop.
 
-def write_to_file(text, filename, prepend_datetime=False):
-    with open(filename, 'a') as myfile:
+def write_to_file(text, filepath, prepend_datetime=False):
+    """
+    Write text (usually standard output from envoy) to file.
+
+    Designed to be called from shell()
+    :param text: test to write to file
+    :param filepath: path to save output file to
+    :param prepend_datetime: option to record current date and time
+    :return: nothing
+    """
+    with open(filepath, 'a') as myfile:
             if prepend_datetime:
                 myfile.write("Current date & time " +
                              time.strftime("%c") + '\n')
@@ -17,10 +26,26 @@ def write_to_file(text, filename, prepend_datetime=False):
     pass
 
 
-def shell(command,
-          outfile=None,
-          prepend_datetime=False,
-          debug=False):
+def shell(command, outfile=None,
+          prepend_datetime=False, debug=False):
+    """
+    Execute a command line call.
+
+    Prints to the terminal if outfile is not specified.
+
+    Wrapper for envoy package, which wraps python's subprocess built-in
+
+    :param command: command (as string) to run via envoy.  Escape
+    backslashes (\\n not \n)
+    :param outfile: file path to write to.  If not specified, standard out
+    is printed (and not saved)
+    :param prepend_datetime: Option to record when the command was run.  (
+    Not usually used)
+    :param debug: Use debug mode?  Prints the command used, exit status, and
+    standard error.  Will (eventually) print a preview of standard error,
+    but currently doesn't support that.
+    :return:
+    """
     # Todo: ensure that the path to the outfile exists (not the outfile itself)
 
     r = envoy.run(command)
@@ -41,14 +66,31 @@ def shell(command,
         print(r.std_out)
     else:
         # save output to file
-        write_to_file(r.std_out, filename=outfile,
+        write_to_file(r.std_out, filepath=outfile,
                       prepend_datetime=prepend_datetime)
     pass
 
 
 def create_dir(directory):
+    """
+    Create a directory if it doesn't already exist.
+
+    :param directory: path to a directory
+    :return: None
+    """
     if not os.path.exists(directory):
         os.makedirs(directory)
+
+
+def check_file_exists(filepath):
+    """
+    Return True if the specified file path exists, and False if not
+
+    :param filepath: path to the file under investigation
+    :return: True if file exists, False if not.
+    """
+    # return True if the .fasta at filepath already exist.
+    return os.path.isfile(filepath)
 
 
 def sample_name_to_bam_filepath(sample):
@@ -82,33 +124,58 @@ def sample_name_to_bam_filepath(sample):
             candidate_files)
 
 
-def check_file_exists(filepath):
-    # return True if the .fasta at filepath already exist.
-    return os.path.isfile(filepath)
+def sample_name_to_fasta_path(sample_name, dest_dir):
+    """
+    Convert sample name like '70_HOW9' to a file path to save the .fasta
+    file in
 
-
-def sample_name_to_fasta_name(sample_name, dest_dir):
+    :param sample_name: a string specifying a sample name, typically like
+     '70_HOW9'
+    :param dest_dir: directory to save to
+    :return: file path string
+    """
     return dest_dir + '/fasta_files/' + sample_name + '.fasta'
 
 
-def sample_name_to_blasted_name(sample_name, dest_dir):
+def sample_name_to_blasted_path(sample_name, dest_dir):
+    """
+    Create a path to put a blast result in, using a sample name and
+    destination directory.
+
+    :param sample_name: e.g. '70_HOW9'
+    :param dest_dir:  directory to place file in
+    :return: file path string
+    """
     return dest_dir + '/blast_results/' + sample_name + '-blasted.tsv'
 
 
 def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
                  debug=False, intermediate_sam=True):
+    """
+    Convert a .bam file to a .fasta using samtools and the specified
+    samtools flag.
+
+    :param source_bam: file path to .bam file to extract reads from
+    :param dest_fasta: file path to save resulting .fasta file to
+    :param sam_flag: samtools flag to use.
+    :param debug: run in debug mode?  Passed to all envoy shell commands.
+    :param intermediate_sam: Write an intermediate .sam file (that gets
+    deleted) on the way to the .fasta file?  Currently only True is
+    supported; envoy truncated my piped commands at 8.0kb in tests.
+    :return:
+    """
+
+    # todo: make a dictionary to convert between name representation of
+    # samtools flags and bit flags.
+    # e.g. {'unmapped':4, 'multiply mapped':XXX}
+
     if intermediate_sam:
         print("run bam_to_fasta() by making an intermediate .sam file")
     else:
         print("run bam_to_fasta() without making an intermediate .sam file")
-    # make sure the .bam file exists
-    #print('convert bam to fasta: {}'.format(source_bam))
-    assert(os.path.exists(source_bam))
 
-    # take an input .bam file, grab reads with flag=sam_flag, subsmple
-    # those results, to the percent specified by subsample, and save a
-    # .fasta with the selected reads
-    # todo: implement subsampling with -s command.
+    # make sure the .bam file exists
+    assert(os.path.exists(source_bam))
 
     if intermediate_sam:
         # run just the first command and save to an intermediate file
@@ -124,8 +191,8 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
         # confirm the .sam file was made.
         print('file {} exists: {}'.format(
             intermediate_sam_path, check_file_exists(intermediate_sam_path)))
+
     # can use triple quotes to have mixed ' and " in python.
-    # NEED TO USE \\n not \n
     # source: http://stackoverflow.com/questions/15280050/calling-awk-from-python
     command_2 = """ awk '{OFS="\\t"; print ">"$1"\\n"$10}' """
 
@@ -144,6 +211,8 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
         print('rm command: \n {}')
         shell(command, debug=debug)
     else:
+        # SKIPPING INTERMEDIATE .sam FILE DOESN'T WORK!  Piping w/ envoy
+        # limits the file to 8kb in my experience.
         # This loop runs if you don't make an intermediate file.
         print("intermediate_file set to {}: don't write .sam "
               "on way to .fasta".format(intermediate_sam))
@@ -170,7 +239,17 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
 
 def blast_fasta(in_file, out_file,
                 word_size=24, threads=12,
-                outfmt=None, sample_frac=0.10):
+                outfmt=None):
+    """
+    Blast a fasta file, save as .tsv
+
+    :param in_file: path to .fasta file to BLAST
+    :param out_file: path to save the file at
+    :param word_size: BLAST setting.  Larger --> faster & less sensitive
+    :param threads: BLAST setting for parallelization
+    :param outfmt: output format to use (optional)
+    :return: saves a blast file, and returns the path to the file
+    """
     if not outfmt:
         outfmt = '"6 stitle qseqid sseqid ' \
                  'pident length mismatch gapopen qstart qend sstart" '
@@ -206,7 +285,9 @@ def pairwise(iterable):
     Used for .fasta files to return tuples of (seq_name, sequence), which
     is helpful for downsampling.
 
-    # Example: ['a', 1, 'b', 2, 'c', 3] --> [('a', 1), ('b', 2), ('c', 3)]
+    Example: ['a', 1, 'b', 2, 'c', 3] --> [('a', 1), ('b', 2), ('c', 3)]
+
+    ** When used on a .fasta file, it assumes one-line sequences!! **
 
     :param iterable: The object (e.g. .fasta read in) to lump into pairs
     :return: Iterable of tuples.
@@ -219,12 +300,14 @@ def pairwise(iterable):
     return itertools.izip(a, a)
 
 
-def downsample_fasta(fasta_path, n = 10):
+def downsample_fasta(fasta_path, n=10):
     """
     BLAST is the slowest step in this analysis.
     This function returns every nth sequence.
     So if fasta_path points to a fasta file with 1000 sequences and n = 10,
     a file with 1000/10 sequences is written.  That file's name is returned.
+
+    NOTE: assumes the sequences are only one line each.
 
     :param fasta_path: path to fasta file you want to downsample
     :param n: downsampling severity.  Only keep (about) sequences/n sequences.
@@ -247,6 +330,9 @@ def downsample_fasta(fasta_path, n = 10):
     # File writing complete.
 
     # todo: Check that the correct number of lines was written.
+    # todo: check that every other line starts with a >
+    # If not every other line starts with >, then the sequences might have
+    # been multi-line
     # return the resulting filename
     return(out_name)
 

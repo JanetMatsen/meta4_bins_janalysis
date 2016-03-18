@@ -37,7 +37,7 @@ samples_to_investigate = ['112_LOW13', '70_HOW9', '57_HOW8', '32_HOW6']
 
 PARENT_DIR = './unmapped'
 FASTA_DIR = './unmapped/fasta_files'
-BLASTED_DIR = './unmapped/blasted'
+BLASTED_DIR = './unmapped/blast_results'
 
 ur.create_dir(PARENT_DIR)
 ur.create_dir(FASTA_DIR)
@@ -54,7 +54,7 @@ def run_pipeline(verbose=True, downsample_fasta=10000):
             print("bam file path: {}".format(bam_file))
 
         # identify a filepath/name for the output fasta
-        sample_fasta = ur.sample_name_to_fasta_name(sample, PARENT_DIR)
+        sample_fasta = ur.sample_name_to_fasta_path(sample, PARENT_DIR)
 
         if ur.check_file_exists(sample_fasta):
             print("fasta {} exists already; don't make from .bam".format(
@@ -74,7 +74,7 @@ def run_pipeline(verbose=True, downsample_fasta=10000):
 
         # blast the results
         sample_blasted = \
-            ur.sample_name_to_blasted_name(
+            ur.sample_name_to_blasted_path(
                 sample + "_" + str(downsample_fasta),
                 PARENT_DIR)
         print('blast downsampled fasta.  Store results as {}'.format(
