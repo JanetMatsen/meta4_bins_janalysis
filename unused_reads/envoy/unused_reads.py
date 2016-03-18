@@ -349,3 +349,83 @@ def downsample_fasta(fasta_path, n=10):
     # been multi-line
     # return the resulting filename
     return out_name
+
+
+def run_pipeline(samples_to_investigate, parent_directory,
+                 verbose=True, sam_flag='unmapped',
+                 downsample_fasta=10000, word_size=24,
+                 max_target_seqs=1):
+    """
+
+    Doesn't re-make the full length .fasta from .bam if it already exists (
+    should come out the same).  This will be bad if you change the samtools
+    call!
+
+    :param samples_to_investigate:
+    :param parent_directory:
+    :param verbose:
+    :param sam_flag:
+    :param downsample_fasta:
+    :param word_size:
+    :param max_target_seqs:
+    :return:
+    """
+
+    # todo: sanatize so parent_directory could be './dirname' or './dirname'
+    # or 'dirname' etc.
+    create_dir(parent_directory)
+    create_dir(parent_directory + '/fasta_files')
+    create_dir(parent_directory + '/blast_results')
+
+    for sample in samples_to_investigate:
+        if verbose:
+            print("start work for sample: {}".format(sample))
+
+        # get the path to the original BAM file
+        bam_file = sample_name_to_bam_filepath(sample)
+        if verbose:
+            print("bam file path: {}".format(bam_file))
+
+        # identify a filepath/name for the output fasta
+        sample_fasta = sample_name_to_fasta_path(sample, parent_directory)
+
+        if check_file_exists(sample_fasta):
+            print("fasta {} exists already; don't make from .bam".format(
+                sample_fasta))
+        else:
+            print("generate .fasta for {}".format(sample))
+            bam_to_fasta(source_bam=bam_file,
+                            dest_fasta=sample_fasta,
+                            sam_flag=sam_flag)
+        # check that the blasted file exists now.
+        assert(check_file_exists(sample_fasta))
+
+        # downsample the fasta so BLAST doesn't take *forever*
+        # downsample_fasta() returns path to downsampled fasta.
+        downsampled_fasta = downsample_fasta(sample_fasta, downsample_fasta)
+
+        # todo: the blast step takes the longest.  Only run if the
+        # downsampled_fasta I want to blast is recent??
+        # blast the results
+        sample_blasted = \
+            sample_name_to_blasted_path(
+                sample + "_" + str(downsample_fasta),
+                parent_directory)
+        print('blast downsampled fasta.  Store results as {}'.format(
+            sample_blasted))
+        # do the blasting
+        # remove old file if its length is zero
+        if check_file_exists(sample_blasted):
+            with open(sample_blasted) as f:
+                num_lines = len(f.readlines())
+            if num_lines != 0:
+                print("fasta {} already exists.".format(sample_blasted))
+        else:
+            print("blast {} and save as {}".format(downsampled_fasta,
+                                                   sample_blasted))
+            blast_fasta(in_file=downsampled_fasta,
+                           out_file=sample_blasted,
+                           word_size=word_size,
+                           max_target_seqs=max_target_seqs)
+        # check that the blasted file exists now.
+        assert(eck_file_exists(sample_blasted))
