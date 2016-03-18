@@ -345,7 +345,7 @@ def downsample_fasta_islice(fasta_path, n=10):
             like .fasta1000
     """
     # make output_filename
-    out_name = fasta_path + str(n)
+    out_name = fasta_path.rstrip('.fasta') + '_{}.fasta'.format(n)
     print("output file name for fasta downsampling: {}".format(out_name))
     with open(fasta_path, "r") as source_file, \
             open(out_name, 'w') as dest_file:
