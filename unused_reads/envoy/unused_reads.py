@@ -112,7 +112,8 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
 
     if intermediate_sam:
         # run just the first command and save to an intermediate file
-        intermediate_sam_path = './dev/temp_int_sam.sam'
+        # write the temp file into the .fasta dir.
+        intermediate_sam_path = 'dest_fasta'.rstrip('.fasta') + '.sam'
         command_1 = \
             "/work/software/samtools/bin/samtools view -f {} {}".format(
                 sam_flag, source_bam)
