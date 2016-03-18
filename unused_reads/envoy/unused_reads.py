@@ -21,6 +21,8 @@ def shell(command,
           outfile=None,
           prepend_datetime=False,
           debug=False):
+    # Todo: ensure that the path to the outfile exists (not the outfile itself)
+
     r = envoy.run(command)
     # print envoy results if desired.
     if debug:
@@ -85,12 +87,12 @@ def check_file_exists(filepath):
     return os.path.isfile(filepath)
 
 
-def sample_name_to_fasta_name(sample_name):
-    return './fasta_files/' + sample_name + '.fasta'
+def sample_name_to_fasta_name(sample_name, dest_dir):
+    return dest_dir + '/fasta_files/' + sample_name + '.fasta'
 
 
-def sample_name_to_blasted_name(sample_name):
-    return './blast_results/' + sample_name + '-blasted.tsv'
+def sample_name_to_blasted_name(sample_name, dest_dir):
+    return dest_dir + '/blast_results/' + sample_name + '-blasted.tsv'
 
 
 def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
@@ -165,20 +167,20 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
     pass
 
 
-def blast_fasta(in_file, out_file, outfmt=None, sample_frac=0.10):
-    # TODO: I don't elive the triple quote wrapped lines below work.
+def blast_fasta(in_file, out_file,
+                word_size=24, threads=12,
+                outfmt=None, sample_frac=0.10):
     if not outfmt:
         outfmt = '"6 stitle qseqid sseqid ' \
                  'pident length mismatch gapopen qstart qend sstart" '
     print("blast output format: {}".format(outfmt))
 
     blast_command = \
-        "blastn -db /work/data/blast_db/nt -query {} " \
-        "-word_size 24 -ungapped -outfmt {}" \
-        "-show_gis -max_target_seqs 1 -num_threads 12".format(in_file, outfmt)
-        # 'blastn -db /work/data/blast_db/nt -query {} '.format(in_file) + \
-        # '-word_size 24 -ungapped -outfmt {}'.format(outfmt) + \
-        # '-show_gis -max_target_seqs 1 -num_threads 12 > {}'
+        "blastn -db /work/data/blast_db/nt -query {fasta} " \
+        "-word_size {wordsize} -ungapped -outfmt {format}" \
+        "-show_gis -max_target_seqs 1 -num_threads {threads}".format(
+            fasta=in_file, format=outfmt, wordsize=word_size, threads=threads)
+
     print('command to blast: {}'.format(blast_command))
     print('save blast output to: {}'.format(out_file))
     # qseqid   --> Query Seq-id    (default)
