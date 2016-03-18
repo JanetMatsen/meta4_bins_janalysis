@@ -16,35 +16,18 @@ try:
 except KeyError:
     user_paths = []
 
-# file to write messages/tests(?) to:
-STD_OUT = 'run_history.out'
-# path to the workspace dirs like LakWasM112_LOW13_2/
 
+def run_pipeline(samples_to_investigate, parent_directory,
+                 verbose=True, sam_flag='unmapped',
+                 downsample_fasta=10000, word_size=24,
+                 max_target_seqs=1):
 
-ur.shell("uptime", STD_OUT)
-ur.shell("pwd", STD_OUT)
+    # todo: sanatize so parent_directory could be './dirname' or './dirname'
+    # or 'dirname' etc.
+    ur.create_dir(parent_directory)
+    ur.create_dir(parent_directory + '/fasta_files')
+    ur.create_dir(parent_directory + '/blast_results')
 
-# make sure the dirs I want exist.
-dirs = ['fasta_files', 'blast_results']
-for d in dirs:
-    ur.create_dir(d)
-
-
-# /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam
-# /gscratch/lidstrom/meta4_bins/workspace/LakWasMet70_HOW9_2/bwa/LakWasMet70_HOW9_2.sorted.bam
-# /gscratch/lidstrom/meta4_bins/workspace/LakWasMe82_HOW10_2/bwa/LakWasMe82_HOW10_2.sorted.bam
-samples_to_investigate = ['112_LOW13', '70_HOW9', '57_HOW8', '32_HOW6']
-
-PARENT_DIR = './unmapped'
-FASTA_DIR = './unmapped/fasta_files'
-BLASTED_DIR = './unmapped/blast_results'
-
-ur.create_dir(PARENT_DIR)
-ur.create_dir(FASTA_DIR)
-ur.create_dir(BLASTED_DIR)
-
-
-def run_pipeline(verbose=True, sam_flag='unmapped', downsample_fasta=10000):
     for sample in samples_to_investigate:
         if verbose:
             print("start work for sample: {}".format(sample))
@@ -55,7 +38,7 @@ def run_pipeline(verbose=True, sam_flag='unmapped', downsample_fasta=10000):
             print("bam file path: {}".format(bam_file))
 
         # identify a filepath/name for the output fasta
-        sample_fasta = ur.sample_name_to_fasta_path(sample, PARENT_DIR)
+        sample_fasta = ur.sample_name_to_fasta_path(sample, parent_directory)
 
         if ur.check_file_exists(sample_fasta):
             print("fasta {} exists already; don't make from .bam".format(
@@ -76,7 +59,7 @@ def run_pipeline(verbose=True, sam_flag='unmapped', downsample_fasta=10000):
         sample_blasted = \
             ur.sample_name_to_blasted_path(
                 sample + "_" + str(downsample_fasta),
-                PARENT_DIR)
+                parent_directory)
         print('blast downsampled fasta.  Store results as {}'.format(
             sample_blasted))
         # do the blasting
@@ -90,11 +73,26 @@ def run_pipeline(verbose=True, sam_flag='unmapped', downsample_fasta=10000):
             print("blast {} and save as {}".format(downsampled_fasta,
                                                    sample_blasted))
             ur.blast_fasta(in_file=downsampled_fasta,
-                           out_file=sample_blasted)
+                           out_file=sample_blasted,
+                           word_size=word_size,
+                           max_target_seqs=max_target_seqs)
         # check that the blasted file exists now.
         assert(ur.check_file_exists(sample_blasted))
 
-run_pipeline()
+# run the command
+run_pipeline(samples_to_investigate=ur.SAMPLES,
+             parent_directory='./unmapped',
+             verbose=True, sam_flag='unmapped',
+             downsample_fasta=10000, word_size=24,
+             max_target_seqs=1)
+
+run_pipeline(samples_to_investigate=ur.SAMPLES,
+             parent_directory='./multiply_mapped',
+             verbose=True, sam_flag='multiple',
+             downsample_fasta=10000, word_size=24,
+             max_target_seqs=3)
+
+
 
 
 

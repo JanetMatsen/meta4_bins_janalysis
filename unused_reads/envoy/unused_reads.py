@@ -9,6 +9,8 @@ import envoy
 # see demo on my laptop.
 
 
+SAMPLES = ['112_LOW13', '70_HOW9', '57_HOW8', '32_HOW6']
+
 def write_to_file(text, filepath, prepend_datetime=False):
     """
     Write text (usually standard output from envoy) to file.
@@ -248,7 +250,7 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
 
 
 def blast_fasta(in_file, out_file,
-                word_size=24, threads=12,
+                word_size=24, max_target_seqs=1, threads=12,
                 outfmt=None):
     """
     Blast a fasta file, save as .tsv
@@ -256,6 +258,7 @@ def blast_fasta(in_file, out_file,
     :param in_file: path to .fasta file to BLAST
     :param out_file: path to save the file at
     :param word_size: BLAST setting.  Larger --> faster & less sensitive
+    :param max_target_seqs: maximum number of blast hits to return.
     :param threads: BLAST setting for parallelization
     :param outfmt: output format to use (optional)
     :return: saves a blast file, and returns the path to the file
@@ -268,8 +271,9 @@ def blast_fasta(in_file, out_file,
     blast_command = \
         "blastn -db /work/data/blast_db/nt -query {fasta} " \
         "-word_size {wordsize} -ungapped -outfmt {format}" \
-        "-show_gis -max_target_seqs 1 -num_threads {threads}".format(
-            fasta=in_file, format=outfmt, wordsize=word_size, threads=threads)
+        "-show_gis -max_target_seqs {mts} -num_threads {threads}".format(
+            fasta=in_file, wordsize=word_size, format=outfmt,
+            mts=max_target_seqs, threads=threads)
 
     print('command to blast: {}'.format(blast_command))
     print('save blast output to: {}'.format(out_file))
