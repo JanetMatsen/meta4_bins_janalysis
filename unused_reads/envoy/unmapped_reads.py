@@ -33,15 +33,17 @@ for d in dirs:
 # /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam
 # /gscratch/lidstrom/meta4_bins/workspace/LakWasMet70_HOW9_2/bwa/LakWasMet70_HOW9_2.sorted.bam
 # /gscratch/lidstrom/meta4_bins/workspace/LakWasMe82_HOW10_2/bwa/LakWasMe82_HOW10_2.sorted.bam
-samples_to_investigate = ['112_LOW13']
+samples_to_investigate = ['112_LOW13', '70_HOW9', '57_HOW8', '32_HOW6']
 
-FASTA_FOLDER = 'fasta_files'
-BLASTED_FOLDER = 'blasted'
+PARENT_DIR = './unmapped'
+FASTA_DIR = './unmapped/fasta_files'
+BLASTED_DIR = './unmapped/blasted'
 
-ur.create_dir(FASTA_FOLDER)
-ur.create_dir(BLASTED_FOLDER)
+ur.create_dir(PARENT_DIR)
+ur.create_dir(FASTA_DIR)
+ur.create_dir(BLASTED_DIR)
 
-def run_pipeline(verbose=True, downsample_fasta=1000):
+def run_pipeline(verbose=True, downsample_fasta=10000):
     for sample in samples_to_investigate:
         if verbose:
             print("start work for sample: {}".format(sample))
@@ -52,7 +54,7 @@ def run_pipeline(verbose=True, downsample_fasta=1000):
             print("bam file path: {}".format(bam_file))
 
         # identify a filepath/name for the output fasta
-        sample_fasta = ur.sample_name_to_fasta_name(sample)
+        sample_fasta = ur.sample_name_to_fasta_name(sample, PARENT_DIR)
 
         if ur.check_file_exists(sample_fasta):
             print("fasta {} exists already; don't make from .bam".format(
@@ -72,8 +74,9 @@ def run_pipeline(verbose=True, downsample_fasta=1000):
 
         # blast the results
         sample_blasted = \
-            ur.sample_name_to_blasted_name(sample +
-                                           "_" + str(downsample_fasta))
+            ur.sample_name_to_blasted_name(
+                sample + "_" + str(downsample_fasta),
+                PARENT_DIR)
         print('blast downsampled fasta.  Store results as {}'.format(
             sample_blasted))
         # do the blasting
