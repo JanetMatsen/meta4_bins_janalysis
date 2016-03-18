@@ -267,7 +267,8 @@ def blast_fasta(in_file, out_file,
     """
     if not outfmt:
         outfmt = '"6 stitle qseqid sseqid ' \
-                 'pident length mismatch gapopen qstart qend sstart send" '
+                 'pident length evalue bitscore ' \
+                 'mismatch gapopen qstart qend sstart send" '
     print("blast output format: {}".format(outfmt))
 
     blast_db_paths = {'nt':'/work/data/blast_db/nt',
@@ -285,15 +286,19 @@ def blast_fasta(in_file, out_file,
 
     print('command to blast: {}'.format(blast_command))
     print('save blast output to: {}'.format(out_file))
+    # stitle   --> Subject Title
     # qseqid   --> Query Seq-id    (default)
     # sseqid   --> Subject Seq-id  (default)
     # pident   --> Percentage of identical matches  (default)
     # length   --> Alignment length  (default)
+    # evalue   --> Expect value
+    # bitscore --> Bit score
     # mismatch --> Number of mismatches (default)
     # gapopen  --> Number of gap openings (default)
     # qstart   --> Start of alignment in query (default)
     # qend     --> End of alignment in query (default)
     # sstart   --> Start of alignment in subject (default)
+    # send     --> End of alignment in subject
 
     # run the shell command (envoy)
     shell(blast_command, outfile=out_file)
@@ -362,7 +367,7 @@ def downsample_fasta_islice(fasta_path, n=10):
 def run_pipeline(samples_to_investigate, parent_directory,
                  blast_db,
                  verbose=True, sam_flag='unmapped',
-                 downsample_fasta=10000,
+                 downsample_granularity=10000,
                  word_size=24, max_target_seqs=1):
     """
     Run the analysis pipeline for a given set of samples to investigate.
@@ -375,7 +380,7 @@ def run_pipeline(samples_to_investigate, parent_directory,
     :param parent_directory: directory to put the whole analysis in
     :param verbose: print information about envoy commands?
     :param sam_flag: sam flag to filter on.  Can be a string or numerical
-    :param downsample_fasta: only keep every n th sample (bigger --> less kept)
+    :param downsample_granularity: only keep every n th sample (bigger --> less kept)
     :param word_size: BLAST parameter for initial match size
     :param max_target_seqs: BLAST parameter for number of sequences to keep
     :return:
@@ -413,14 +418,14 @@ def run_pipeline(samples_to_investigate, parent_directory,
         # downsample the fasta so BLAST doesn't take *forever*
         # downsample_fasta_islice() returns path to downsampled fasta.
         downsampled_fasta = downsample_fasta_islice(sample_fasta,
-                                                    downsample_fasta)
+                                                    downsample_granularity)
 
         # todo: the blast step takes the longest.  Only run if the
         # downsampled_fasta I want to blast is recent??
         # blast the results
         sample_blasted = \
             sample_name_to_blasted_path(
-                sample + "_" + str(downsample_fasta),
+                sample + "_" + str(downsample_granularity),
                 parent_directory)
         print('blast downsampled fasta.  Store results as {}'.format(
             sample_blasted))
