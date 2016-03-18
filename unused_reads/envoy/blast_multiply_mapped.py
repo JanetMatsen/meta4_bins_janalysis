@@ -27,6 +27,6 @@ ur.run_pipeline(samples_to_investigate=ur.SAMPLES,
                 parent_directory='./multiply_mapped-final',
                 blast_db='bins',
                 verbose=True, sam_flag='multiple',
-                downsample_granularity=10000, word_size=24,
+                downsample_granularity=100, word_size=24,
                 max_target_seqs=1)
 
