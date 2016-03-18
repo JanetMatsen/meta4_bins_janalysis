@@ -8,6 +8,7 @@ import envoy
 # TODO: assert that it is python 2.  envoy seemed to freak out with Python 3.
 # see demo on my laptop.
 
+
 def write_to_file(text, filepath, prepend_datetime=False):
     """
     Write text (usually standard output from envoy) to file.
@@ -107,7 +108,7 @@ def sample_name_to_bam_filepath(sample):
     # convert something like XY_HOWZ --> a file path for the bam
     home_dir = '/gscratch/lidstrom/meta4_bins/workspace/'
     # make a list of candidate files.  Will check that length is 1.
-    candidate_files =[]
+    candidate_files = []
     for root, dirs, files in os.walk(home_dir, topdown=False):
         for name in files:
             if sample in name:
@@ -117,7 +118,7 @@ def sample_name_to_bam_filepath(sample):
                         sample, path_to_bam))
                     candidate_files.append(path_to_bam)
     # check that only one file was found (was string fully specific?)
-    if len(candidate_files)==1:
+    if len(candidate_files) == 1:
         return candidate_files[0]
     else:
         return "error: many candidate files found. \n {}".format(
@@ -168,6 +169,7 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
     # dictionary that converts description of a samtools flag into a
     # numerical value used in the samtools call.
     samtools_flag_converter = {'unmapped': 4, 'multiple': 256}
+    # if the samtools flag passed was a string, convert it to a bit flag.
     if type(sam_flag) == str:
         try:
             sam_flag = samtools_flag_converter[sam_flag]
@@ -199,7 +201,8 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
             intermediate_sam_path, check_file_exists(intermediate_sam_path)))
 
     # can use triple quotes to have mixed ' and " in python.
-    # source: http://stackoverflow.com/questions/15280050/calling-awk-from-python
+    # source:
+    # http://stackoverflow.com/questions/15280050/calling-awk-from-python
     command_2 = """ awk '{OFS="\\t"; print ">"$1"\\n"$10}' """
 
     if intermediate_sam:
@@ -213,7 +216,7 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
         # remove the intermediate .sam file
         print('remove the intermediate .sam file: {}'.format(
             intermediate_sam_path))
-        command= 'rm {}'.format(intermediate_sam_path)
+        command = 'rm {}'.format(intermediate_sam_path)
         print('rm command: \n {}')
         shell(command, debug=debug)
     else:
@@ -236,7 +239,8 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
 
     # WORKS:
     # command_string = """ /work/software/samtools/bin/samtools view -f 4
-    # /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam | awk '{OFS="\t"; print ">"$1"\\n"$10}' """
+    # /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/
+    # LakWasM112_LOW13_2.sorted.bam | awk '{OFS="\t"; print ">"$1"\\n"$10}' """
     #     # don't run the >.  Use envoy, wrapped in shell() to do this.
     #     # - > ./fasta_files/112_LOW13_unmapped.fasta """
 
@@ -325,8 +329,8 @@ def downsample_fasta(fasta_path, n=10):
     print("output file name for fasta downsampling: {}".format(out_name))
     with open(fasta_path, "r") as source_file, \
             open(out_name, 'w') as dest_file:
-    # keep every nth line
-    # todo: shuffle it?
+        # keep every nth line
+        # todo: shuffle it?
         # loop over pairs of lines, and skip the lines that aren't the nth:
         for desc, seq in itertools.islice(pairwise(source_file), 0, None, n):
             # write these pairs of lines to a new file
@@ -340,7 +344,4 @@ def downsample_fasta(fasta_path, n=10):
     # If not every other line starts with >, then the sequences might have
     # been multi-line
     # return the resulting filename
-    return(out_name)
-
-
-
+    return out_name
