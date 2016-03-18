@@ -80,30 +80,19 @@ def run_pipeline(samples_to_investigate, parent_directory,
         assert(ur.check_file_exists(sample_blasted))
 
 # run the command
+
+# word size = 11 is default for blastn
+# see: http://www.ncbi.nlm.nih.gov/books/NBK279675/
+# Note it is for the initial match:
+# "Number of matching nucleotides in initial match."
+run_pipeline(samples_to_investigate=ur.SAMPLES,
+             parent_directory='./multiply_mapped',
+             verbose=True, sam_flag='multiple',
+             downsample_fasta=10000, word_size=11,
+             max_target_seqs=3)
+
 run_pipeline(samples_to_investigate=ur.SAMPLES,
              parent_directory='./unmapped',
              verbose=True, sam_flag='unmapped',
              downsample_fasta=10000, word_size=24,
              max_target_seqs=1)
-
-run_pipeline(samples_to_investigate=ur.SAMPLES,
-             parent_directory='./multiply_mapped',
-             verbose=True, sam_flag='multiple',
-             downsample_fasta=10000, word_size=24,
-             max_target_seqs=3)
-
-
-
-
-
-
-
-
-
-
-
-        # get the reads
-
-
-
-
