@@ -22,9 +22,11 @@ except KeyError:
 # see: http://www.ncbi.nlm.nih.gov/books/NBK279675/
 # Note it is for the initial match:
 # "Number of matching nucleotides in initial match."
+
 ur.run_pipeline(samples_to_investigate=ur.SAMPLES,
                 parent_directory='./multiply_mapped-final',
+                blast_db='bins',
                 verbose=True, sam_flag='multiple',
-                downsample_fasta=10000, word_size=11,
-                max_target_seqs=3)
+                downsample_fasta=10000, word_size=24,
+                max_target_seqs=1)
 

@@ -251,6 +251,7 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
 
 
 def blast_fasta(in_file, out_file,
+                blast_db='nt',
                 word_size=24, max_target_seqs=1, threads=12,
                 outfmt=None):
     """
@@ -266,14 +267,20 @@ def blast_fasta(in_file, out_file,
     """
     if not outfmt:
         outfmt = '"6 stitle qseqid sseqid ' \
-                 'pident length mismatch gapopen qstart qend sstart" '
+                 'pident length mismatch gapopen qstart qend sstart send" '
     print("blast output format: {}".format(outfmt))
 
+    blast_db_paths = {'nt':'/work/data/blast_db/nt',
+                      'bins':'/work/data/blast_db/genome_bins'
+                      }
+    if blast_db in blast_db_paths.keys():
+        blast_db = blast_db_paths[blast_db]
+
     blast_command = \
-        "blastn -db /work/data/blast_db/nt -query {fasta} " \
+        "blastn -db {db} -query {fasta} " \
         "-word_size {wordsize} -ungapped -outfmt {format}" \
         "-show_gis -max_target_seqs {mts} -num_threads {threads}".format(
-            fasta=in_file, wordsize=word_size, format=outfmt,
+            db=blast_db, fasta=in_file, wordsize=word_size, format=outfmt,
             mts=max_target_seqs, threads=threads)
 
     print('command to blast: {}'.format(blast_command))
@@ -353,9 +360,10 @@ def downsample_fasta_islice(fasta_path, n=10):
 
 
 def run_pipeline(samples_to_investigate, parent_directory,
+                 blast_db,
                  verbose=True, sam_flag='unmapped',
-                 downsample_fasta=10000, word_size=24,
-                 max_target_seqs=1):
+                 downsample_fasta=10000,
+                 word_size=24, max_target_seqs=1):
     """
     Run the analysis pipeline for a given set of samples to investigate.
 
@@ -427,8 +435,9 @@ def run_pipeline(samples_to_investigate, parent_directory,
             print("blast {} and save as {}".format(downsampled_fasta,
                                                    sample_blasted))
             blast_fasta(in_file=downsampled_fasta,
-                           out_file=sample_blasted,
-                           word_size=word_size,
-                           max_target_seqs=max_target_seqs)
+                        out_file=sample_blasted,
+                        blast_db=blast_db,
+                        word_size=word_size,
+                        max_target_seqs=max_target_seqs)
         # check that the blasted file exists now.
         assert(check_file_exists(sample_blasted))
