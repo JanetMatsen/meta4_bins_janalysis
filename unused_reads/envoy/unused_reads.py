@@ -9,7 +9,10 @@ import envoy
 # see demo on my laptop.
 
 
-SAMPLES = ['112_LOW13', '70_HOW9', '57_HOW8', '32_HOW6']
+SAMPLES = ['112_LOW13', '82_HOW10', '70_HOW9', '57_HOW8', '32_HOW6',
+           '19_HOW5', '74_LOW10']
+# 74_LOW10 is a control: turned out pretty well.
+
 
 
 def write_to_file(text, filepath, prepend_datetime=False):
