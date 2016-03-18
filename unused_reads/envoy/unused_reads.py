@@ -11,6 +11,7 @@ import envoy
 
 SAMPLES = ['112_LOW13', '70_HOW9', '57_HOW8', '32_HOW6']
 
+
 def write_to_file(text, filepath, prepend_datetime=False):
     """
     Write text (usually standard output from envoy) to file.
@@ -356,18 +357,19 @@ def run_pipeline(samples_to_investigate, parent_directory,
                  downsample_fasta=10000, word_size=24,
                  max_target_seqs=1):
     """
+    Run the analysis pipeline for a given set of samples to investigate.
 
     Doesn't re-make the full length .fasta from .bam if it already exists (
     should come out the same).  This will be bad if you change the samtools
     call!
 
-    :param samples_to_investigate:
-    :param parent_directory:
-    :param verbose:
-    :param sam_flag:
-    :param downsample_fasta:
-    :param word_size:
-    :param max_target_seqs:
+    :param samples_to_investigate: list of sample names like '57_HOW8'
+    :param parent_directory: directory to put the whole analysis in
+    :param verbose: print information about envoy commands?
+    :param sam_flag: sam flag to filter on.  Can be a string or numerical
+    :param downsample_fasta: only keep every n th sample (bigger --> less kept)
+    :param word_size: BLAST parameter for initial match size
+    :param max_target_seqs: BLAST parameter for number of sequences to keep
     :return:
     """
 
