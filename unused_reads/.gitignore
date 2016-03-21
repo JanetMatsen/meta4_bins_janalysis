@@ -1,0 +1,11 @@
+*.out
+dev*
+old/*
+
+# ignore the .fasta results
+fasta_files/
+
+# ignore results
+multiply_mapped-final/
+unmapped-final/
+unmapped/

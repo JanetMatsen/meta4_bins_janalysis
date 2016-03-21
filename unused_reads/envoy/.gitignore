@@ -1,6 +1,0 @@
-*.out
-dev*
-old/*
-
-# ignore the .fasta results
-fasta_files/*

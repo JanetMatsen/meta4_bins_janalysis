@@ -1,0 +1,25 @@
+# make sure my pipeline is returning the appropriate length .fasta files.  Check on these manually:
+
+
+#---- check sample 112 ------
+112_LOW13.fasta
+- number of lines from the envoy result, having written an intermediate .sam file (that was deleted):
+	- 46,562,042 
+		$ wc -l unmapped/fasta_files/112_LOW13.fasta
+		46562042 unmapped/fasta_files/112_LOW13.fasta
+- make a manual command do doulbe-check it:
+	- /work/software/samtools/bin/samtools view -f 4 /gscratch/lidstrom/meta4_bins/workspace/LakWasM112_LOW13_2/bwa/LakWasM112_LOW13_2.sorted.bam | awk '{OFS="\t"; print ">"$1"\n"$10}' | wc -l 
+	- note: didn't write a file this time.  Just count the number of lines.
+	- result = 46562042 = 46,562,042
+
+
+#---- also check sample 70 ------
+70_HOW9.fasta
+- number of lines:
+	- $ wc -l unmapped/fasta_files/70_HOW9.fasta
+	    83889622 unmapped/fasta_files/70_HOW9.fasta
+	- 83,889,622
+- /work/software/samtools/bin/samtools view -f 4 /gscratch/lidstrom/meta4_bins/workspace/LakWasMet70_HOW9_2/bwa/LakWasMet70_HOW9_2.sorted.bam | awk '{OFS="\t"; print ">"$1"\n"$10}' | wc -l
+        - note: didn't write a file this time.  Just count the number of lines.
+- result:
+	- 83889622 = 83,889,622
