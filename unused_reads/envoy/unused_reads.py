@@ -253,6 +253,15 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
     pass
 
 
+def blast_format_to_row_names(blast_outfmt, file_path):
+    # todo: write a function that takes an outfmt string and writes the
+    # column names to the specified file
+    # use the native blast names.  Use a separate function that can rename
+    # them to more human-friendly ones.
+
+    pass
+
+
 def blast_fasta(in_file, out_file,
                 blast_db='nt',
                 word_size=24, max_target_seqs=1, threads=12,
@@ -274,9 +283,8 @@ def blast_fasta(in_file, out_file,
                  'mismatch gapopen qstart qend sstart send" '
     print("blast output format: {}".format(outfmt))
 
-    blast_db_paths = {'nt':'/work/data/blast_db/nt',
-                      'bins':'/work/data/blast_db/genome_bins'
-                      }
+    blast_db_paths = {'nt': '/work/data/blast_db/nt',
+                      'bins': '/work/data/blast_db/genome_bins'}
     if blast_db in blast_db_paths.keys():
         blast_db = blast_db_paths[blast_db]
 
@@ -449,3 +457,9 @@ def run_pipeline(samples_to_investigate, parent_directory,
                         max_target_seqs=max_target_seqs)
         # check that the blasted file exists now.
         assert(check_file_exists(sample_blasted))
+
+
+    def downsample_and_blast(input_fasta, output_blast_path,
+                             downsample_granularity):
+        # todo: write a function to downsample and blast a single file.
+        pass
