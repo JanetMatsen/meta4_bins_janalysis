@@ -181,8 +181,8 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
         try:
             sam_flag = samtools_flag_converter[sam_flag]
         except LookupError:
-            print "error: sam string {} could not be converted to " \
-                  "a samtools command".format(sam_flag)
+            print("error: sam string {} could not be converted to " \
+                  "a samtools command".format(sam_flag))
 
     if intermediate_sam:
         print("run bam_to_fasta() by making an intermediate .sam file")
