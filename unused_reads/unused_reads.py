@@ -1,6 +1,7 @@
 import itertools
 
 import os
+import re
 import time
 
 import envoy
@@ -253,13 +254,26 @@ def bam_to_fasta(source_bam, dest_fasta, sam_flag=4,
     pass
 
 
-def blast_format_to_row_names(blast_outfmt, file_path):
-    # todo: write a function that takes an outfmt string and writes the
-    # column names to the specified file
-    # use the native blast names.  Use a separate function that can rename
-    # them to more human-friendly ones.
+def blast_format_to_col_names(blast_outfmt):
+    """
+    Change a blast format such as '"6 stitle qseqid sseqid pident length"'
+    to a tab-separated line that can be used for .tsv column names such as
+    "stitle    qseqid    sseqid    pident    length"
 
-    pass
+    :param blast_outfmt: a blast
+    :return: string with tabs between column names
+    """
+    # first check that the blast_outfmt is type 6, the type this is designed
+    #  to support.
+    assert(blast_outfmt.startswith('"6 ')), \
+        'only designed for BLAST outfmt type 6, e.g. ' \
+        '"6 stitle qseqid sseqid pident length evalue" '
+
+    # strip off the leading digit:
+    colnames = re.sub("\d+ ", "", blast_outfmt)
+    # replace spaces with tabs.
+    colnames = re.sub(" ", "\t", colnames)
+    return colnames
 
 
 def blast_fasta(in_file, out_file,
@@ -271,6 +285,8 @@ def blast_fasta(in_file, out_file,
 
     :param in_file: path to .fasta file to BLAST
     :param out_file: path to save the file at
+    :param blast_db: path to the blast database to use OR nick name.  Nick
+    name can be 'nt' or 'bins'.
     :param word_size: BLAST setting.  Larger --> faster & less sensitive
     :param max_target_seqs: maximum number of blast hits to return.
     :param threads: BLAST setting for parallelization
@@ -311,6 +327,9 @@ def blast_fasta(in_file, out_file,
     # sstart   --> Start of alignment in subject (default)
     # send     --> End of alignment in subject
 
+    # write the column names to file first.
+    colnames = blast_format_to_col_names(outfmt)
+    shell('echo {}'.format(colnames), outfile=out_file)
     # run the shell command (envoy)
     shell(blast_command, outfile=out_file)
     pass
