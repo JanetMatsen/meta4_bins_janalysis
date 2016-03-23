@@ -394,11 +394,42 @@ def downsample_fasta_islice(fasta_path, n=10):
     return out_name
 
 
+def blast_if_doesnt_exist(sample, parent_directory,
+                          downsampled_fasta, downsample_granularity,
+                          blast_db, word_size, max_target_seqs, threads):
+    # make an output file path
+    sample_blasted = \
+        sample_name_to_blasted_path(
+            sample + "_" + str(downsample_granularity),
+            parent_directory)
+    print('blast downsampled fasta.  Store results as {}'.format(
+        sample_blasted))
+    # do the blasting
+    # remove old file if its length is zero
+    if check_file_exists(sample_blasted):
+        with open(sample_blasted) as f:
+            num_lines = len(f.readlines())
+        if num_lines != 0:
+            print("fasta {} already exists.".format(sample_blasted))
+    else:
+        print("blast {} and save as {}".format(downsampled_fasta,
+                                               sample_blasted))
+        blast_fasta(in_file=downsampled_fasta,
+                    out_file=sample_blasted,
+                    blast_db=blast_db,
+                    word_size=word_size,
+                    max_target_seqs=max_target_seqs,
+                    threads=threads)
+
+    # check that the blasted file exists now.
+    assert(check_file_exists(sample_blasted))
+
+
 def run_pipeline(samples_to_investigate, parent_directory,
                  blast_db,
                  verbose=True, sam_flag='unmapped',
                  downsample_granularity=10000,
-                 word_size=24, max_target_seqs=1):
+                 word_size=24, max_target_seqs=1, threads=3):
     """
     Run the analysis pipeline for a given set of samples to investigate.
 
@@ -413,6 +444,8 @@ def run_pipeline(samples_to_investigate, parent_directory,
     :param downsample_granularity: only keep every n th sample (bigger --> less kept)
     :param word_size: BLAST parameter for initial match size
     :param max_target_seqs: BLAST parameter for number of sequences to keep
+    :param threads: number of threads (cores) to use for BLAST
+    (parallelization)
     :return:
     """
 
@@ -450,35 +483,51 @@ def run_pipeline(samples_to_investigate, parent_directory,
         downsampled_fasta = downsample_fasta_islice(sample_fasta,
                                                     downsample_granularity)
 
-        # todo: the blast step takes the longest.  Only run if the
-        # downsampled_fasta I want to blast is recent??
-        # blast the results
-        sample_blasted = \
-            sample_name_to_blasted_path(
-                sample + "_" + str(downsample_granularity),
-                parent_directory)
-        print('blast downsampled fasta.  Store results as {}'.format(
-            sample_blasted))
-        # do the blasting
-        # remove old file if its length is zero
-        if check_file_exists(sample_blasted):
-            with open(sample_blasted) as f:
-                num_lines = len(f.readlines())
-            if num_lines != 0:
-                print("fasta {} already exists.".format(sample_blasted))
-        else:
-            print("blast {} and save as {}".format(downsampled_fasta,
-                                                   sample_blasted))
-            blast_fasta(in_file=downsampled_fasta,
-                        out_file=sample_blasted,
-                        blast_db=blast_db,
-                        word_size=word_size,
-                        max_target_seqs=max_target_seqs)
+        blast_if_doesnt_exist(sample=sample,
+                              parent_directory=parent_directory,
+                              downsampled_fasta=downsampled_fasta,
+                              downsample_granularity=downsample_granularity,
+                              blast_db=blast_db,
+                              word_size=word_size,
+                              max_target_seqs=max_target_seqs,
+                              threads=threads)
+
+
+def downsample_fasta_and_blast(parent_directory,
+                               samples_to_investigate,
+                               downsample_granularity,
+                               blast_db, word_size, max_target_seqs, threads):
+
+    # todo: write a function to downsample and blast a single file.
+    # check that the starting full-length fasta file is present:
+    # Make a file name for the new file
+    # check that there is no file with that name that exists
+
+    for sample in samples_to_investigate:
+        print("start work for sample: {}".format(sample))
+
+        # identify the filepath/name for the fasta that should exist.
+        sample_fasta = sample_name_to_fasta_path(sample, parent_directory)
+
+        assert check_file_exists(sample_fasta), \
+            "starting fasta for downsampling not found: {}".format(
+                sample_fasta)
+
         # check that the blasted file exists now.
-        assert(check_file_exists(sample_blasted))
+        assert(check_file_exists(sample_fasta))
 
+        # downsample the fasta so BLAST doesn't take *forever*
+        # downsample_fasta_islice() returns path to downsampled fasta.
+        downsampled_fasta = downsample_fasta_islice(sample_fasta,
+                                                    downsample_granularity)
 
-    def downsample_and_blast(input_fasta, output_blast_path,
-                             downsample_granularity):
-        # todo: write a function to downsample and blast a single file.
-        pass
+        print('blast downsampled fasta')
+        # do the blasting
+        blast_if_doesnt_exist(sample=sample,
+                              parent_directory=parent_directory,
+                              downsampled_fasta=downsampled_fasta,
+                              downsample_granularity=downsample_granularity,
+                              blast_db=blast_db,
+                              word_size=word_size,
+                              max_target_seqs=max_target_seqs,
+                              threads=threads)
