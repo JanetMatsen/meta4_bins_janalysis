@@ -1,8 +1,10 @@
+import matplotlib as mpl
+mpl.use('Agg')
+
 import glob
 import re
 
 import matplotlib.pyplot as plt
-import matplotlib as mpl
 import numpy as np
 
 import pandas as pd
@@ -10,8 +12,7 @@ import seaborn as sns
 
 import unused_reads as ur
 
-PLOT_DIR = '../../unused_reads/plots/'
-ur.create_dir(PLOT_DIR)
+
 
 
 mpl.rcParams.update({
@@ -49,7 +50,7 @@ def read_blasted(dirname):
     return frame
 
 
-def plot_results(df, data_name, downsample_granularity):
+def subset_to_downsample_granularity(df, downsample_granularity):
     # subset df to the downsampling level
     print("available downsampling granularities: {}".format(
         df['downsample granularity'].unique()))
@@ -57,6 +58,11 @@ def plot_results(df, data_name, downsample_granularity):
     # check that the dataframe isn't empty
     assert df.shape[0] > 0, 'dataframe is empty for downssample_granularity ' \
                             '= {}'.format(downsample_granularity)
+    return df
+
+
+def plot_results(df, data_name, downsample_granularity):
+    df = subset_to_downsample_granularity(df, downsample_granularity)
 
     plot_length_dist(df,
                      data_name + "_ds_{}".format(downsample_granularity),
@@ -122,22 +128,47 @@ def plot_e_score_dist(df, data_name, filepath):
     ax.figure.savefig(filepath + data_name + "_e_value" + '.pdf')
     return ax
 
-unmapped = read_blasted('../../unused_reads/unmapped-final/blast_results/')
-# Make plots
-plot_results(unmapped, 'unmapped--all', downsample_granularity=10000)
 
-unspecific = \
-    read_blasted('../../unused_reads/multiply_mapped-final/blast_results/')
-# Make plots
-plot_results(unspecific, 'unspecific--all', downsample_granularity=100)
-
-
-def summarise(min_pid, min_length):
-    # TODO: write a function that summarises the most frequent stitle values
-    # ?? Break apart by sample?
+def summarise(df, min_pident, min_length, downsample_granularity):
     # filter by length (start with >140).  Reads are 150 long.
     # filter by % identity.  Start with 90%.  May bump down to 85%.
+
+    # subset on the granularity desired:
+    df = subset_to_downsample_granularity(df, downsample_granularity)
+
+    # trim off the low percent identity rows:
+    num_rows_before = df.shape[0]
+    df = df[df['pident'] >= min_pident]
+    num_rows_after = df.shape[0]
+    print('fraction of rows removed for min percent_identity = {}: {}'.format(
+        min_pident, (num_rows_after*1.0/num_rows_before) * 100))
+
+    # trim off the low length matches:
+    num_rows_before = df.shape[0]
+    df = df[df['length'] >= min_length]
+    num_rows_after = df.shape[0]
+    print('fraction of rows removed for min length = {}: {}'.format(
+        min_length, (num_rows_after*1.0/num_rows_before)*100))
+
+    # count frequency of each hit (stitle) for each sample
+
     # Save to csv(s).  One file per sample?  And one with everything?
     # Make separate dir for results.
-    pass
+    return df
 
+
+def run_analysis(path='../../unused_reads', make_plots=True):
+    unmapped = read_blasted(path + '/unmapped-final/blast_results/')
+    unspecific = \
+        read_blasted(path + '/multiply_mapped-final/blast_results/')
+    # Make plots
+    if make_plots:
+        plot_results(unmapped, 'unmapped--all', downsample_granularity=10000)
+        plot_results(unspecific, 'unspecific--all', downsample_granularity=100)
+    return {'unspecific': unspecific, 'unmapped': unmapped}
+
+
+if __name__ == "__main__":
+    PLOT_DIR = 'plots/'
+    ur.create_dir(PLOT_DIR)
+    run_analysis(path='./')
