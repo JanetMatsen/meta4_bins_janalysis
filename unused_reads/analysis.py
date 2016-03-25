@@ -168,6 +168,55 @@ def run_analysis(path='../../unused_reads', make_plots=True):
     return {'unspecific': unspecific, 'unmapped': unmapped}
 
 
+def reads_appearing_more_than_once(dataframe, n=1):
+    """
+    Return a list of reads that appear more than once (or n times) in a
+    dataframe.
+
+    :param dataframe: input dataframe to look in
+    :param n: if a read appears more than n times, its name will appear in
+    the returned list.
+    :return: list of strings
+    """
+    print("num unique query sequences: {}".format(
+        len(dataframe.qseqid.unique())))
+    vc = dataframe.qseqid.value_counts()
+    # print number that have frequency greater than n.
+    seqs_appearing_more_than_n_times = vc[vc > n].index
+    print("number of sequences appearing more than {} times: {}".format(
+        n, len(seqs_appearing_more_than_n_times)))
+    return seqs_appearing_more_than_n_times.tolist()
+
+
+def save_summary(dataframe, filename, csv_path):
+    """
+    saves a .tsv file that reports how many times each blast hit ("qseqid") was
+    seen.  Neglects potential for getting extra counts when a read appears
+    more than once.
+
+    :param dataframe:
+    :param filename:
+    :param csv_path:
+    :return:
+    """
+    num_reads = dataframe.qseqid.drop_duplicates().shape[0]
+    print("number of reads: {}".format(num_reads))
+    # reduce to
+    reduced_df = dataframe[['stitle', 'qseqid', 'sample']].drop_duplicates()
+    reduced_numrows = reduced_df.shape[0]
+    #reduced_numrows_scored = dataframe[['stitle', 'qseqid', 'sample', 'evalue', 'bitscore']].drop_duplicates().shape[0]
+    reduced_numrows_scored = dataframe[['qseqid']].drop_duplicates().shape[0]
+    #return dataframe[['stitle', 'qseqid', 'sample', 'evalue', 'bitscore']].drop_duplicates()
+    #assert reduced_numrows == reduced_numrows_scored, \
+    print("Was more than one result per read returned?  {} vs {} rows".format(
+        reduced_numrows, reduced_numrows_scored))
+    # Are there duplicate stitles for each read?
+    result = reduced_df.stitle.value_counts()
+    ur.create_dir(csv_path)
+    print('save file at filepath {}'.format(csv_path))
+    result.to_csv(csv_path + filename + '.tsv', sep='\t')
+
+
 if __name__ == "__main__":
     PLOT_DIR = 'plots/'
     ur.create_dir(PLOT_DIR)
