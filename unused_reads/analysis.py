@@ -194,6 +194,9 @@ def save_summary(dataframe, filename, csv_path):
     seen.  Neglects potential for getting extra counts when a read appears
     more than once.
 
+    Note: this is intended for a single summary file.  Use a groupby object
+    when different samples and/or downsampling degrees are in a file.
+
     :param dataframe:
     :param filename:
     :param csv_path:
@@ -217,7 +220,23 @@ def save_summary(dataframe, filename, csv_path):
     result.to_csv(csv_path + filename + '.tsv', sep='\t')
 
 
+def summarise_results_across_samples(dataframe, dir):
+    for desc, df in dataframe.groupby(['sample', 'downsample granularity']):
+        print(desc)
+        save_summary(
+            df,
+            '{}_{}'.format(desc[0], desc[1]),
+            dir + '/results_summary/downsample_{}/'.format(desc[1]))
+    pass
+
+
 if __name__ == "__main__":
     PLOT_DIR = 'plots/'
     ur.create_dir(PLOT_DIR)
-    run_analysis(path='./')
+    # run analysis returns a dict of dataframes:
+    # {'unspecific': unspecific, 'unmapped': unmapped}
+    df_dict = run_analysis(path='./')
+    summarise_results_across_samples(df_dict['unspecific'],
+                                     'multiply_mapped-final')
+    summarise_results_across_samples(df_dict['unmapped'],
+                                     'unmapped-final')
