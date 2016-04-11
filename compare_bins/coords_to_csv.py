@@ -116,9 +116,18 @@ def colname_to_index_list(colname_list):
     :param colname_list: a list of columns whose elements are in
         ['S1', 'E1', 'S2', 'E2', 'LEN1', 'LEN2', '% IDY',
          'LEN R', 'LEN Q', 'COV R', 'COV Q', 'TAGS']
-    :return:
+    :return: list of column numbers, zero indexed.
     """
-    col_dict = {'S1':0, 'E1':1, 'S2':3, 'E2':4, 'LEN1': 6, 'LEN2':7,
+       #  1: reference sequence start
+       #  2: reference sequence end
+       #  3: subject sequence start
+       #  4: subject sequence end
+       #  5: reference alignment length
+       #  6: subject alignment length
+       #  7: alignment percentage identity
+       #  8: reference sequence ID
+       #  9: subject sequence ID
+    col_dict = {'S1':0, 'E1':1, 'S2':3, 'E2':4, 'LEN 1': 6, 'LEN 2':7,
                 '% IDY':9, 'LEN R':11, 'LEN Q':12, 'COV R':14,
                 'COV Q':15, 'TAGS (ref)':17, 'TAGS (query)':18}
     # JM note: the | that divides the columns counts for indexing.
@@ -134,10 +143,24 @@ def colname_to_index_list(colname_list):
         columns.append(col_num)
     return columns
 
-# test grabbing of a few columns.
 
 def row_and_indices_to_output_row(row_string, col_indices):
-    pass
+    """
+    return a string with the specified elements of the string returned.
+
+    :param row_string: raw row string from a .coords file
+    :param col_indices: list of numbers for columns to grab
+    :return: shortened string for .tsv format
+    """
+    #split_line = [l.strip().split() for l in  if len(l.strip())]:
+    line_items =  row_string.strip().split()
+    #[l.strip().split()  l in row_string if len(l.strip())]
+    print('line_items: {}'.format(line_items))
+    output_items = [line_items[i] for i in col_indices] # if (i in col_indices)]
+    print('col_indices: {}'.format(col_indices))
+    print('output_items: {}'.format(output_items))
+    # join list of items into .tsv format
+    return "\t".join(output_items)
 
 
 # Process the input stream
@@ -147,15 +170,7 @@ def process_stream(infh, outfh):
 
         show-coords output has the following columns (post-processing)
 
-        1: reference sequence start
-        2: reference sequence end
-        3: subject sequence start
-        4: subject sequence end
-        5: reference alignment length
-        6: subject alignment length
-        7: alignment percentage identity
-        8: reference sequence ID
-        9: subject sequence ID
+
 
     """
     # Read in the input stream into a list of lines
@@ -181,38 +196,22 @@ def process_stream(infh, outfh):
     # save header to file
 
 
-    print_lines = 10
-    for line in [l.strip().split() for l in tbldata if
-                 len(l.strip())]:
-        print_lines -= 1
-        if print_lines == 0:
-            return
-        # Due to the column marker symbols, there are offsets for the
-        # columns, relative to those in the text above.
+    cols_to_save = ['TAGS (ref)', 'TAGS (query)',
+                    'LEN 1', 'LEN 2',
+                    'LEN R', 'LEN Q', 'COV R', 'COV Q']
+    col_indices = colname_to_index_list(cols_to_save)
+    print('col_indices: {}'.format(col_indices))
 
-        #   col_dict = {'S1':1, 'E1':2, 'S2':4, 'E2':5, 'LEN1': 7, 'LEN2':8,
-        #               '% IDY':10, 'LEN R':12, 'LEN Q':13, 'COV R':15,
-        #               'COV Q':16, 'TAGS (ref)':18, 'TAGS (query)':19}
-        cols = ['TAGS (ref)', 'TAGS (query)', 'LEN R',
-        #cols = ['S1', 'LEN R',
-                'LEN Q', 'COV R', 'COV Q']
-        col_indices = colname_to_index_list(cols)
-        print('col_indices: {}'.format(col_indices))
-        values = [line[i] for i in col_indices]
+    # save the colunm names
+    outfh.write('\t'.join(cols_to_save) + '\n')
 
-        output_line = "\t".join(values)
+    # loop over the lines left in tbldata
+    for line in tbldata:
 
-        print(output_line)
+        values = row_and_indices_to_output_row(line, col_indices)
+        print('values: {}'.format(values))
 
-        # outfh.write(' '.join([line[6],  # LEN1
-        #                       line[9],  # % IDY
-        #                       line[0],  # S1
-        #                       line[1],  # E1
-        #                       line[11], # LEN Q
-        #                       line[3],  # S2
-        #                       line[4],  # E2
-        #                       line[12]]) # LEN Q
-        #             + '\n')
+        outfh.write(values + '\n')
 
 
 ###
