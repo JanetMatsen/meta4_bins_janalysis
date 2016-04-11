@@ -107,7 +107,7 @@ def last_exception():
                                               exc_traceback))
 
 
-def colname_to_index(colname_list):
+def colname_to_index_list(colname_list):
     """
     Send a list of desied columns such as ['S1', 'COV R'] and get a list
     of the columns corresponding to those data.
@@ -118,19 +118,26 @@ def colname_to_index(colname_list):
          'LEN R', 'LEN Q', 'COV R', 'COV Q', 'TAGS']
     :return:
     """
-    col_dict = {'S1':1, 'E1':2, 'S2':4, 'E2':5, 'LEN1': 7, 'LEN2':8,
-                '% IDY':10, 'LEN R':12, 'LEN Q':13, 'COV R':15,
-                'COV Q':16, 'TAGS':18}
+    col_dict = {'S1':0, 'E1':1, 'S2':3, 'E2':4, 'LEN1': 6, 'LEN2':7,
+                '% IDY':9, 'LEN R':11, 'LEN Q':12, 'COV R':14,
+                'COV Q':15, 'TAGS (ref)':17, 'TAGS (query)':18}
     # JM note: the | that divides the columns counts for indexing.
     # 1- 6:    [S1]     [E1]  |     [S2]     [E2]  |
     # 7 - 14:  [LEN 1]  [LEN 2]  |  [% IDY]  |  [LEN R]  [LEN Q]  |
     # 15 - 18: [COV R]  [COV Q]  | [TAGS]
+    # [COV R]  = percent alignment coverage in the reference sequence
+    # [COV Q] percent alignment coverage in the query sequence
+    # [TAGS] = the reference and query FastA IDs respectively
     columns = []
     for cn in colname_list:
         col_num = col_dict[cn]
         columns.append(col_num)
+    return columns
 
 # test grabbing of a few columns.
+
+def row_and_indices_to_output_row(row_string, col_indices):
+    pass
 
 
 # Process the input stream
@@ -150,17 +157,6 @@ def process_stream(infh, outfh):
         8: reference sequence ID
         9: subject sequence ID
 
-        This is converted to .crunch (MSPcrunch) format output with the
-        following columns, separated by whitespace.
-
-        1: score (reference alignment length)
-        2: alignment percentage identity
-        3: reference sequence start
-        4: reference sequence end
-        5: reference sequence ID
-        6: subject sequence start
-        7: subject sequence end
-        8: subject sequence ID
     """
     # Read in the input stream into a list of lines
     try:
@@ -175,34 +171,48 @@ def process_stream(infh, outfh):
     tbldata = tbldata[5:]
     logger.info("Skipped header lines.")
 
-
-
-
-
     # check that I have the header stuff right.
     print(header_row)
     cols = header_row.split()
-    print(cols)
-    print("------")
-    print(re.findall(r"\[([A-z ]+)\]", header_row))
+    #print(cols)
+    #print("------")
+    #print(re.findall(r"\[([A-z ]+)\]", header_row))
+
+    # save header to file
 
 
-
-
+    print_lines = 10
     for line in [l.strip().split() for l in tbldata if
                  len(l.strip())]:
+        print_lines -= 1
+        if print_lines == 0:
+            return
         # Due to the column marker symbols, there are offsets for the
         # columns, relative to those in the text above.
 
-        outfh.write(' '.join([line[6],  # LEN1
-                              line[9],  # % IDY
-                              line[0],  # S1
-                              line[1],  # E1
-                              line[11], # LEN Q
-                              line[3],  # S2
-                              line[4],  # E2
-                              line[12]]) # LEN Q
-                    + '\n')
+        #   col_dict = {'S1':1, 'E1':2, 'S2':4, 'E2':5, 'LEN1': 7, 'LEN2':8,
+        #               '% IDY':10, 'LEN R':12, 'LEN Q':13, 'COV R':15,
+        #               'COV Q':16, 'TAGS (ref)':18, 'TAGS (query)':19}
+        cols = ['TAGS (ref)', 'TAGS (query)', 'LEN R',
+        #cols = ['S1', 'LEN R',
+                'LEN Q', 'COV R', 'COV Q']
+        col_indices = colname_to_index_list(cols)
+        print('col_indices: {}'.format(col_indices))
+        values = [line[i] for i in col_indices]
+
+        output_line = "\t".join(values)
+
+        print(output_line)
+
+        # outfh.write(' '.join([line[6],  # LEN1
+        #                       line[9],  # % IDY
+        #                       line[0],  # S1
+        #                       line[1],  # E1
+        #                       line[11], # LEN Q
+        #                       line[3],  # S2
+        #                       line[4],  # E2
+        #                       line[12]]) # LEN Q
+        #             + '\n')
 
 
 ###
