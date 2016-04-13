@@ -6,19 +6,27 @@ import pandas as pd
 from Bio import SeqIO
 import os
 
-import summarise_bins
+
+support_dir = './support_files/'
+
+if not os.path.exists(support_dir):
+    os.makedirs(support_dir)
 
 # first extract the bin names
 # replaces extract_names.sh, which searched for all contig names in
 # /data/genome_bins.fasta and saved reults to /compare_bins/DNA_names.txt
 
 # use os, not envoy this time.  I haven't shown envoy to be good w/ Python3
-os.system("""ag --max-count 9999999 ">" /gscratch/lidstrom/meta4_bins/data/genome_bins.fasta > /gscratch/lidstrom/meta4_bins/janalysis/compare_bins/DNA_names.txt""")
+os.system(
+    'ag --max-count 9999999 ">" '
+    '/gscratch/lidstrom/meta4_bins/data/genome_bins.fasta > '
+    '/gscratch/lidstrom/meta4_bins/janalysis/' # path continued
+    'compare_bins/support_files/DNA_names.txt')
 
 # call summarise_bins to make bin_summary.csv
 #summarise_bins.main()
 # exec(open("./filename").read())
-exec(open("summarise_bins.py").read())
+exec(open(support_dir + "summarise_bins.py").read())
 # exec(open("./path/to/script.py").read(), globals())
 # This will execute a script and put all it's global variables in the
 # interpreter's global scope (the normal behavior in most other languages).
@@ -41,7 +49,7 @@ def lookup_filename(record):
     return filename
 
 
-bin_df = pd.read_csv('./bin_summary.csv')
+bin_df = pd.read_csv(support_dir + '/bin_summary.csv')
 
 usage = "usage: %prog fasta_file_in directory_out"
 # parser = OptionParser(usage)
@@ -50,7 +58,6 @@ dir_out = os.getcwd() + '/individual_bins'
 
 file_in = '/gscratch/lidstrom/meta4_bins/data/genome_bins.fasta'
 dir_out = './individual_bins'
-
 
 for record in SeqIO.parse(open(file_in), "fasta"):
     f_name = lookup_filename(record)

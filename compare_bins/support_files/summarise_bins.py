@@ -54,9 +54,10 @@ def summarise_df(df):
 
 
 if __name__ == "__main__":
-    bins = prepare_summary_df()
+    bins = prepare_summary_df('./support_files/DNA_names.txt') 
     bin_summary = summarise_df(bins).sort_values('name')
-    bin_summary.to_csv('bin_summary.csv')
+    # todo: make more flexible.  Use OS to get cwd?  Command line arg?  
+    bin_summary.to_csv('./support_files/bin_summary.csv')
 
 
 
