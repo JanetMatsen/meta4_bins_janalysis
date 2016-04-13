@@ -42,7 +42,9 @@ def summarise_df(df):
     num_contigs_in_bins = pd.DataFrame(
         df[['bin', 'contig number']].groupby(
             'bin')['contig number'].count().reset_index())
-    num_contigs_in_bins.rename(columns={'contig number':'contig count'}, inplace=True)
+    num_contigs_in_bins.rename(columns=
+                               {'contig number': 'contig count'},
+                               inplace=True)
     summary = pd.merge(summary, num_contigs_in_bins)
     # prepare file names
     names = summary['name'] + '_' + summary['bin']
@@ -51,6 +53,10 @@ def summarise_df(df):
     return summary
 
 
+if __name__ == "__main__":
+    bins = prepare_summary_df()
+    bin_summary = summarise_df(bins).sort_values('name')
+    bin_summary.to_csv('bin_summary.csv')
 
 
 
