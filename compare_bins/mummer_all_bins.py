@@ -5,21 +5,9 @@ import pandas as pd
 
 # Load the summary:
 
-bins = pd.read_csv('support_files/bin_summary.csv')
-print(bins.head())
+def load_summary():
+    return pd.read_csv('support_files/bin_summary.csv')
 
-# For each bin, use mummer to make a .coords file for each other bin.
-# Do bin A --> bin B, and bin B --> bin A for convenience, even though one
-# result could be enough for both.
-# Do all to all, even though some comparisons are not very meaningful.
-
-bins_list = bins['file name'].tolist()
-# print('bins_list: {}'.format(bins_list))
-# print('type fo bins_list: {}'.format(type(bins_list)))
-
-results_dir = './mummer_results'
-if not os.path.exists(results_dir):
-    os.mkdir(results_dir)
 
 def bin_names_to_coords_filepath(bin1, bin2):
     """
@@ -92,6 +80,23 @@ def parse_coords():
 
 
 if __name__ == '__main__':
+    results_dir = './mummer_results'
+    if not os.path.exists(results_dir):
+        os.mkdir(results_dir)
+
+    bins = load_summary()
+    print(bins.head())
+
+    # For each bin, use mummer to make a .coords file for each other bin.
+    # Do bin A --> bin B, and bin B --> bin A for convenience, even though one
+    # result could be enough for both.
+    # Do all to all, even though some comparisons are not very meaningful.
+
+    bins_list = bins['file name'].tolist()
+    # print('bins_list: {}'.format(bins_list))
+    # print('type fo bins_list: {}'.format(type(bins_list)))
+
     # todo: arguments that specify whether to re-mummer or only parse coords.
     mummer_all_bins()
     parse_coords()
+
