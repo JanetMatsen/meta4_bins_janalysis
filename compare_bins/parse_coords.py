@@ -118,25 +118,18 @@ def colname_to_index_list(colname_list):
          'LEN R', 'LEN Q', 'COV R', 'COV Q', 'TAGS']
     :return: list of column numbers, zero indexed.
     """
-       #  1: reference sequence start
-       #  2: reference sequence end
-       #  3: subject sequence start
-       #  4: subject sequence end
-       #  5: reference alignment length
-       #  6: subject alignment length
-       #  7: alignment percentage identity
-       #  8: reference sequence ID
-       #  9: subject sequence ID
+    #  1: reference sequence start
+    #  2: reference sequence end
+    #  3: subject sequence start
+    #  4: subject sequence end
+    #  5: reference alignment length
+    #  6: subject alignment length
+    #  7: alignment percentage identity
+    #  8: reference sequence ID
+    #  9: subject sequence ID
     col_dict = {'S1':0, 'E1':1, 'S2':3, 'E2':4, 'LEN 1': 6, 'LEN 2':7,
                 '% IDY':9, 'LEN R':11, 'LEN Q':12, 'COV R':14,
                 'COV Q':15, 'TAGS (ref)':17, 'TAGS (query)':18}
-    # JM note: the | that divides the columns counts for indexing.
-    # 1- 6:    [S1]     [E1]  |     [S2]     [E2]  |
-    # 7 - 14:  [LEN 1]  [LEN 2]  |  [% IDY]  |  [LEN R]  [LEN Q]  |
-    # 15 - 18: [COV R]  [COV Q]  | [TAGS]
-    # [COV R]  = percent alignment coverage in the reference sequence
-    # [COV Q] percent alignment coverage in the query sequence
-    # [TAGS] = the reference and query FastA IDs respectively
     columns = []
     for cn in colname_list:
         col_num = col_dict[cn]
