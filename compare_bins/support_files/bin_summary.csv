@@ -21,7 +21,7 @@
 45,Ga0081652,Flavobacteriaceae-79-1,207,Flavobacteriaceae-79-1_Ga0081652
 46,Ga0081653,Flavobacteriaceae-79-2,261,Flavobacteriaceae-79-2_Ga0081653
 49,Ga0081657,Methylobacte-98r,126,Methylobacte-98r_Ga0081657
-7,Ga0081614,Methylobacter tundripaludum-129,87,Methylobacter tundripaludum-129_Ga0081614
+7,Ga0081614,Methylobacter tundripaludum-129,87,Methylobacter_tundripaludum-129_Ga0081614
 0,Ga0081607,Methylobacter-123,260,Methylobacter-123_Ga0081607
 34,Ga0081641,Methylobacter-69,180,Methylobacter-69_Ga0081641
 16,Ga0081623,Methylococcaceae-21,554,Methylococcaceae-21_Ga0081623
@@ -30,24 +30,24 @@
 19,Ga0081626,Methylophilaceae-49,201,Methylophilaceae-49_Ga0081626
 30,Ga0081637,Methylophilaceae-55,24,Methylophilaceae-55_Ga0081637
 52,Ga0081655,Methylophilaceae-8,335,Methylophilaceae-8_Ga0081655
-4,Ga0081611,Methylophilus methylotrophus-127-1,142,Methylophilus methylotrophus-127-1_Ga0081611
-5,Ga0081612,Methylophilus methylotrophus-127-2,227,Methylophilus methylotrophus-127-2_Ga0081612
-10,Ga0081617,Methylophilus methylotrophus-129-1,115,Methylophilus methylotrophus-129-1_Ga0081617
-11,Ga0081618,Methylophilus methylotrophus-129-2,87,Methylophilus methylotrophus-129-2_Ga0081618
-26,Ga0081633,Methylophilus methylotrophus-55,17,Methylophilus methylotrophus-55_Ga0081633
-35,Ga0081642,Methylophilus methylotrophus-69,31,Methylophilus methylotrophus-69_Ga0081642
-43,Ga0081650,Methylophilus methylotrophus-79,17,Methylophilus methylotrophus-79_Ga0081650
-50,Ga0081658,Methylophilus methylotrophus-98,31,Methylophilus methylotrophus-98_Ga0081658
-27,Ga0081634,Methylosarcina lacus-55,443,Methylosarcina lacus-55_Ga0081634
-36,Ga0081643,Methylosarcina lacus-69,217,Methylosarcina lacus-69_Ga0081643
+4,Ga0081611,Methylophilus methylotrophus-127-1,142,Methylophilus_methylotrophus-127-1_Ga0081611
+5,Ga0081612,Methylophilus methylotrophus-127-2,227,Methylophilus_methylotrophus-127-2_Ga0081612
+10,Ga0081617,Methylophilus methylotrophus-129-1,115,Methylophilus_methylotrophus-129-1_Ga0081617
+11,Ga0081618,Methylophilus methylotrophus-129-2,87,Methylophilus_methylotrophus-129-2_Ga0081618
+26,Ga0081633,Methylophilus methylotrophus-55,17,Methylophilus_methylotrophus-55_Ga0081633
+35,Ga0081642,Methylophilus methylotrophus-69,31,Methylophilus_methylotrophus-69_Ga0081642
+43,Ga0081650,Methylophilus methylotrophus-79,17,Methylophilus_methylotrophus-79_Ga0081650
+50,Ga0081658,Methylophilus methylotrophus-98,31,Methylophilus_methylotrophus-98_Ga0081658
+27,Ga0081634,Methylosarcina lacus-55,443,Methylosarcina_lacus-55_Ga0081634
+36,Ga0081643,Methylosarcina lacus-69,217,Methylosarcina_lacus-69_Ga0081643
 15,Ga0081622,Methylosarcina-21,409,Methylosarcina-21_Ga0081622
-1,Ga0081608,Methylotenera mobilis-123,300,Methylotenera mobilis-123_Ga0081608
-22,Ga0081629,Methylotenera mobilis-49,222,Methylotenera mobilis-49_Ga0081629
-20,Ga0081627,Methylotenera mobilis-49,226,Methylotenera mobilis-49_Ga0081627
-33,Ga0081640,Methylotenera mobilis-63,291,Methylotenera mobilis-63_Ga0081640
-40,Ga0081647,Methylotenera mobilis-76-1,208,Methylotenera mobilis-76-1_Ga0081647
-42,Ga0081649,Methylotenera mobilis-76-2,409,Methylotenera mobilis-76-2_Ga0081649
-31,Ga0081638,Methylovulum miyakonense-55,333,Methylovulum miyakonense-55_Ga0081638
+1,Ga0081608,Methylotenera mobilis-123,300,Methylotenera_mobilis-123_Ga0081608
+22,Ga0081629,Methylotenera mobilis-49,222,Methylotenera_mobilis-49_Ga0081629
+20,Ga0081627,Methylotenera mobilis-49,226,Methylotenera_mobilis-49_Ga0081627
+33,Ga0081640,Methylotenera mobilis-63,291,Methylotenera_mobilis-63_Ga0081640
+40,Ga0081647,Methylotenera mobilis-76-1,208,Methylotenera_mobilis-76-1_Ga0081647
+42,Ga0081649,Methylotenera mobilis-76-2,409,Methylotenera_mobilis-76-2_Ga0081649
+31,Ga0081638,Methylovulum miyakonense-55,333,Methylovulum_miyakonense-55_Ga0081638
 18,Ga0081625,Opititae-40,24,Opititae-40_Ga0081625
 8,Ga0081615,Opitutae-129,193,Opitutae-129_Ga0081615
 3,Ga0081610,Rhodocyclaceae-127,360,Rhodocyclaceae-127_Ga0081610

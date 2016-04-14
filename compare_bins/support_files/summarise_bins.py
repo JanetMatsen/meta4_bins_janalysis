@@ -48,7 +48,7 @@ def summarise_df(df):
     summary = pd.merge(summary, num_contigs_in_bins)
     # prepare file names
     names = summary['name'] + '_' + summary['bin']
-    names = (names.replace(" ", "_"))
+    names = names.map(lambda x: x.replace(" ", "_"))
     summary['file name'] = names
     return summary
 
