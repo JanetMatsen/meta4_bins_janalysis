@@ -9,15 +9,15 @@ def load_summary():
     return pd.read_csv('support_files/bin_summary.csv')
 
 
-def bin_names_to_coords_filepath(bin1, bin2):
+def bin_names_to_coords_filepath(query_bin, ref_bin):
     """
     prepare a file path for results
-    :param bin1: bin number 1 name/filepath (reference sequence)
-    :param bin2: bin number 2 name/filepath.  (query sequence)
+    :param query_bin: bin number 1 name/filepath (reference sequence)
+    :param ref_bin: bin number 2 name/filepath.  (query sequence)
     :return:string like Acidovora-69x_Ga0081644_to_Acidovorax-79_Ga0081651
     """
     outpath = results_dir
-    return outpath + '/' + bin1 + "_to_" + bin2
+    return outpath + '/' + query_bin + "_to_" + ref_bin
 
 
 def mummer_all_bins():
@@ -26,25 +26,28 @@ def mummer_all_bins():
 
     :return:
     """
-    for bin1_name in bins_list:
+    for query_bin in bins_list:
         # prepare to iterate over all the bins
         bins_to_compare_to = bins_list.copy()
 
         # loop over all the bins, including itself.
-        for bin2_name in bins_to_compare_to:
+        for ref_bin in bins_to_compare_to:
 
             # prepare a prefix for mummer to use.
-            delta_prefix = bin_names_to_coords_filepath(bin1_name, bin2_name)
+            delta_prefix = bin_names_to_coords_filepath(query_bin=query_bin,
+                                                        ref_bin=ref_bin)
             print('.delta file prefix: {}'.format(delta_prefix))
 
             # Make the .delta file
             # for now allow mummer to run against itself; this is a control.
             # run these commands:
+            # USAGE: nucmer  [options]  <Reference>  <Query>
+                # so reference is first, then query.
             subprocess.check_call(
                 ['/gscratch/lidstrom/software/MUMmer3.23/nucmer',
                 '--prefix={}'.format(delta_prefix),
-                './individual_bins/' + bin1_name + '.fasta',
-                './individual_bins/' + bin2_name + '.fasta'])
+                './individual_bins/' + ref_bin + '.fasta',
+                './individual_bins/' + query_bin + '.fasta'])
 
             coords_path = open(delta_prefix + '.coords', 'w')
             print('coords_path: {}'.format(coords_path))
