@@ -137,7 +137,7 @@ def colname_to_index_list(colname_list):
     return columns
 
 
-def row_and_indices_to_output_row(row_string, col_indices):
+def row_and_indices_to_output_row(row_string, col_indices, verbose = False):
     """
     return a string with the specified elements of the string returned.
 
@@ -148,16 +148,18 @@ def row_and_indices_to_output_row(row_string, col_indices):
     #split_line = [l.strip().split() for l in  if len(l.strip())]:
     line_items =  row_string.strip().split()
     #[l.strip().split()  l in row_string if len(l.strip())]
-    print('line_items: {}'.format(line_items))
+    if verbose:
+        print('line_items: {}'.format(line_items))
     output_items = [line_items[i] for i in col_indices] # if (i in col_indices)]
-    print('col_indices: {}'.format(col_indices))
-    print('output_items: {}'.format(output_items))
+    if verbose:
+        print('col_indices: {}'.format(col_indices))
+        print('output_items: {}'.format(output_items))
     # join list of items into .tsv format
     return "\t".join(output_items)
 
 
 # Process the input stream
-def process_stream(infh, outfh):
+def process_stream(infh, outfh, verbose=False):
     """ Processes the input stream, assuming show-coords output, with
         five header lines, and whitespace separation.
 
@@ -180,20 +182,16 @@ def process_stream(infh, outfh):
     logger.info("Skipped header lines.")
 
     # check that I have the header stuff right.
-    print(header_row)
-    cols = header_row.split()
-    #print(cols)
-    #print("------")
-    #print(re.findall(r"\[([A-z ]+)\]", header_row))
-
-    # save header to file
-
+    if verbose:
+        print(header_row)
 
     cols_to_save = ['TAGS (ref)', 'TAGS (query)',
                     'LEN 1', 'LEN 2',
                     'LEN R', 'LEN Q', 'COV R', 'COV Q']
     col_indices = colname_to_index_list(cols_to_save)
-    print('col_indices: {}'.format(col_indices))
+
+    if verbose:
+        print('col_indices: {}'.format(col_indices))
 
     # save the colunm names
     outfh.write('\t'.join(cols_to_save) + '\n')
@@ -202,13 +200,11 @@ def process_stream(infh, outfh):
     for line in tbldata:
 
         values = row_and_indices_to_output_row(line, col_indices)
-        print('values: {}'.format(values))
+        if verbose:
+            print('values: {}'.format(values))
 
         outfh.write(values + '\n')
 
-
-###
-# SCRIPT
 
 if __name__ == '__main__':
 
