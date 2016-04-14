@@ -26,7 +26,7 @@ def extract_common_name(string):
     return re.search("\[organism=([\w\s-]+) \(UID[0-9]+\)\]", string).group(1)
 
 
-def prepare_summary_df(filepath = "./DNA_names.txt"):
+def prepare_summary_df(filepath="./DNA_names.txt"):
     df = pd.read_csv(filepath, sep='\t', names=['row name'])
     # Extract the contig name (e.g. Ga0081607_1001)
     df['contig ID'] = df['row name'].apply(extract_contig_ID)
@@ -37,13 +37,13 @@ def prepare_summary_df(filepath = "./DNA_names.txt"):
 
 
 def summarise_df(df):
-    summary = df[['bin', 'name']].drop_duplicates().reset_index()[['bin', 'name']]
+    summary = df[['bin', 'name']].drop_duplicates().reset_index()[['bin',
+                                                                   'name']]
     # get the contig counts
     num_contigs_in_bins = pd.DataFrame(
         df[['bin', 'contig number']].groupby(
             'bin')['contig number'].count().reset_index())
-    num_contigs_in_bins.rename(columns=
-                               {'contig number': 'contig count'},
+    num_contigs_in_bins.rename(columns={'contig number': 'contig count'},
                                inplace=True)
     summary = pd.merge(summary, num_contigs_in_bins)
     # prepare file names
@@ -58,6 +58,3 @@ if __name__ == "__main__":
     bin_summary = summarise_df(bins).sort_values('name')
     # todo: make more flexible.  Use OS to get cwd?  Command line arg?  
     bin_summary.to_csv('./support_files/bin_summary.csv')
-
-
-
