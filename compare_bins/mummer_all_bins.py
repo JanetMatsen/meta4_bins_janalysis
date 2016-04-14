@@ -85,7 +85,8 @@ def parse_coords():
         out_file = results_dir + '/' + coords_file.strip('.coords') + '.tsv'
 
         # parse .coords into a .tsv
-        subprocess.check_call([ 'python','parse_coords.py',
+        subprocess.check_call([ 'python',
+                                str('./support_files/parse_coords.py'),
                                 '-i', str(coords_path), '-o', str(out_file)])
     # python parse_coords.py -i ./mummer_results/Acidovorax-21_Ga0081621_to_Acidovorax-21_Ga0081621.coords -o test.tsv
 
