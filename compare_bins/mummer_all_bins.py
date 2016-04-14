@@ -47,14 +47,9 @@ def mummer_all_bins():
                 ['/gscratch/lidstrom/software/MUMmer3.23/nucmer',
                 '--prefix={}'.format(delta_prefix),
                 './individual_bins/' + ref_bin + '.fasta',
-                './individual_bins/' + query_bin + '.fasta'])
-
-            coords_path = open(delta_prefix + '.coords', 'w')
-            print('coords_path: {}'.format(coords_path))
-            subprocess.check_call(
-                ['/gscratch/lidstrom/software/MUMmer3.23/show-coords',
-                 '-rcl', str(delta_prefix + '.delta')],
-                stdout=coords_path)
+                './individual_bins/' + query_bin + '.fasta',
+                 '-o'])
+                 # -0 makes the .coords file without a call to show-coords
 
 
 def parse_coords():
