@@ -65,5 +65,32 @@ def mummer_all_bins():
                  '-rcl', str(delta_prefix + '.delta')],
                 stdout=coords_path)
 
+
+def parse_coords():
+    """
+    write a .tsv file for each .coords file
+
+    :return:None
+    """
+    coords_files = os.listdir(results_dir)
+    # get just the .coords list (get rid of .delta files and anything else)
+    coords_files = [c for c in coords_files if '.coords' in c]
+    print('coords_files: {}'.format(coords_files))
+
+    # loop over the coords files
+    for coords_file in coords_files:
+        coords_path = results_dir + '/' + coords_file
+        print('analyze {}'.format(coords_file))
+        # prepare the filename for the results
+        out_file = results_dir + '/' + coords_file.strip('.coords') + '.tsv'
+
+        # parse .coords into a .tsv
+        subprocess.check_call([ 'python','parse_coords.py',
+                                '-i', str(coords_path), '-o', str(out_file)])
+    # python parse_coords.py -i ./mummer_results/Acidovorax-21_Ga0081621_to_Acidovorax-21_Ga0081621.coords -o test.tsv
+
+
 if __name__ == '__main__':
+    # todo: arguments that specify whether to re-mummer or only parse coords.
     mummer_all_bins()
+    parse_coords()
