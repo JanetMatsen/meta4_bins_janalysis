@@ -49,12 +49,13 @@ def summarise_df(df):
     # prepare file names
     names = summary['name'] + '_' + summary['bin']
     names = names.map(lambda x: x.replace(" ", "_"))
-    summary['file name'] = names
+    summary['bin name'] = names
     return summary
 
 
 if __name__ == "__main__":
+    print('summarise bins with summarise_bins.py')
     bins = prepare_summary_df('./support_files/DNA_names.txt') 
     bin_summary = summarise_df(bins).sort_values('name')
     # todo: make more flexible.  Use OS to get cwd?  Command line arg?  
-    bin_summary.to_csv('./support_files/bin_summary.csv')
+    bin_summary.to_csv('./support_files/bin_summary.csv', index=False)

@@ -92,7 +92,7 @@ if __name__ == '__main__':
     # result could be enough for both.
     # Do all to all, even though some comparisons are not very meaningful.
 
-    bins_list = bins['file name'].tolist()
+    bins_list = bins['bin name'].tolist()
     # print('bins_list: {}'.format(bins_list))
     # print('type fo bins_list: {}'.format(type(bins_list)))
 

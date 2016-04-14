@@ -38,7 +38,7 @@ if not os.path.exists('./individual_bins'):
 
 def lookup_filename(record):
     bin = re.search('(Ga[0-9]+)_', record.id).group(1)
-    filename_array = bin_df[bin_df['bin'] == bin]['file name'].values
+    filename_array = bin_df[bin_df['bin'] == bin]['bin name'].values
     # There is a problem if more than one file name matched.
     assert len(filename_array) == 1, \
         'need only 1 selected; had {}'.format(filename_array)
