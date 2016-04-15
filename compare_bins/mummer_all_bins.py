@@ -20,7 +20,7 @@ def bin_names_to_coords_filepath(query_bin, ref_bin):
     return outpath + '/' + query_bin + "_to_" + ref_bin
 
 
-def mummer_all_bins():
+def mummer_list_of_bins(bins_list):
     """
     run mummer on all pairs of bins.  Saves results to ./mummer_results/
 
@@ -44,12 +44,19 @@ def mummer_all_bins():
             # USAGE: nucmer  [options]  <Reference>  <Query>
                 # so reference is first, then query.
             subprocess.check_call(
-                ['/gscratch/lidstrom/software/MUMmer3.23/nucmer',
+                ['/work/software/MUMmer3.23/nucmer',
                 '--prefix={}'.format(delta_prefix),
                 './individual_bins/' + ref_bin + '.fasta',
-                './individual_bins/' + query_bin + '.fasta',
-                 '-o'])
-                 # -0 makes the .coords file without a call to show-coords
+                './individual_bins/' + query_bin + '.fasta'])
+            # -o makes a .coords file without running show-coords,
+            # but makes the .coords file without coverage columns.
+
+            coords_path = open(delta_prefix + '.coords', 'w')
+            print('coords_path: {}'.format(coords_path))
+            subprocess.check_call(
+                ['/work/software/MUMmer3.23/show-coords',
+                 '-rcl', str(delta_prefix + '.delta')],
+                 stdout=coords_path)
 
 
 def parse_coords():
@@ -66,15 +73,22 @@ def parse_coords():
     # loop over the coords files
     for coords_file in coords_files:
         coords_path = results_dir + '/' + coords_file
-        print('analyze {}'.format(coords_file))
-        # prepare the filename for the results
-        out_file = results_dir + '/' + coords_file.strip('.coords') + '.tsv'
-
-        # parse .coords into a .tsv
-        subprocess.check_call([ 'python',
-                                str('./support_files/parse_coords.py'),
-                                '-i', str(coords_path), '-o', str(out_file)])
-    # python parse_coords.py -i ./mummer_results/Acidovorax-21_Ga0081621_to_Acidovorax-21_Ga0081621.coords -o test.tsv
+        # check that .coords file actually exists
+        # todo: won't tell you if you are missing expected .coord files!
+        # Note: this if was made to skip over .coords files that don't exist
+        #  during development.
+        if os.path.exists(coords_path):
+            print('analyze {}'.format(coords_file))
+            # prepare the filename for the results
+            out_file = results_dir + '/' + \
+                       coords_file.strip('.coords') + '.tsv'
+            # parse .coords into a .tsv
+            subprocess.check_call(['python',
+                                   str('./support_files/parse_coords.py'),
+                                   # input file:
+                                   '-i', str(coords_path),
+                                   # output file:
+                                   '-o', str(out_file)])
 
 
 if __name__ == '__main__':
@@ -90,11 +104,13 @@ if __name__ == '__main__':
     # result could be enough for both.
     # Do all to all, even though some comparisons are not very meaningful.
 
-    bins_list = bins['bin name'].tolist()
+    fauzi_bins_list = bins['bin name'].tolist()
+    assert type(fauzi_bins_list) == list, \
+        'fauzi_bins_list is not a list: {}'.format(fauzi_bins_list)
     # print('bins_list: {}'.format(bins_list))
     # print('type fo bins_list: {}'.format(type(bins_list)))
 
     # todo: arguments that specify whether to re-mummer or only parse coords.
-    mummer_all_bins()
+    mummer_list_of_bins(fauzi_bins_list)
     parse_coords()
 

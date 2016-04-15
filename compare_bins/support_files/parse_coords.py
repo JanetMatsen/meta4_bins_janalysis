@@ -127,9 +127,9 @@ def colname_to_index_list(colname_list):
     #  7: alignment percentage identity
     #  8: reference sequence ID
     #  9: subject sequence ID
-    col_dict = {'S1':0, 'E1':1, 'S2':3, 'E2':4, 'LEN 1': 6, 'LEN 2':7,
-                '% IDY':9, 'LEN R':11, 'LEN Q':12, 'COV R':14,
-                'COV Q':15, 'TAGS (ref)':17, 'TAGS (query)':18}
+    col_dict = {'S1': 0, 'E1': 1, 'S2': 3, 'E2': 4, 'LEN 1': 6, 'LEN 2': 7,
+                '% IDY': 9, 'LEN R': 11, 'LEN Q': 12, 'COV R': 14,
+                'COV Q': 15, 'TAGS (ref)': 17, 'TAGS (query)': 18}
     columns = []
     for cn in colname_list:
         col_num = col_dict[cn]
@@ -164,13 +164,11 @@ def process_stream(infh, outfh, verbose=False):
         five header lines, and whitespace separation.
 
         show-coords output has the following columns (post-processing)
-
-
-
     """
     # Read in the input stream into a list of lines
     try:
         tbldata = list(infh.readlines())
+        assert len(tbldata) > 3, 'loaded data is too short!'
     except:
         logger.error("Could not process input (exiting)")
         logger.error(last_exception())
@@ -178,8 +176,11 @@ def process_stream(infh, outfh, verbose=False):
     logger.info("Read %d lines from input" % len(tbldata))
 
     header_row = tbldata[3]
+    assert ('COV R' in header_row) and ('COV Q' in header_row), \
+        "header row doesn't match the expected one: did you run show-coords " \
+        "with the -rcl option?  The nucmer -o option cuts out COV columns. \n" \
+        "header_row was: {}".format(header_row)
     tbldata = tbldata[5:]
-    logger.info("Skipped header lines.")
 
     # check that I have the header stuff right.
     if verbose:
