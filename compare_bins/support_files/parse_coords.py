@@ -130,11 +130,33 @@ def colname_to_index_list(colname_list):
     col_dict = {'S1': 0, 'E1': 1, 'S2': 3, 'E2': 4, 'LEN 1': 6, 'LEN 2': 7,
                 '% IDY': 9, 'LEN R': 11, 'LEN Q': 12, 'COV R': 14,
                 'COV Q': 15, 'TAGS (ref)': 17, 'TAGS (query)': 18}
+
+
+
     columns = []
     for cn in colname_list:
         col_num = col_dict[cn]
         columns.append(col_num)
     return columns
+
+
+def translate_list_of_colnames(colname_list):
+    """
+    WARNING: I planned to rename the columns in the .tsv made from the
+    .coords file but then didn't want to break convention after all.
+    """
+    ct = {'S1': 'start (ref)', 'E1': 'end (ref)',
+          'S2': 'start (query)', 'E2': 'end (query)',
+          'LEN 1': 'ref alignment length',
+          'LEN 2': 'query alignment length',
+          '% IDY': "% identity",
+          'LEN R': 'length of ref',
+          'LEN Q': 'length of query',
+          'COV R': '% of ref covered',
+          'COV Q': '% of query covered',
+          'TAGS (ref)': 'reference contig',
+          'TAGS (query)': 'query contig'}
+    return [ct[x] for x in colname_list]
 
 
 def row_and_indices_to_output_row(row_string, col_indices, verbose = False):
@@ -145,12 +167,10 @@ def row_and_indices_to_output_row(row_string, col_indices, verbose = False):
     :param col_indices: list of numbers for columns to grab
     :return: shortened string for .tsv format
     """
-    #split_line = [l.strip().split() for l in  if len(l.strip())]:
-    line_items =  row_string.strip().split()
-    #[l.strip().split()  l in row_string if len(l.strip())]
+    line_items = row_string.strip().split()
     if verbose:
         print('line_items: {}'.format(line_items))
-    output_items = [line_items[i] for i in col_indices] # if (i in col_indices)]
+    output_items = [line_items[i] for i in col_indices]
     if verbose:
         print('col_indices: {}'.format(col_indices))
         print('output_items: {}'.format(output_items))
@@ -159,7 +179,7 @@ def row_and_indices_to_output_row(row_string, col_indices, verbose = False):
 
 
 # Process the input stream
-def process_stream(infh, outfh, verbose=False):
+def process_stream(infh, outfh, verbose=False, translate_colnames=False):
     """ Processes the input stream, assuming show-coords output, with
         five header lines, and whitespace separation.
 
@@ -195,6 +215,9 @@ def process_stream(infh, outfh, verbose=False):
         print('col_indices: {}'.format(col_indices))
 
     # save the colunm names
+    if translate_colnames:
+        # change cols_to_save values to the translated ones.
+        cols_to_save = translate_list_of_colnames(cols_to_save)
     outfh.write('\t'.join(cols_to_save) + '\n')
 
     # loop over the lines left in tbldata
