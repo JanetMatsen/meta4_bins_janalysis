@@ -208,7 +208,7 @@ def process_stream(infh, outfh, verbose=False, translate_colnames=False):
 
     cols_to_save = ['TAGS (ref)', 'TAGS (query)',
                     'LEN 1', 'LEN 2',
-                    'LEN R', 'LEN Q', 'COV R', 'COV Q']
+                    'LEN R', 'LEN Q', 'COV R', 'COV Q', '% IDY']
     col_indices = colname_to_index_list(cols_to_save)
 
     if verbose:
