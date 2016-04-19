@@ -89,6 +89,8 @@ def percent_identity(dataframe):
 
 
 def percent_idty_all_results(filepath_list):
+    num_empty = 0
+    num_with_contents = 0
     summary_all_samples = pd.DataFrame()
     for filepath in filepath_list:
         #print('analyze {}'.format(filepath))
@@ -101,8 +103,11 @@ def percent_idty_all_results(filepath_list):
                                  'ref contig count', 'ref bin name']]
         if summary.shape[0] == 0:
             print('{} has zero rows; omit it from summary'.format(filepath))
+            num_empty += 1
             continue
-        else: print('--> {}:'.format(filepath))
+        else:
+            print('--> {}:'.format(filepath))
+            num_with_contents += 1
         # calculate % identity for each file
         p_id = percent_identity(single_result)
         summary['% identity'] = p_id
@@ -116,6 +121,10 @@ def percent_idty_all_results(filepath_list):
         else:
             summary_all_samples = summary_all_samples.append(summary.head(1))
             print('shape: {}'.format(summary_all_samples.shape))
+
+    print('number of empty and filled files: {}, {}'.format(
+        num_empty, num_with_contents
+    ))
     return summary_all_samples
 
     # merge individual summaries into an umbrella pandas
@@ -125,7 +134,32 @@ def percent_idty_all_results(filepath_list):
     pass
 
 
+def pivot_identity_table(identity_table):
+    identity_table = identity_table.pivot(
+        index='query name', columns='ref name', values='% identity')
+    identity_table.fillna(value=0, inplace=True)
+    return identity_table
+
+
+def pivot_saved_tsv(saved_tsv_path, out_path):
+    df = pd.read_csv(saved_tsv_path, sep='\t')
+    df = pivot_identity_table(df)
+    df.to_csv(out_path, sep='\t')
+
+
+def plot_heatmap(pivoted_table):
+    plot = sns.heatmap(res_piv)
+    return plot
+
+
 if __name__ == "__main__":
     test_samples = glob.glob('./mummer_results/*.tsv')
     i_res = percent_idty_all_results(test_samples)
-    i_res.to_csv('percent_identities.tsv', sep='\t')
+    print('len of test_samples: {}'.format(len(test_samples)))
+    print('len of test_samples set: {}'.format(
+        len(set(test_samples))))
+    unpivoted_path = 'percent_identities.tsv'
+    i_res.to_csv(unpivoted_path, sep='\t')
+    # pivot for seaborn plotting
+    pivoted_path = 'percent_identities--pivoted.tsv'
+    pivot_saved_tsv(unpivoted_path, pivoted_path)
