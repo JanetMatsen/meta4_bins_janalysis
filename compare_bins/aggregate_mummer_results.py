@@ -1,3 +1,4 @@
+import glob
 import numpy as np
 import sys
 
@@ -57,7 +58,7 @@ def filename_to_title(filename):
     return title
 
 
-def plot_IDY_vs_len(filepath, save_path='./plots/'):
+def plot_identity_vs_len(filepath, save_path='./plots/'):
     df = load_one_mummer_result(filepath)
     if df.shape[0] > 1:
         plot = df.plot.scatter(x='LEN 2', y='% IDY')
@@ -73,18 +74,50 @@ def percent_identity(dataframe):
     # corresponding longest length
     keeper_rows_df = dataframe.groupby('TAGS (query)')['LEN 2'].agg(
         np.max).reset_index()
+    # if there are zero rows, return zero similarity
+    if keeper_rows_df.shape[0] == 0:
+        print('no rows for {}; assume zero similarity'.format(filepath))
+        return 0
     # merge this dataframe onto the main dataframe to get the rows with the
     # longest matches.
     longest_rows = pd.merge(dataframe, keeper_rows_df)
     # calculate the length-weighted percent identiy, known as ANI.
     percent_ident = \
-        sum(longest_rows['% IDY']*longest_rows['LEN 2'])*1./\
+        sum(longest_rows['% IDY']*longest_rows['LEN 2'])*1. / \
         longest_rows['LEN 2'].sum()
     return percent_ident
 
 
-def summarise_all_mummer_results(filepath_list):
-    # loop over all the .tsv files, and run filename_to_summary
+def percent_idty_all_results(filepath_list):
+    summary_all_samples = pd.DataFrame()
+    for filepath in filepath_list:
+        #print('analyze {}'.format(filepath))
+        # load the dataframe for that file path
+        single_result = prepare_result(filepath)
+        # make a dataframe with the meta info
+        summary = single_result[['mummer file', 'ref bin', 'query bin',
+                                 'query name', 'query contig count',
+                                 'query bin name', 'ref name',
+                                 'ref contig count', 'ref bin name']]
+        if summary.shape[0] == 0:
+            print('{} has zero rows; omit it from summary'.format(filepath))
+            continue
+        else: print('--> {}:'.format(filepath))
+        # calculate % identity for each file
+        p_id = percent_identity(single_result)
+        summary['% identity'] = p_id
+        # print('result sample: \n {}'.format(summary.head(3)))
+        # merge on the first row of the repetitive result dataframe
+        # if no percent_identities dataframe exists (shouldn't on first
+        # loop), then make one.
+        if summary_all_samples.empty:
+            summary_all_samples = summary.head(1)
+            print('shape: {}'.format(summary_all_samples.shape))
+        else:
+            summary_all_samples = summary_all_samples.append(summary.head(1))
+            print('shape: {}'.format(summary_all_samples.shape))
+    return summary_all_samples
+
     # merge individual summaries into an umbrella pandas
     # include a file path to that bin.
     # merge on the info about the individual bins
@@ -92,5 +125,7 @@ def summarise_all_mummer_results(filepath_list):
     pass
 
 
-def load_all_mumer_results():
-    pass
+if __name__ == "__main__":
+    test_samples = glob.glob('./mummer_results/*.tsv')
+    i_res = percent_idty_all_results(test_samples)
+    i_res.to_csv('percent_identities.tsv', sep='\t')
