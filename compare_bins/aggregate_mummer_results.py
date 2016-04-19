@@ -1,3 +1,4 @@
+import numpy as np
 import sys
 
 import pandas as pd
@@ -65,6 +66,21 @@ def plot_IDY_vs_len(filepath, save_path='./plots/'):
         if save_path:
             save_path = save_path + filename.rstrip('.tsv') + '.pdf'
             plot.figure.savefig(save_path, bbox_inches='tight')
+
+
+def percent_identity(dataframe):
+    # get a dataframe that has one row per reference contig, and the
+    # corresponding longest length
+    keeper_rows_df = dataframe.groupby('TAGS (query)')['LEN 2'].agg(
+        np.max).reset_index()
+    # merge this dataframe onto the main dataframe to get the rows with the
+    # longest matches.
+    longest_rows = pd.merge(dataframe, keeper_rows_df)
+    # calculate the length-weighted percent identiy, known as ANI.
+    percent_ident = \
+        sum(longest_rows['% IDY']*longest_rows['LEN 2'])*1./\
+        longest_rows['LEN 2'].sum()
+    return percent_ident
 
 
 def summarise_all_mummer_results(filepath_list):
