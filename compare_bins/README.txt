@@ -9,3 +9,6 @@
 	- runs compare_two_bins.sh
 - coords_to_csv takes a mummer3 .coords file and parses it to the relevant .tsv
 
+# 
+DNA_names.txt --> bin_summary.csv --> individual bins --> bp counted after split.
+

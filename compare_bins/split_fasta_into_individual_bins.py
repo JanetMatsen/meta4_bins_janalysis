@@ -49,6 +49,7 @@ def recreate_bins():
             SeqIO.write([record], open(f_out, 'a'), "fasta")
 
 
+
 if __name__ == '__main__':
     support_dir = './support_files/'
 
@@ -89,3 +90,7 @@ if __name__ == '__main__':
     dir_out = './individual_bins'
 
     recreate_bins()
+
+    # call bin_lengths.py
+    # Also reports tim
+    exec(open(support_dir + "bin_lengths.py").read())
