@@ -3,3 +3,9 @@ Methylophilus_methylotrophus_55_79/
 mummer_results/
 support_files/DNA_names.txt
 depreciated/
+
+# 160512: putting all analysis on hold in this dir to work on more general compare_bins dir
+Develop_mummer_aggregation.ipynb
+checkm/
+dev_bin_tools.ipynb
+percent_identities.tsv
