@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# change current directory to that of script
+cd "$(dirname "$0")"
 
 # bins are stored at :
 # e.g. head /work/dacb/elvizAnalysis/checkM_individual/results/elviz-contigs-1056274.Methylomonas-1/elviz-contigs-1056274.Methylomonas-1.fna

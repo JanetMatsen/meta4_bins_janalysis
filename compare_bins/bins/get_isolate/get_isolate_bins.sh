@@ -1,3 +1,8 @@
+#!/usr/bin/env bash
+
+# change current directory to that of script
+cd "$(dirname "$0")"
+
 DESTINATION=../fasta_files/
 
 # Loop over the bins that we want and make a copy of each in this dir. 
