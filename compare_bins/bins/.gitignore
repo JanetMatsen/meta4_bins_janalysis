@@ -1,0 +1,4 @@
+# ignore the copies of the bins
+dave_bins/bins/
+fauzi_bins/bins/
+isolate_genomes/bins

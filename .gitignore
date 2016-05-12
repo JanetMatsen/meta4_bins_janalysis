@@ -1,8 +1,15 @@
 # not sure what these do!
 ._*  
 
+
+# no longer keeping all bins in one dir: one dir for Fauzi, one for Dave, one for isolates.
 compare_bins/bins/fasta_files--backup/
 compare_bins/bins/fasta_files/
+compare_bins/checkm-inc/
+# ignore the copies of the bins
+compare_bins/*/bins/*.fna 
+
+# ignore depreciated strategies
 depreciated/.
 depreciated/*
 

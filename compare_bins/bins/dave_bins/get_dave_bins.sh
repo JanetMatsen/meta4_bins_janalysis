@@ -16,13 +16,19 @@ PATH_TO_BINS="/work/dacb/elvizAnalysis/results/"
 # keep track of bins we couldn't find (shouldn't be any)
 MISSING_BINS=""
 
+# prepare a folder to keep them in
+DEST_DIR='./bins/'
+echo "make directory to store copies of bins: $DEST_DIR"
+mkdir -p $DEST_DIR
+
 # Grab them one by one
 for BIN in $BIN_NAMES
 do 
   BIN_PATH="${PATH_TO_BINS}${BIN}.fna"
   #echo $BIN_PATH""
   #ls -l $BIN_PATH
-  cp $BIN_PATH ../fasta_files
+  echo "copy $BIN_PATH to $DEST_DIR"
+  cp $BIN_PATH $DEST_DIR
   # if the exit status wasn't zero, store 
   if [ $? -ne 0 ]
   then
