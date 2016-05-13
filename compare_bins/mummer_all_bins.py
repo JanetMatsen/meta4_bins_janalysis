@@ -21,7 +21,23 @@ def bin_names_to_coords_filepath(query_bin, ref_bin, results_dir):
     return results_dir + '/' + query_bin + "_to_" + ref_bin
 
 
-def mummer_two_bins(query_bin_path, ref_bin_path, results_dir):
+def make_delta_prefix(query_bin_path, ref_bin_path, results_dir):
+    delta_prefix = \
+        bin_names_to_coords_filepath(
+            query_bin=os.path.basename(
+                query_bin_path).rstrip(".fna"),
+            ref_bin=os.path.basename(ref_bin_path).rstrip(".fna"),
+            results_dir=results_dir)
+    return delta_prefix
+
+
+def make_coords_path(query_bin_path, ref_bin_path, results_dir):
+    delta_prefix = make_delta_prefix(query_bin_path, ref_bin_path, results_dir)
+    coords_path = delta_prefix + '.coords'
+    return coords_path
+
+
+def mummer_two_bins(query_bin_path, ref_bin_path, coords_filepath):
     """
     run mummer on all pairs of bins.  Saves results to ./mummer_results/
 
@@ -31,12 +47,9 @@ def mummer_two_bins(query_bin_path, ref_bin_path, results_dir):
     This is useful when runing parse_coords() next.
     """
     # prepare a prefix for mummer to use.
-    delta_prefix = \
-        bin_names_to_coords_filepath(
-            query_bin = os.path.basename(
-                query_bin_path).rstrip(".fna"),
-            ref_bin=os.path.basename(ref_bin_path).rstrip(".fna"),
-            results_dir=results_dir)
+
+    delta_prefix = make_delta_prefix(query_bin_path, ref_bin_path, results_dir)
+
     print('.delta file prefix: {}'.format(delta_prefix))
 
     # Make the .delta file
@@ -53,9 +66,10 @@ def mummer_two_bins(query_bin_path, ref_bin_path, results_dir):
     # -o makes a .coords file without running show-coords,
     # but makes the .coords file without coverage columns.
 
-    coords_path = delta_prefix + '.coords'
+    coords_path = make_coords_path(query_bin_path, ref_bin_path, results_dir)
     coords_handle = open(coords_path, 'w')
     print('coords_path: {}'.format(coords_path))
+
     subprocess.check_call(
         ['/work/software/MUMmer3.23/show-coords',
          '-rcl', str(delta_prefix + '.delta')],
@@ -91,7 +105,7 @@ def parse_coords(coords_path, results_dir):
         subprocess.check_call(parse_command)
 
 
-def analyze_all_bin_pairs(bin_paths_list, results_dir):
+def analyze_all_bin_pairs(bin_paths_list, results_dir, preserve_existing=True):
     """
     loop over a list of bin paths and for every combination of the, run
     mummer then parse the cooresponding .coords file
@@ -104,12 +118,30 @@ def analyze_all_bin_pairs(bin_paths_list, results_dir):
 
         # loop over all the bins, including itself.
         for ref_bin_path in bins_to_compare_to:
-            coords_path = mummer_two_bins(query_bin_path,
-                                          ref_bin_path,
-                                          results_dir)
+            # first check whether file exists:
+            expected_coords_path = make_coords_path(query_bin_path,
+                                                    ref_bin_path,
+                                                    results_dir)
+            coords_exists = os.path.exists(expected_coords_path)
+            if preserve_existing:
+                if not coords_exists:
+                    coords_path = mummer_two_bins(query_bin_path,
+                                                  ref_bin_path,
+                                                  results_dir)
+                else:
+                    # don't remake the file if it already exists.
+                    continue
+            # If we don't care whether the file exists or not, make it
+            # fresh every time.
+            else:
+                    coords_path = mummer_two_bins(query_bin_path,
+                                                  ref_bin_path,
+                                                  results_dir)
             print(coords_path)
 
             # parse the coords file we just made
+            # todo: currently regenerating whether or not coords file was
+            # preserved.  But this is fast, so maybe just leave it.
             print("--------- parse file: {} ------------".format(coords_path))
             parse_coords(coords_path, results_dir)
 
