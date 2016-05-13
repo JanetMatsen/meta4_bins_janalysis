@@ -1,0 +1,569 @@
+bin path,bp,category,contigs,name
+./bins/isolate_genomes/bins/Methylosarcina_lacus_LW14.fna,8769886,isolate,2,Methylosarcina_lacus_LW14
+./bins/isolate_genomes/bins/Methylobacter_tundripaludum_31_32.fna,5047616,isolate,2,Methylobacter_tundripaludum_31_32
+./bins/isolate_genomes/bins/Methylotenera_sp._1P_1.fna,5495096,isolate,2,Methylotenera_sp._1P_1
+./bins/isolate_genomes/bins/Methylotenera_sp._73s.fna,5217228,isolate,2,Methylotenera_sp._73s
+./bins/isolate_genomes/bins/Methylophilaceae_bacterium_11.fna,5573704,isolate,2,Methylophilaceae_bacterium_11
+./bins/isolate_genomes/bins/Methylotenera_mobilis_JLW8.fna,5095158,isolate,2,Methylotenera_mobilis_JLW8
+./bins/isolate_genomes/bins/Methylotenera_sp._N17.fna,2753706,isolate,1,Methylotenera_sp._N17
+./bins/isolate_genomes/bins/Methylophilus_sp._Q8.fna,2900101,isolate,1,Methylophilus_sp._Q8
+./bins/isolate_genomes/bins/Methylophilus_sp._42.fna,5936724,isolate,2,Methylophilus_sp._42
+./bins/isolate_genomes/bins/Methylotenera_sp._G11.fna,2545140,isolate,1,Methylotenera_sp._G11
+./bins/isolate_genomes/bins/Methylophilus_sp._5.fna,6066066,isolate,2,Methylophilus_sp._5
+./bins/isolate_genomes/bins/Methylophilus_sp._#1.fna,5938338,isolate,2,Methylophilus_sp._#1
+./bins/isolate_genomes/bins/Methylotenera_mobilis_#13.fna,5607616,isolate,2,Methylotenera_mobilis_#13
+./bins/isolate_genomes/bins/Methylotenera_versatilis_79.fna,5208602,isolate,2,Methylotenera_versatilis_79
+./bins/isolate_genomes/bins/Methylotenera_versatilis_#7.fna,5006510,isolate,6,Methylotenera_versatilis_#7
+./bins/isolate_genomes/bins/Methylobacter_tundripaludum_21_22.fna,4665258,isolate,1,Methylobacter_tundripaludum_21_22
+./bins/isolate_genomes/bins/Methylotenera_versatilis_301_.fna,6119760,isolate,2,Methylotenera_versatilis_301_
+./bins/isolate_genomes/bins/Methylotenera_sp._L2L1.fna,5284032,isolate,2,Methylotenera_sp._L2L1
+./bins/fauzi_bins/bins/Rhodocyclaceae-127_Ga0081610.fna,3417103,fauzi,359,Rhodocyclaceae-127_Ga0081610
+./bins/fauzi_bins/bins/Methylococcaceae-21_Ga0081623.fna,3910653,fauzi,553,Methylococcaceae-21_Ga0081623
+./bins/fauzi_bins/bins/Burkholderiales-76_Ga0081648.fna,4616430,fauzi,106,Burkholderiales-76_Ga0081648
+./bins/fauzi_bins/bins/Methylophilus_methylotrophus-129-1_Ga0081617.fna,2991039,fauzi,114,Methylophilus_methylotrophus-129-1_Ga0081617
+./bins/fauzi_bins/bins/Methylophilaceae-55_Ga0081637.fna,2967774,fauzi,23,Methylophilaceae-55_Ga0081637
+./bins/fauzi_bins/bins/Methylosarcina-21_Ga0081622.fna,3852197,fauzi,408,Methylosarcina-21_Ga0081622
+./bins/fauzi_bins/bins/Methylococcaceae-55_Ga0081636.fna,4267963,fauzi,53,Methylococcaceae-55_Ga0081636
+./bins/fauzi_bins/bins/Methylophilaceae-40_Ga0081624.fna,1297884,fauzi,239,Methylophilaceae-40_Ga0081624
+./bins/fauzi_bins/bins/Methylophilaceae-8_Ga0081655.fna,1825870,fauzi,334,Methylophilaceae-8_Ga0081655
+./bins/fauzi_bins/bins/Methylotenera_mobilis-49_Ga0081629.fna,2415253,fauzi,221,Methylotenera_mobilis-49_Ga0081629
+./bins/fauzi_bins/bins/Bacteriovora-8x_Ga0081656.fna,3886060,fauzi,289,Bacteriovora-8x_Ga0081656
+./bins/fauzi_bins/bins/Opititae-40_Ga0081625.fna,3114216,fauzi,23,Opititae-40_Ga0081625
+./bins/fauzi_bins/bins/Bacteriovorax-63_Ga0081639.fna,3326520,fauzi,8,Bacteriovorax-63_Ga0081639
+./bins/fauzi_bins/bins/Methylobacter-69_Ga0081641.fna,5475270,fauzi,179,Methylobacter-69_Ga0081641
+./bins/fauzi_bins/bins/Methylophilus_methylotrophus-69_Ga0081642.fna,2910744,fauzi,30,Methylophilus_methylotrophus-69_Ga0081642
+./bins/fauzi_bins/bins/Methylotenera_mobilis-76-1_Ga0081647.fna,2433989,fauzi,207,Methylotenera_mobilis-76-1_Ga0081647
+./bins/fauzi_bins/bins/Flavobacteriaceae-79-1_Ga0081652.fna,3849893,fauzi,206,Flavobacteriaceae-79-1_Ga0081652
+./bins/fauzi_bins/bins/Flavobacteriaceae-49_Ga0081632.fna,2910432,fauzi,222,Flavobacteriaceae-49_Ga0081632
+./bins/fauzi_bins/bins/Acidovorax-21_Ga0081621.fna,1831709,fauzi,445,Acidovorax-21_Ga0081621
+./bins/fauzi_bins/bins/Methylophilus_methylotrophus-127-1_Ga0081611.fna,2518206,fauzi,141,Methylophilus_methylotrophus-127-1_Ga0081611
+./bins/fauzi_bins/bins/Methylovulum_miyakonense-55_Ga0081638.fna,4015963,fauzi,332,Methylovulum_miyakonense-55_Ga0081638
+./bins/fauzi_bins/bins/Bacteria-21_Ga0081620.fna,3956075,fauzi,253,Bacteria-21_Ga0081620
+./bins/fauzi_bins/bins/Methylotenera_mobilis-76-2_Ga0081649.fna,2997616,fauzi,408,Methylotenera_mobilis-76-2_Ga0081649
+./bins/fauzi_bins/bins/Methylotenera_mobilis-49_Ga0081627.fna,2942526,fauzi,225,Methylotenera_mobilis-49_Ga0081627
+./bins/fauzi_bins/bins/Methylotenera_mobilis-63_Ga0081640.fna,1642972,fauzi,290,Methylotenera_mobilis-63_Ga0081640
+./bins/fauzi_bins/bins/Bacteroidetes-76_Ga0081646.fna,3660248,fauzi,250,Bacteroidetes-76_Ga0081646
+./bins/fauzi_bins/bins/Methylophilus_methylotrophus-129-2_Ga0081618.fna,2326848,fauzi,86,Methylophilus_methylotrophus-129-2_Ga0081618
+./bins/fauzi_bins/bins/Bacteroidetes-49_Ga0081628.fna,3778972,fauzi,69,Bacteroidetes-49_Ga0081628
+./bins/fauzi_bins/bins/Acidovorax-79_Ga0081651.fna,2768114,fauzi,97,Acidovorax-79_Ga0081651
+./bins/fauzi_bins/bins/Bacteroidetes-8_Ga0081654.fna,2101781,fauzi,342,Bacteroidetes-8_Ga0081654
+./bins/fauzi_bins/bins/Methylobacter_tundripaludum-129_Ga0081614.fna,4179126,fauzi,86,Methylobacter_tundripaludum-129_Ga0081614
+./bins/fauzi_bins/bins/Rhodocyclaceae-49_Ga0081631.fna,3699670,fauzi,189,Rhodocyclaceae-49_Ga0081631
+./bins/fauzi_bins/bins/Burkholderiales-55_Ga0081635.fna,5166857,fauzi,52,Burkholderiales-55_Ga0081635
+./bins/fauzi_bins/bins/Acidovorax-123_Ga0081609.fna,2720811,fauzi,17,Acidovorax-123_Ga0081609
+./bins/fauzi_bins/bins/Methylophilus_methylotrophus-55_Ga0081633.fna,2619105,fauzi,16,Methylophilus_methylotrophus-55_Ga0081633
+./bins/fauzi_bins/bins/Flavobacteriaceae-79-2_Ga0081653.fna,3303496,fauzi,260,Flavobacteriaceae-79-2_Ga0081653
+./bins/fauzi_bins/bins/Acidovorax-127_Ga0081613.fna,3161893,fauzi,59,Acidovorax-127_Ga0081613
+./bins/fauzi_bins/bins/Burkholderiales-129_Ga0081616.fna,2457176,fauzi,383,Burkholderiales-129_Ga0081616
+./bins/fauzi_bins/bins/Bacteriovorax-21_Ga0081619.fna,3820436,fauzi,51,Bacteriovorax-21_Ga0081619
+./bins/fauzi_bins/bins/Methylosarcina_lacus-69_Ga0081643.fna,4088719,fauzi,216,Methylosarcina_lacus-69_Ga0081643
+./bins/fauzi_bins/bins/Methylophilus_methylotrophus-79_Ga0081650.fna,2898242,fauzi,16,Methylophilus_methylotrophus-79_Ga0081650
+./bins/fauzi_bins/bins/Acidovorax-75_Ga0081645.fna,4687521,fauzi,267,Acidovorax-75_Ga0081645
+./bins/fauzi_bins/bins/Methylobacte-98r_Ga0081657.fna,5332215,fauzi,125,Methylobacte-98r_Ga0081657
+./bins/fauzi_bins/bins/Methylotenera_mobilis-123_Ga0081608.fna,2201323,fauzi,299,Methylotenera_mobilis-123_Ga0081608
+./bins/fauzi_bins/bins/Acidovora-69x_Ga0081644.fna,3008402,fauzi,444,Acidovora-69x_Ga0081644
+./bins/fauzi_bins/bins/Opitutae-129_Ga0081615.fna,5601437,fauzi,192,Opitutae-129_Ga0081615
+./bins/fauzi_bins/bins/Methylobacter-123_Ga0081607.fna,4759652,fauzi,259,Methylobacter-123_Ga0081607
+./bins/fauzi_bins/bins/Methylophilaceae-49_Ga0081626.fna,1627661,fauzi,200,Methylophilaceae-49_Ga0081626
+./bins/fauzi_bins/bins/Methylosarcina_lacus-55_Ga0081634.fna,1860408,fauzi,442,Methylosarcina_lacus-55_Ga0081634
+./bins/fauzi_bins/bins/Methylophilus_methylotrophus-98_Ga0081658.fna,2642420,fauzi,30,Methylophilus_methylotrophus-98_Ga0081658
+./bins/fauzi_bins/bins/Bacteriovorax-49_Ga0081630.fna,3581565,fauzi,376,Bacteriovorax-49_Ga0081630
+./bins/fauzi_bins/bins/Methylophilus_methylotrophus-127-2_Ga0081612.fna,2701236,fauzi,226,Methylophilus_methylotrophus-127-2_Ga0081612
+./bins/fauzi_bins/bins/Acidovorax-98_Ga0081659.fna,3365557,fauzi,358,Acidovorax-98_Ga0081659
+./bins/dave_bins/bins/elviz-contigs-1056193.Bacteriovorax-1.fna,1702978,dave elviz,23,elviz-contigs-1056193.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056196.Pseudomonas-1.fna,6580940,dave elviz,912,elviz-contigs-1056196.Pseudomonas-1
+./bins/dave_bins/bins/elviz-contigs-1056022.Gammaproteobacteria-1.fna,5993598,dave elviz,3157,elviz-contigs-1056022.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056256.Flavobacterium-1.fna,3409948,dave elviz,1896,elviz-contigs-1056256.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056235.Methylotenera-1.fna,2407750,dave elviz,3940,elviz-contigs-1056235.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056181.Gammaproteobacteria-1.fna,3100781,dave elviz,1014,elviz-contigs-1056181.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056085.Sphingobacteriales-1.fna,4284702,dave elviz,1780,elviz-contigs-1056085.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056076.Methylosarcina-1.fna,3058336,dave elviz,1651,elviz-contigs-1056076.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056025.Comamonadaceae-1.fna,2689193,dave elviz,1376,elviz-contigs-1056025.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056055.Bacteroidetes-1.fna,2762522,dave elviz,458,elviz-contigs-1056055.Bacteroidetes-1
+./bins/dave_bins/bins/elviz-contigs-1056271.Methylophilus-1.fna,5870794,dave elviz,3642,elviz-contigs-1056271.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056076.Methylotenera-1.fna,5201251,dave elviz,5916,elviz-contigs-1056076.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056205.Methylobacter-2.fna,3541619,dave elviz,902,elviz-contigs-1056205.Methylobacter-2
+./bins/dave_bins/bins/elviz-contigs-1056019.Gammaproteobacteria-1.fna,4013556,dave elviz,2602,elviz-contigs-1056019.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056121.Burkholderiales-1.fna,7287625,dave elviz,5013,elviz-contigs-1056121.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056031.Bacteriovorax-1.fna,1324926,dave elviz,832,elviz-contigs-1056031.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056052.Flectobacillus-1.fna,1909609,dave elviz,1800,elviz-contigs-1056052.Flectobacillus-1
+./bins/dave_bins/bins/elviz-contigs-1056139.Methylotenera-1.fna,2681474,dave elviz,2858,elviz-contigs-1056139.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056268.Methylophilus-1.fna,3093299,dave elviz,213,elviz-contigs-1056268.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056025.Methylococcaceae-1.fna,2844261,dave elviz,1717,elviz-contigs-1056025.Methylococcaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056271.Flavobacterium-1.fna,2803326,dave elviz,4491,elviz-contigs-1056271.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056076.Burkholderiales-1.fna,2935147,dave elviz,3191,elviz-contigs-1056076.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056247.Methylophilus-2.fna,3304353,dave elviz,1647,elviz-contigs-1056247.Methylophilus-2
+./bins/dave_bins/bins/elviz-contigs-1056073.Methylomonas-1.fna,5636964,dave elviz,1633,elviz-contigs-1056073.Methylomonas-1
+./bins/dave_bins/bins/elviz-contigs-1056070.Methylobacter-1.fna,7693120,dave elviz,9487,elviz-contigs-1056070.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056184.Acidovorax-1.fna,3591817,dave elviz,5885,elviz-contigs-1056184.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056046.Opitutae-1.fna,1162753,dave elviz,197,elviz-contigs-1056046.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056259.Comamonadaceae-1.fna,6074575,dave elviz,3036,elviz-contigs-1056259.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056145.Emticicia-1.fna,2990813,dave elviz,2918,elviz-contigs-1056145.Emticicia-1
+./bins/dave_bins/bins/elviz-contigs-1056220.Comamonadaceae-1.fna,3762104,dave elviz,2035,elviz-contigs-1056220.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056127.Methylotenera-1.fna,3168863,dave elviz,4014,elviz-contigs-1056127.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056262.Flavobacterium-1.fna,2921720,dave elviz,1186,elviz-contigs-1056262.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056190.Flavobacterium-1.fna,3743926,dave elviz,3820,elviz-contigs-1056190.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056205.Methylophilus-1.fna,2979578,dave elviz,195,elviz-contigs-1056205.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056193.Methylobacter-1.fna,5118861,dave elviz,5913,elviz-contigs-1056193.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056166.Sphingobacteriales-1.fna,3067572,dave elviz,964,elviz-contigs-1056166.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056133.Methylobacter-1.fna,5847756,dave elviz,8736,elviz-contigs-1056133.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056109.Flavobacterium-1.fna,2723653,dave elviz,1313,elviz-contigs-1056109.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056139.Acidovorax-1.fna,3499283,dave elviz,5410,elviz-contigs-1056139.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056064.Methylotenera-1.fna,4253428,dave elviz,5662,elviz-contigs-1056064.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056205.Gammaproteobacteria-1.fna,3218421,dave elviz,404,elviz-contigs-1056205.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056034.Methylobacter-1.fna,4930136,dave elviz,4284,elviz-contigs-1056034.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056259.Methylobacter-1.fna,5904834,dave elviz,10922,elviz-contigs-1056259.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056046.Methylobacter-1.fna,7599652,dave elviz,7490,elviz-contigs-1056046.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056103.Methylotenera-1.fna,2636381,dave elviz,4884,elviz-contigs-1056103.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056229.Flavobacterium-1.fna,2923983,dave elviz,152,elviz-contigs-1056229.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056139.Flavobacterium-1.fna,1809898,dave elviz,3855,elviz-contigs-1056139.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056157.Sphingobacteriales-1.fna,3538317,dave elviz,137,elviz-contigs-1056157.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056079.Comamonadaceae-1.fna,2291746,dave elviz,2237,elviz-contigs-1056079.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056274.Methylobacter-1.fna,4235277,dave elviz,278,elviz-contigs-1056274.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056202.Sphingobacteriales-1.fna,3457095,dave elviz,79,elviz-contigs-1056202.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056103.Comamonadaceae-1.fna,4717642,dave elviz,2956,elviz-contigs-1056103.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056142.Comamonadaceae-1.fna,4674326,dave elviz,2538,elviz-contigs-1056142.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056274.Burkholderiales-1.fna,6004706,dave elviz,996,elviz-contigs-1056274.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056265.Methylophilus-2.fna,2629104,dave elviz,991,elviz-contigs-1056265.Methylophilus-2
+./bins/dave_bins/bins/elviz-contigs-1056055.Acidovorax-1.fna,4654188,dave elviz,5756,elviz-contigs-1056055.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056229.Comamonadaceae-1.fna,3641898,dave elviz,5690,elviz-contigs-1056229.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056223.Methylobacter-1.fna,4205460,dave elviz,286,elviz-contigs-1056223.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056211.Burkholderiales-1.fna,3935719,dave elviz,3976,elviz-contigs-1056211.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056115.Comamonadaceae-1.fna,4046401,dave elviz,2713,elviz-contigs-1056115.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056040.Methylotenera-1.fna,6135168,dave elviz,6212,elviz-contigs-1056040.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056262.Gammaproteobacteria-1.fna,2728128,dave elviz,582,elviz-contigs-1056262.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056151.Methylosarcina-1.fna,3823359,dave elviz,1810,elviz-contigs-1056151.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056241.Acidovorax-1.fna,7850984,dave elviz,3873,elviz-contigs-1056241.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056097.Methylophilaceae-1.fna,3093055,dave elviz,1752,elviz-contigs-1056097.Methylophilaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056109.Comamonadaceae-1.fna,2781689,dave elviz,2473,elviz-contigs-1056109.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056256.Methylobacter-1.fna,4234652,dave elviz,4459,elviz-contigs-1056256.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056160.Bacteriovorax-1.fna,1743111,dave elviz,1866,elviz-contigs-1056160.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056148.Bacteroidetes-1.fna,5395008,dave elviz,1576,elviz-contigs-1056148.Bacteroidetes-1
+./bins/dave_bins/bins/elviz-contigs-1056127.Bacteroidetes-1.fna,6453708,dave elviz,1486,elviz-contigs-1056127.Bacteroidetes-1
+./bins/dave_bins/bins/elviz-contigs-1056055.Methylobacter-1.fna,3998315,dave elviz,3985,elviz-contigs-1056055.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056175.Methylobacter-1.fna,5413724,dave elviz,8973,elviz-contigs-1056175.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056148.Methylobacter-1.fna,6438018,dave elviz,3749,elviz-contigs-1056148.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056241.Caulobacter-1.fna,1683045,dave elviz,1002,elviz-contigs-1056241.Caulobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056082.Burkholderiales-1.fna,2927242,dave elviz,4049,elviz-contigs-1056082.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056142.Sphingobacteriales-1.fna,3717053,dave elviz,3237,elviz-contigs-1056142.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056250.Herbaspirillum-1.fna,1690311,dave elviz,595,elviz-contigs-1056250.Herbaspirillum-1
+./bins/dave_bins/bins/elviz-contigs-1056079.Gammaproteobacteria-1.fna,2338273,dave elviz,465,elviz-contigs-1056079.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056238.Burkholderiales-1.fna,5049394,dave elviz,6494,elviz-contigs-1056238.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056106.Flavobacterium-1.fna,3891135,dave elviz,4088,elviz-contigs-1056106.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056205.Burkholderiales-1.fna,3518098,dave elviz,6215,elviz-contigs-1056205.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056193.Oxalobacteraceae-1.fna,3741434,dave elviz,202,elviz-contigs-1056193.Oxalobacteraceae-1
+./bins/dave_bins/bins/elviz-contigs-1056130.Methylotenera-1.fna,4232035,dave elviz,3890,elviz-contigs-1056130.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056202.Methylobacter-1.fna,5251172,dave elviz,7213,elviz-contigs-1056202.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056181.Acidovorax-1.fna,3075914,dave elviz,3888,elviz-contigs-1056181.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056097.Burkholderiales-1.fna,6383268,dave elviz,2977,elviz-contigs-1056097.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056271.Delftia-1.fna,5598790,dave elviz,3022,elviz-contigs-1056271.Delftia-1
+./bins/dave_bins/bins/elviz-contigs-1056145.Gammaproteobacteria-3.fna,1009984,dave elviz,654,elviz-contigs-1056145.Gammaproteobacteria-3
+./bins/dave_bins/bins/elviz-contigs-1056085.Comamonadaceae-1.fna,2987474,dave elviz,2690,elviz-contigs-1056085.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056178.Comamonadaceae-1.fna,6173946,dave elviz,4389,elviz-contigs-1056178.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056019.Flavobacterium-1.fna,5150154,dave elviz,3522,elviz-contigs-1056019.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056208.Methylophilus-1.fna,2923251,dave elviz,114,elviz-contigs-1056208.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056214.Methylobacter-1.fna,3838787,dave elviz,4679,elviz-contigs-1056214.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056181.Comamonadaceae-1.fna,4679980,dave elviz,5240,elviz-contigs-1056181.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056271.Comamonadaceae-1.fna,4266032,dave elviz,3362,elviz-contigs-1056271.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056226.Methylophilus-1.fna,5376396,dave elviz,1628,elviz-contigs-1056226.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056253.Gammaproteobacteria-1.fna,3185369,dave elviz,314,elviz-contigs-1056253.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056100.Methylobacter-1.fna,7647314,dave elviz,4885,elviz-contigs-1056100.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056208.Comamonadaceae-1.fna,2682189,dave elviz,3446,elviz-contigs-1056208.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056187.Methylotenera-1.fna,2506780,dave elviz,2892,elviz-contigs-1056187.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056250.Methylobacter-1.fna,4112373,dave elviz,381,elviz-contigs-1056250.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056178.Methylophilus-1.fna,5689751,dave elviz,6526,elviz-contigs-1056178.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056205.Acidovorax-1.fna,4001219,dave elviz,7373,elviz-contigs-1056205.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056145.Comamonadaceae-1.fna,2375722,dave elviz,2263,elviz-contigs-1056145.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056253.Acidovorax-1.fna,4871135,dave elviz,11184,elviz-contigs-1056253.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056250.Flavobacterium-1.fna,1594003,dave elviz,2932,elviz-contigs-1056250.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056151.Comamonadaceae-1.fna,2380423,dave elviz,3082,elviz-contigs-1056151.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056154.Oxalobacteraceae-1.fna,4300886,dave elviz,244,elviz-contigs-1056154.Oxalobacteraceae-1
+./bins/dave_bins/bins/elviz-contigs-1056097.Methylophilus-1.fna,2798237,dave elviz,555,elviz-contigs-1056097.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056145.Azospirillum-1.fna,3637460,dave elviz,3786,elviz-contigs-1056145.Azospirillum-1
+./bins/dave_bins/bins/elviz-contigs-1056250.Sphingobacteriales-1.fna,3347832,dave elviz,216,elviz-contigs-1056250.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056091.Sphingobacteriales-1.fna,1856262,dave elviz,1899,elviz-contigs-1056091.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056217.Methylotenera-1.fna,5268385,dave elviz,5781,elviz-contigs-1056217.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056064.Comamonadaceae-1.fna,2389762,dave elviz,2731,elviz-contigs-1056064.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056055.Comamonadaceae-1.fna,3184502,dave elviz,3533,elviz-contigs-1056055.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056082.Methylobacter-1.fna,6743134,dave elviz,7569,elviz-contigs-1056082.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056229.Gammaproteobacteria-1.fna,3151347,dave elviz,387,elviz-contigs-1056229.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056202.Methylotenera-1.fna,4499386,dave elviz,5161,elviz-contigs-1056202.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056076.Comamonadaceae-1.fna,2353791,dave elviz,2352,elviz-contigs-1056076.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056241.Rhodocyclales-1.fna,836976,dave elviz,872,elviz-contigs-1056241.Rhodocyclales-1
+./bins/dave_bins/bins/elviz-contigs-1056034.Rheinheimera-1.fna,3305365,dave elviz,1969,elviz-contigs-1056034.Rheinheimera-1
+./bins/dave_bins/bins/elviz-contigs-1056043.Opitutae-1.fna,1395546,dave elviz,650,elviz-contigs-1056043.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056271.Burkholderiales-1.fna,4912486,dave elviz,6546,elviz-contigs-1056271.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056016.Comamonadaceae-1.fna,2903717,dave elviz,2844,elviz-contigs-1056016.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056046.Bacteroidetes-1.fna,7157847,dave elviz,617,elviz-contigs-1056046.Bacteroidetes-1
+./bins/dave_bins/bins/elviz-contigs-1056058.Flavobacterium-1.fna,1995637,dave elviz,2220,elviz-contigs-1056058.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056256.Gammaproteobacteria-1.fna,3141032,dave elviz,289,elviz-contigs-1056256.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056127.Comamonadaceae-1.fna,2750151,dave elviz,3461,elviz-contigs-1056127.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056121.Methylosarcina-1.fna,3662455,dave elviz,3605,elviz-contigs-1056121.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056148.Flavobacterium-1.fna,4169108,dave elviz,1322,elviz-contigs-1056148.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056241.Curvibacter-1.fna,6057752,dave elviz,1342,elviz-contigs-1056241.Curvibacter-1
+./bins/dave_bins/bins/elviz-contigs-1056112.Opitutae-1.fna,1465012,dave elviz,1152,elviz-contigs-1056112.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056220.Methylophilus-1.fna,5390341,dave elviz,2023,elviz-contigs-1056220.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056046.Myxococcales-1.fna,3356734,dave elviz,102,elviz-contigs-1056046.Myxococcales-1
+./bins/dave_bins/bins/elviz-contigs-1056031.Rheinheimera-1.fna,2532145,dave elviz,1858,elviz-contigs-1056031.Rheinheimera-1
+./bins/dave_bins/bins/elviz-contigs-1056100.Burkholderiales-1.fna,5311438,dave elviz,2845,elviz-contigs-1056100.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056094.Opitutae-1.fna,1282422,dave elviz,461,elviz-contigs-1056094.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056106.Methylobacter-1.fna,6337924,dave elviz,6417,elviz-contigs-1056106.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056175.Burkholderiales-1.fna,5802914,dave elviz,1970,elviz-contigs-1056175.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056265.Methylotenera-1.fna,1905006,dave elviz,2055,elviz-contigs-1056265.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056226.Sphingobacteriales-1.fna,2991575,dave elviz,717,elviz-contigs-1056226.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056121.Methylococcaceae-1.fna,4890026,dave elviz,998,elviz-contigs-1056121.Methylococcaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056187.Methylobacter-1.fna,5867287,dave elviz,10236,elviz-contigs-1056187.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056178.Burkholderiales-1.fna,5865023,dave elviz,1923,elviz-contigs-1056178.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056124.Methylotenera-1.fna,2729552,dave elviz,4136,elviz-contigs-1056124.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056091.Opitutae-1.fna,1428945,dave elviz,708,elviz-contigs-1056091.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056052.Methylobacter-1.fna,6364497,dave elviz,4081,elviz-contigs-1056052.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056094.Methylobacter-1.fna,6005156,dave elviz,9056,elviz-contigs-1056094.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056121.Comamonadaceae-2.fna,2881263,dave elviz,2858,elviz-contigs-1056121.Comamonadaceae-2
+./bins/dave_bins/bins/elviz-contigs-1056121.Methylophilaceae-1.fna,2726346,dave elviz,813,elviz-contigs-1056121.Methylophilaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056232.Methylophilus-1.fna,2767557,dave elviz,1316,elviz-contigs-1056232.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056130.Burkholderiales-1.fna,4648007,dave elviz,5245,elviz-contigs-1056130.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056235.Methylobacter-1.fna,2317700,dave elviz,3563,elviz-contigs-1056235.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056253.Methylobacter-1.fna,4151600,dave elviz,4217,elviz-contigs-1056253.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056067.Methylobacter-1.fna,6403040,dave elviz,8014,elviz-contigs-1056067.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056049.Methylobacter-1.fna,7605532,dave elviz,6089,elviz-contigs-1056049.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056247.Methylophilus-1.fna,2270729,dave elviz,2172,elviz-contigs-1056247.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056127.Burkholderiales-1.fna,3216200,dave elviz,4464,elviz-contigs-1056127.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056217.Methylophilus-1.fna,5424759,dave elviz,1960,elviz-contigs-1056217.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056271.Methylobacter-1.fna,4256006,dave elviz,275,elviz-contigs-1056271.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056070.Flavobacterium-1.fna,3703698,dave elviz,1964,elviz-contigs-1056070.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056049.Methylophilus-1.fna,5322346,dave elviz,1961,elviz-contigs-1056049.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056088.Sphingobacteriales-1.fna,2693403,dave elviz,3267,elviz-contigs-1056088.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056211.Methylotenera-1.fna,2121891,dave elviz,3740,elviz-contigs-1056211.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056073.Burkholderiales-1.fna,3862899,dave elviz,1756,elviz-contigs-1056073.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056226.Herbaspirillum-1.fna,1661098,dave elviz,743,elviz-contigs-1056226.Herbaspirillum-1
+./bins/dave_bins/bins/elviz-contigs-1056226.Pseudomonas-1.fna,7328472,dave elviz,3505,elviz-contigs-1056226.Pseudomonas-1
+./bins/dave_bins/bins/elviz-contigs-1056013.Comamonadaceae-1.fna,2022224,dave elviz,1990,elviz-contigs-1056013.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056154.Comamonadaceae-1.fna,7431729,dave elviz,3290,elviz-contigs-1056154.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056133.Flavobacterium-1.fna,2332076,dave elviz,1906,elviz-contigs-1056133.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056070.Methylotenera-1.fna,3899299,dave elviz,4244,elviz-contigs-1056070.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056247.Comamonadaceae-1.fna,3620215,dave elviz,2741,elviz-contigs-1056247.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056148.Burkholderiales-1.fna,4942784,dave elviz,4725,elviz-contigs-1056148.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056205.Methylobacter-1.fna,4031171,dave elviz,4321,elviz-contigs-1056205.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056106.Methylosarcina-1.fna,3891435,dave elviz,580,elviz-contigs-1056106.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056079.Methylotenera-1.fna,3058361,dave elviz,4646,elviz-contigs-1056079.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056097.Methylophilus-2.fna,2832355,dave elviz,591,elviz-contigs-1056097.Methylophilus-2
+./bins/dave_bins/bins/elviz-contigs-1056100.Methylophilus-1.fna,2847292,dave elviz,570,elviz-contigs-1056100.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056268.Bacteriovorax-1.fna,4058965,dave elviz,1853,elviz-contigs-1056268.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056175.Comamonadaceae-1.fna,6359360,dave elviz,4584,elviz-contigs-1056175.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056130.Methylobacter-1.fna,4592530,dave elviz,5921,elviz-contigs-1056130.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056214.Burkholderiales-1.fna,5185086,dave elviz,6009,elviz-contigs-1056214.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056124.Methylosarcina-1.fna,3478121,dave elviz,1570,elviz-contigs-1056124.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056190.Methylosarcina-1.fna,2550718,dave elviz,1805,elviz-contigs-1056190.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056073.Methylophilaceae-1.fna,3580379,dave elviz,2204,elviz-contigs-1056073.Methylophilaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056100.Methylomonas-1.fna,4728610,dave elviz,1711,elviz-contigs-1056100.Methylomonas-1
+./bins/dave_bins/bins/elviz-contigs-1056154.Gammaproteobacteria-1.fna,2245257,dave elviz,316,elviz-contigs-1056154.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056226.Burkholderiales-1.fna,7513098,dave elviz,4454,elviz-contigs-1056226.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056160.Comamonadaceae-1.fna,3863004,dave elviz,4107,elviz-contigs-1056160.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056133.Sphingobacteriales-1.fna,3508911,dave elviz,235,elviz-contigs-1056133.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056253.Flavobacterium-1.fna,3311586,dave elviz,2026,elviz-contigs-1056253.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056256.Methylotenera-1.fna,2180695,dave elviz,1514,elviz-contigs-1056256.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056184.Methylophilus-1.fna,2909295,dave elviz,83,elviz-contigs-1056184.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056238.Flavobacterium-1.fna,4980877,dave elviz,2618,elviz-contigs-1056238.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056124.Methylobacter-1.fna,5946416,dave elviz,2703,elviz-contigs-1056124.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056226.Methylotenera-1.fna,4597828,dave elviz,3558,elviz-contigs-1056226.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056184.Burkholderiales-1.fna,3587221,dave elviz,7265,elviz-contigs-1056184.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056124.Flectobacillus-1.fna,2568432,dave elviz,2262,elviz-contigs-1056124.Flectobacillus-1
+./bins/dave_bins/bins/elviz-contigs-1056085.Acidovorax-1.fna,3440689,dave elviz,3819,elviz-contigs-1056085.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056043.Methylobacter-1.fna,8335902,dave elviz,7038,elviz-contigs-1056043.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056112.Bacteriovorax-1.fna,1840665,dave elviz,1749,elviz-contigs-1056112.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056166.Methylobacter-1.fna,6052306,dave elviz,9279,elviz-contigs-1056166.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056028.Bacteriovorax-1.fna,1484358,dave elviz,1807,elviz-contigs-1056028.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056073.Methylophilus-1.fna,2641386,dave elviz,885,elviz-contigs-1056073.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056133.Comamonadaceae-1.fna,4739535,dave elviz,3159,elviz-contigs-1056133.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056040.Bacteroidetes-1.fna,2608507,dave elviz,863,elviz-contigs-1056040.Bacteroidetes-1
+./bins/dave_bins/bins/elviz-contigs-1056088.Opitutae-1.fna,1732897,dave elviz,697,elviz-contigs-1056088.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056076.Methylophilus-1.fna,2901233,dave elviz,103,elviz-contigs-1056076.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056268.Methylophilaceae-1.fna,2130340,dave elviz,753,elviz-contigs-1056268.Methylophilaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056241.Bosea-1.fna,2984423,dave elviz,1857,elviz-contigs-1056241.Bosea-1
+./bins/dave_bins/bins/elviz-contigs-1056226.Methylobacter-1.fna,3906641,dave elviz,2177,elviz-contigs-1056226.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056247.Burkholderiales-1.fna,4860710,dave elviz,5582,elviz-contigs-1056247.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056208.Flavobacterium-1.fna,1402064,dave elviz,3060,elviz-contigs-1056208.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056247.Methylobacter-1.fna,4272566,dave elviz,244,elviz-contigs-1056247.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056061.Flavobacterium-1.fna,2998425,dave elviz,2885,elviz-contigs-1056061.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056199.Methylophilus-1.fna,5430835,dave elviz,2674,elviz-contigs-1056199.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056262.Burkholderiales-1.fna,7227980,dave elviz,8827,elviz-contigs-1056262.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056193.Rhodocyclales-1.fna,803938,dave elviz,918,elviz-contigs-1056193.Rhodocyclales-1
+./bins/dave_bins/bins/elviz-contigs-1056238.Gammaproteobacteria-1.fna,3003086,dave elviz,271,elviz-contigs-1056238.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056268.Burkholderiales-1.fna,5815920,dave elviz,2965,elviz-contigs-1056268.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056121.Methylovulum-1.fna,4076154,dave elviz,1306,elviz-contigs-1056121.Methylovulum-1
+./bins/dave_bins/bins/elviz-contigs-1056244.Flavobacterium-1.fna,2104034,dave elviz,2150,elviz-contigs-1056244.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056136.Comamonadaceae-1.fna,4456407,dave elviz,3073,elviz-contigs-1056136.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056034.Comamonadaceae-1.fna,2966307,dave elviz,2776,elviz-contigs-1056034.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056133.Acidovorax-1.fna,5349469,dave elviz,8373,elviz-contigs-1056133.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056175.Gammaproteobacteria-2.fna,1184286,dave elviz,443,elviz-contigs-1056175.Gammaproteobacteria-2
+./bins/dave_bins/bins/elviz-contigs-1056217.Bosea-1.fna,3415160,dave elviz,3377,elviz-contigs-1056217.Bosea-1
+./bins/dave_bins/bins/elviz-contigs-1056097.Flavobacterium-1.fna,3057692,dave elviz,936,elviz-contigs-1056097.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056034.Bacteriovorax-1.fna,2397133,dave elviz,1870,elviz-contigs-1056034.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056073.Methylobacter-1.fna,4785145,dave elviz,3631,elviz-contigs-1056073.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056088.Bacteriovorax-1.fna,3073545,dave elviz,2076,elviz-contigs-1056088.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056055.Methylosarcina-1.fna,4703165,dave elviz,3732,elviz-contigs-1056055.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056154.Methylophilus-1.fna,3869034,dave elviz,1613,elviz-contigs-1056154.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056166.Comamonadaceae-1.fna,3604910,dave elviz,2151,elviz-contigs-1056166.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056028.Comamonadaceae-1.fna,2178716,dave elviz,2727,elviz-contigs-1056028.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056196.Acidovorax-1.fna,7672985,dave elviz,9471,elviz-contigs-1056196.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056127.Flavobacterium-1.fna,4999855,dave elviz,3268,elviz-contigs-1056127.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056064.Methylobacter-1.fna,8563188,dave elviz,9978,elviz-contigs-1056064.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056253.Methylotenera-1.fna,2254613,dave elviz,1471,elviz-contigs-1056253.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056193.Comamonadaceae-1.fna,4236322,dave elviz,3628,elviz-contigs-1056193.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056187.Comamonadaceae-1.fna,6225717,dave elviz,5231,elviz-contigs-1056187.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056064.Gammaproteobacteria-1.fna,3084523,dave elviz,2269,elviz-contigs-1056064.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056190.Emticicia-1.fna,2352330,dave elviz,1501,elviz-contigs-1056190.Emticicia-1
+./bins/dave_bins/bins/elviz-contigs-1056061.Comamonadaceae-1.fna,2188118,dave elviz,2753,elviz-contigs-1056061.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056073.Methylococcaceae-1.fna,4611081,dave elviz,1922,elviz-contigs-1056073.Methylococcaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056034.Fluviicola-1.fna,2101520,dave elviz,571,elviz-contigs-1056034.Fluviicola-1
+./bins/dave_bins/bins/elviz-contigs-1056211.Methylophilus-1.fna,3812064,dave elviz,2102,elviz-contigs-1056211.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056148.Methylosarcina-1.fna,3409661,dave elviz,1797,elviz-contigs-1056148.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056145.Methylotenera-1.fna,2484624,dave elviz,1259,elviz-contigs-1056145.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056166.Opitutae-1.fna,1189649,dave elviz,1311,elviz-contigs-1056166.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056103.Methylobacter-1.fna,7341623,dave elviz,11307,elviz-contigs-1056103.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056070.Gammaproteobacteria-1.fna,3693394,dave elviz,2131,elviz-contigs-1056070.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056115.Bacteriovorax-1.fna,1588016,dave elviz,25,elviz-contigs-1056115.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056130.Methylosarcina-1.fna,4123211,dave elviz,355,elviz-contigs-1056130.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056178.Methylotenera-1.fna,2177272,dave elviz,3083,elviz-contigs-1056178.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056214.Flavobacterium-1.fna,3324209,dave elviz,3915,elviz-contigs-1056214.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056160.Sphingobacteriales-1.fna,1696182,dave elviz,2002,elviz-contigs-1056160.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056265.Methylophilus-1.fna,2758351,dave elviz,1005,elviz-contigs-1056265.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056214.Gammaproteobacteria-1.fna,2103904,dave elviz,1693,elviz-contigs-1056214.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056217.Burkholderiales-1.fna,7339518,dave elviz,1677,elviz-contigs-1056217.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056235.Methylobacter-2.fna,2626430,dave elviz,4109,elviz-contigs-1056235.Methylobacter-2
+./bins/dave_bins/bins/elviz-contigs-1056100.Methylophilus-2.fna,2942242,dave elviz,701,elviz-contigs-1056100.Methylophilus-2
+./bins/dave_bins/bins/elviz-contigs-1056172.Methylophilus-1.fna,2911783,dave elviz,89,elviz-contigs-1056172.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056214.Acidovorax-1.fna,2949483,dave elviz,2579,elviz-contigs-1056214.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056154.Flavobacterium-1.fna,3533474,dave elviz,3250,elviz-contigs-1056154.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056250.Methylotenera-1.fna,3474142,dave elviz,5812,elviz-contigs-1056250.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056172.Methylobacter-2.fna,3461842,dave elviz,1572,elviz-contigs-1056172.Methylobacter-2
+./bins/dave_bins/bins/elviz-contigs-1056157.Bacteriovorax-1.fna,2050222,dave elviz,553,elviz-contigs-1056157.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056100.Flavobacterium-1.fna,2767289,dave elviz,405,elviz-contigs-1056100.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056115.Methylobacter-1.fna,7247651,dave elviz,12825,elviz-contigs-1056115.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056091.Comamonadaceae-1.fna,3999624,dave elviz,2813,elviz-contigs-1056091.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056109.Sphingobacteriales-1.fna,3717227,dave elviz,775,elviz-contigs-1056109.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056190.Burkholderiales-1.fna,9111656,dave elviz,6653,elviz-contigs-1056190.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056118.Sphingobacteriales-1.fna,2303977,dave elviz,2983,elviz-contigs-1056118.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056271.Gammaproteobacteria-1.fna,2363690,dave elviz,1440,elviz-contigs-1056271.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056028.Acidovorax-1.fna,2416841,dave elviz,3197,elviz-contigs-1056028.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056103.Methylophilus-1.fna,5120854,dave elviz,4447,elviz-contigs-1056103.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056181.Methylophilus-1.fna,2906658,dave elviz,77,elviz-contigs-1056181.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056199.Acidovorax-1.fna,7560796,dave elviz,8798,elviz-contigs-1056199.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056223.Delftia-1.fna,4295948,dave elviz,5300,elviz-contigs-1056223.Delftia-1
+./bins/dave_bins/bins/elviz-contigs-1056091.Methylobacter-1.fna,7505363,dave elviz,10975,elviz-contigs-1056091.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056169.Gammaproteobacteria-1.fna,4205589,dave elviz,2945,elviz-contigs-1056169.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056085.Bacteriovorax-1.fna,1323553,dave elviz,1162,elviz-contigs-1056085.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056250.Acidovorax-1.fna,4840519,dave elviz,6942,elviz-contigs-1056250.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056100.Methylosarcina-1.fna,3157733,dave elviz,3367,elviz-contigs-1056100.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056115.Flavobacterium-1.fna,1478504,dave elviz,2574,elviz-contigs-1056115.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056124.Methylophilus-1.fna,2904105,dave elviz,102,elviz-contigs-1056124.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056124.Burkholderiales-1.fna,5424557,dave elviz,8036,elviz-contigs-1056124.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056202.Pseudomonas-1.fna,12771048,dave elviz,6511,elviz-contigs-1056202.Pseudomonas-1
+./bins/dave_bins/bins/elviz-contigs-1056049.Sphingobacteriales-1.fna,1204816,dave elviz,67,elviz-contigs-1056049.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056268.Rhodocyclales-1.fna,1171885,dave elviz,735,elviz-contigs-1056268.Rhodocyclales-1
+./bins/dave_bins/bins/elviz-contigs-1056127.Methylosarcina-1.fna,4224794,dave elviz,277,elviz-contigs-1056127.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056208.Methylobacter-1.fna,3667729,dave elviz,1653,elviz-contigs-1056208.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056163.Sphingobacteriales-1.fna,1503689,dave elviz,2253,elviz-contigs-1056163.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056157.Acidovorax-1.fna,6555114,dave elviz,9586,elviz-contigs-1056157.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056151.Methylophilus-1.fna,2915476,dave elviz,94,elviz-contigs-1056151.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056019.Dechloromonas-1.fna,2505242,dave elviz,1889,elviz-contigs-1056019.Dechloromonas-1
+./bins/dave_bins/bins/elviz-contigs-1056256.Methylobacter-2.fna,3489679,dave elviz,1810,elviz-contigs-1056256.Methylobacter-2
+./bins/dave_bins/bins/elviz-contigs-1056025.Rheinheimera-1.fna,3030157,dave elviz,2514,elviz-contigs-1056025.Rheinheimera-1
+./bins/dave_bins/bins/elviz-contigs-1056097.Methylovulum-1.fna,3140988,dave elviz,2720,elviz-contigs-1056097.Methylovulum-1
+./bins/dave_bins/bins/elviz-contigs-1056139.Methylobacter-1.fna,7000558,dave elviz,12676,elviz-contigs-1056139.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056091.Flavobacterium-1.fna,3126404,dave elviz,2529,elviz-contigs-1056091.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056193.Acidovorax-1.fna,7935036,dave elviz,9029,elviz-contigs-1056193.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056106.Methylotenera-1.fna,3746655,dave elviz,6021,elviz-contigs-1056106.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056244.Methylobacter-1.fna,3958032,dave elviz,6136,elviz-contigs-1056244.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056241.Methylotenera-1.fna,3055213,dave elviz,2181,elviz-contigs-1056241.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056229.Methylotenera-1.fna,3731808,dave elviz,4292,elviz-contigs-1056229.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056247.Flavobacterium-1.fna,4191099,dave elviz,4799,elviz-contigs-1056247.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056145.Fluviicola-1.fna,1920234,dave elviz,883,elviz-contigs-1056145.Fluviicola-1
+./bins/dave_bins/bins/elviz-contigs-1056265.Rhodocyclales-1.fna,950629,dave elviz,1159,elviz-contigs-1056265.Rhodocyclales-1
+./bins/dave_bins/bins/elviz-contigs-1056121.Acidovorax-2.fna,3231771,dave elviz,3767,elviz-contigs-1056121.Acidovorax-2
+./bins/dave_bins/bins/elviz-contigs-1056136.Sphingobacteriales-1.fna,4612294,dave elviz,1932,elviz-contigs-1056136.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056145.Methylophilus-1.fna,2519163,dave elviz,462,elviz-contigs-1056145.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056148.Comamonadaceae-1.fna,4226124,dave elviz,4012,elviz-contigs-1056148.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056016.Methylotenera-1.fna,5556599,dave elviz,5598,elviz-contigs-1056016.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056214.Curvibacter-1.fna,5985821,dave elviz,1734,elviz-contigs-1056214.Curvibacter-1
+./bins/dave_bins/bins/elviz-contigs-1056271.Opitutae-1.fna,1222912,dave elviz,191,elviz-contigs-1056271.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056097.Methylomonas-1.fna,5026435,dave elviz,1675,elviz-contigs-1056097.Methylomonas-1
+./bins/dave_bins/bins/elviz-contigs-1056211.Methylobacter-2.fna,2805340,dave elviz,4228,elviz-contigs-1056211.Methylobacter-2
+./bins/dave_bins/bins/elviz-contigs-1056274.Sphingobacteriales-1.fna,3553399,dave elviz,390,elviz-contigs-1056274.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056031.Comamonadaceae-1.fna,2549603,dave elviz,1926,elviz-contigs-1056031.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056016.Gammaproteobacteria-1.fna,5024689,dave elviz,2900,elviz-contigs-1056016.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056247.Gammaproteobacteria-1.fna,2792106,dave elviz,783,elviz-contigs-1056247.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056097.Methylococcaceae-1.fna,5004756,dave elviz,2397,elviz-contigs-1056097.Methylococcaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056112.Comamonadaceae-1.fna,2375621,dave elviz,2581,elviz-contigs-1056112.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056205.Methylotenera-1.fna,4610527,dave elviz,5437,elviz-contigs-1056205.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056028.Methylobacter-1.fna,3878864,dave elviz,4605,elviz-contigs-1056028.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056034.Bacteroidetes-1.fna,4626620,dave elviz,1078,elviz-contigs-1056034.Bacteroidetes-1
+./bins/dave_bins/bins/elviz-contigs-1056079.Methylophilus-1.fna,4899266,dave elviz,3719,elviz-contigs-1056079.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056013.Gammaproteobacteria-1.fna,5571990,dave elviz,2974,elviz-contigs-1056013.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056211.Methylobacter-1.fna,2195245,dave elviz,3348,elviz-contigs-1056211.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056142.Opitutae-1.fna,1790168,dave elviz,1297,elviz-contigs-1056142.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056193.Methylophilus-1.fna,3010101,dave elviz,948,elviz-contigs-1056193.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056067.Flavobacterium-1.fna,1784357,dave elviz,2114,elviz-contigs-1056067.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056205.Flavobacterium-1.fna,3689492,dave elviz,2798,elviz-contigs-1056205.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056169.Methylophilus-1.fna,2904667,dave elviz,78,elviz-contigs-1056169.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056256.Comamonadaceae-1.fna,3838324,dave elviz,6677,elviz-contigs-1056256.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056013.Methylotenera-1.fna,5065235,dave elviz,4825,elviz-contigs-1056013.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056124.Flavobacterium-1.fna,2689243,dave elviz,62,elviz-contigs-1056124.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056154.Methylotenera-1.fna,1430108,dave elviz,1629,elviz-contigs-1056154.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056175.Methylotenera-1.fna,2236066,dave elviz,3075,elviz-contigs-1056175.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056238.Sphingobacteriales-1.fna,2282103,dave elviz,717,elviz-contigs-1056238.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056031.Flavobacterium-1.fna,2987629,dave elviz,2350,elviz-contigs-1056031.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056136.Opitutae-1.fna,1160338,dave elviz,1770,elviz-contigs-1056136.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056067.Comamonadaceae-1.fna,1778102,dave elviz,2233,elviz-contigs-1056067.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056031.Methylobacter-1.fna,5690725,dave elviz,2359,elviz-contigs-1056031.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056136.Rhodocyclales-1.fna,957470,dave elviz,1167,elviz-contigs-1056136.Rhodocyclales-1
+./bins/dave_bins/bins/elviz-contigs-1056127.Acidovorax-1.fna,4985307,dave elviz,6701,elviz-contigs-1056127.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056268.Comamonadaceae-1.fna,4924203,dave elviz,922,elviz-contigs-1056268.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056043.Dechloromonas-1.fna,1937206,dave elviz,1573,elviz-contigs-1056043.Dechloromonas-1
+./bins/dave_bins/bins/elviz-contigs-1056268.Acidovorax-1.fna,7766865,dave elviz,7655,elviz-contigs-1056268.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056172.Burkholderiales-1.fna,4738594,dave elviz,7098,elviz-contigs-1056172.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056022.Bdellovibrio-1.fna,1486756,dave elviz,1073,elviz-contigs-1056022.Bdellovibrio-1
+./bins/dave_bins/bins/elviz-contigs-1056184.Methylobacter-1.fna,3476742,dave elviz,1567,elviz-contigs-1056184.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056157.Comamonadaceae-1.fna,4101390,dave elviz,2701,elviz-contigs-1056157.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056046.Gammaproteobacteria-1.fna,5972786,dave elviz,3171,elviz-contigs-1056046.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056178.Gammaproteobacteria-1.fna,1080070,dave elviz,443,elviz-contigs-1056178.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056022.Methylobacter-1.fna,8209929,dave elviz,7434,elviz-contigs-1056022.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056205.Comamonadaceae-1.fna,3927777,dave elviz,5657,elviz-contigs-1056205.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056106.Comamonadaceae-1.fna,3220619,dave elviz,2840,elviz-contigs-1056106.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056118.Bacteriovorax-1.fna,1962062,dave elviz,1699,elviz-contigs-1056118.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056190.Methylophilus-1.fna,5336401,dave elviz,1455,elviz-contigs-1056190.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056220.Methylotenera-1.fna,3625465,dave elviz,3547,elviz-contigs-1056220.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056172.Methylobacter-1.fna,4979822,dave elviz,7930,elviz-contigs-1056172.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056130.Methylophilus-1.fna,2790379,dave elviz,681,elviz-contigs-1056130.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056262.Methylobacter-1.fna,4112037,dave elviz,5472,elviz-contigs-1056262.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056043.Methylotenera-1.fna,6386653,dave elviz,5985,elviz-contigs-1056043.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056229.Acidovorax-1.fna,5114238,dave elviz,9119,elviz-contigs-1056229.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056028.Flavobacterium-1.fna,2639666,dave elviz,4070,elviz-contigs-1056028.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056232.Methylobacter-1.fna,3610476,dave elviz,2425,elviz-contigs-1056232.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056115.Rhodocyclales-1.fna,840343,dave elviz,1185,elviz-contigs-1056115.Rhodocyclales-1
+./bins/dave_bins/bins/elviz-contigs-1056151.Flavobacterium-1.fna,1855359,dave elviz,3112,elviz-contigs-1056151.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056250.Burkholderiales-1.fna,6362537,dave elviz,2297,elviz-contigs-1056250.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056013.Dechloromonas-1.fna,1805462,dave elviz,1523,elviz-contigs-1056013.Dechloromonas-1
+./bins/dave_bins/bins/elviz-contigs-1056127.Methylobacter-1.fna,4847198,dave elviz,5523,elviz-contigs-1056127.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056082.Flavobacterium-1.fna,1801843,dave elviz,2082,elviz-contigs-1056082.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056022.Rheinheimera-1.fna,2139981,dave elviz,1735,elviz-contigs-1056022.Rheinheimera-1
+./bins/dave_bins/bins/elviz-contigs-1056166.Acidovorax-1.fna,5014333,dave elviz,7011,elviz-contigs-1056166.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056178.Methylobacter-1.fna,5473734,dave elviz,9257,elviz-contigs-1056178.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056073.Methylophilus-2.fna,2541794,dave elviz,1988,elviz-contigs-1056073.Methylophilus-2
+./bins/dave_bins/bins/elviz-contigs-1056265.Acidovorax-1.fna,7886428,dave elviz,3101,elviz-contigs-1056265.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056088.Methylobacter-1.fna,6514715,dave elviz,5269,elviz-contigs-1056088.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056016.Flavobacterium-1.fna,5201335,dave elviz,4020,elviz-contigs-1056016.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056160.Acidovorax-1.fna,6659965,dave elviz,5203,elviz-contigs-1056160.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056187.Methylophilus-1.fna,5643437,dave elviz,3914,elviz-contigs-1056187.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056172.Comamonadaceae-1.fna,2373747,dave elviz,3346,elviz-contigs-1056172.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056172.Flavobacterium-1.fna,1518572,dave elviz,2782,elviz-contigs-1056172.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056058.Methylosarcina-1.fna,2770895,dave elviz,2352,elviz-contigs-1056058.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056238.Curvibacter-1.fna,4036767,dave elviz,5140,elviz-contigs-1056238.Curvibacter-1
+./bins/dave_bins/bins/elviz-contigs-1056085.Rhodocyclales-1.fna,918866,dave elviz,1038,elviz-contigs-1056085.Rhodocyclales-1
+./bins/dave_bins/bins/elviz-contigs-1056196.Comamonadaceae-1.fna,4672142,dave elviz,2661,elviz-contigs-1056196.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056220.Bacteriovorax-1.fna,1863221,dave elviz,24,elviz-contigs-1056220.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056067.Opitutae-1.fna,2514517,dave elviz,1329,elviz-contigs-1056067.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056154.Burkholderiales-1.fna,4914403,dave elviz,2877,elviz-contigs-1056154.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056064.Bacteriovorax-1.fna,1986191,dave elviz,2196,elviz-contigs-1056064.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056130.Comamonadaceae-1.fna,5555475,dave elviz,3932,elviz-contigs-1056130.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056043.Bacteriovorax-1.fna,2370860,dave elviz,1652,elviz-contigs-1056043.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056244.Methylophilus-1.fna,2962693,dave elviz,263,elviz-contigs-1056244.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056070.Comamonadaceae-1.fna,3669593,dave elviz,3344,elviz-contigs-1056070.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056169.Methylobacter-1.fna,6752891,dave elviz,2759,elviz-contigs-1056169.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056109.Bacteriovorax-1.fna,2056854,dave elviz,2855,elviz-contigs-1056109.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056184.Gammaproteobacteria-1.fna,3078504,dave elviz,430,elviz-contigs-1056184.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056229.Methylobacter-1.fna,4673785,dave elviz,6872,elviz-contigs-1056229.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056184.Methylobacter-2.fna,3694006,dave elviz,2020,elviz-contigs-1056184.Methylobacter-2
+./bins/dave_bins/bins/elviz-contigs-1056085.Methylobacter-1.fna,6802817,dave elviz,8211,elviz-contigs-1056085.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056253.Comamonadaceae-1.fna,3482238,dave elviz,6561,elviz-contigs-1056253.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056256.Acidovorax-1.fna,5383600,dave elviz,11416,elviz-contigs-1056256.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056094.Comamonadaceae-1.fna,2144149,dave elviz,2201,elviz-contigs-1056094.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056229.Burkholderiales-1.fna,2738909,dave elviz,4662,elviz-contigs-1056229.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056274.Comamonadaceae-1.fna,2217709,dave elviz,2513,elviz-contigs-1056274.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056157.Rhodocyclales-1.fna,1046969,dave elviz,1538,elviz-contigs-1056157.Rhodocyclales-1
+./bins/dave_bins/bins/elviz-contigs-1056064.Opitutae-1.fna,1466174,dave elviz,378,elviz-contigs-1056064.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056127.Myxococcales-1.fna,4886850,dave elviz,73,elviz-contigs-1056127.Myxococcales-1
+./bins/dave_bins/bins/elviz-contigs-1056244.Methylophilaceae-1.fna,4775664,dave elviz,378,elviz-contigs-1056244.Methylophilaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056022.Bacteroidetes-1.fna,4772126,dave elviz,575,elviz-contigs-1056022.Bacteroidetes-1
+./bins/dave_bins/bins/elviz-contigs-1056133.Bacteriovorax-1.fna,2050634,dave elviz,469,elviz-contigs-1056133.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056226.Comamonadaceae-1.fna,3863163,dave elviz,2724,elviz-contigs-1056226.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056199.Delftia-1.fna,4954986,dave elviz,3246,elviz-contigs-1056199.Delftia-1
+./bins/dave_bins/bins/elviz-contigs-1056148.Methylophilus-1.fna,2905040,dave elviz,78,elviz-contigs-1056148.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056163.Methylobacter-1.fna,5076519,dave elviz,6414,elviz-contigs-1056163.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056274.Flavobacterium-1.fna,1578758,dave elviz,2923,elviz-contigs-1056274.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056235.Methylophilus-1.fna,2142664,dave elviz,2426,elviz-contigs-1056235.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056169.Acidovorax-1.fna,8257013,dave elviz,8145,elviz-contigs-1056169.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056124.Comamonadaceae-1.fna,2400139,dave elviz,2797,elviz-contigs-1056124.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056145.Curvibacter-1.fna,5887116,dave elviz,1512,elviz-contigs-1056145.Curvibacter-1
+./bins/dave_bins/bins/elviz-contigs-1056163.Flavobacterium-1.fna,1798478,dave elviz,2508,elviz-contigs-1056163.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056097.Methylosarcina-1.fna,3710458,dave elviz,3461,elviz-contigs-1056097.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056190.Curvibacter-1.fna,6296237,dave elviz,910,elviz-contigs-1056190.Curvibacter-1
+./bins/dave_bins/bins/elviz-contigs-1056124.Bacteroidetes-1.fna,4007590,dave elviz,431,elviz-contigs-1056124.Bacteroidetes-1
+./bins/dave_bins/bins/elviz-contigs-1056034.Sphingobacteriales-1.fna,1200190,dave elviz,625,elviz-contigs-1056034.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056070.Opitutae-1.fna,1137915,dave elviz,383,elviz-contigs-1056070.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056040.Methylobacter-1.fna,7633115,dave elviz,7005,elviz-contigs-1056040.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056163.Bacteriovorax-1.fna,1477497,dave elviz,1494,elviz-contigs-1056163.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056025.Bacteroidetes-1.fna,3442816,dave elviz,1521,elviz-contigs-1056025.Bacteroidetes-1
+./bins/dave_bins/bins/elviz-contigs-1056253.Methylobacter-2.fna,3561302,dave elviz,1769,elviz-contigs-1056253.Methylobacter-2
+./bins/dave_bins/bins/elviz-contigs-1056196.Bacteriovorax-1.fna,1624037,dave elviz,1620,elviz-contigs-1056196.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056217.Acidovorax-1.fna,6863905,dave elviz,6758,elviz-contigs-1056217.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056118.Rhodocyclales-1.fna,872498,dave elviz,1180,elviz-contigs-1056118.Rhodocyclales-1
+./bins/dave_bins/bins/elviz-contigs-1056109.Acidovorax-1.fna,3510972,dave elviz,4648,elviz-contigs-1056109.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056040.Gammaproteobacteria-1.fna,6637822,dave elviz,3017,elviz-contigs-1056040.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056241.Sphingobacteriales-1.fna,3225840,dave elviz,2515,elviz-contigs-1056241.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056172.Acidovorax-1.fna,2707823,dave elviz,4326,elviz-contigs-1056172.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056037.Methylobacter-1.fna,9020675,dave elviz,7739,elviz-contigs-1056037.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056241.Bacteriovorax-1.fna,2099669,dave elviz,112,elviz-contigs-1056241.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056199.Pseudomonas-1.fna,5502414,dave elviz,6144,elviz-contigs-1056199.Pseudomonas-1
+./bins/dave_bins/bins/elviz-contigs-1056223.Burkholderiales-1.fna,4999678,dave elviz,8654,elviz-contigs-1056223.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056262.Methylotenera-1.fna,4639884,dave elviz,3299,elviz-contigs-1056262.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056043.Gammaproteobacteria-1.fna,5801095,dave elviz,2931,elviz-contigs-1056043.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056151.Methylobacter-1.fna,3406939,dave elviz,1755,elviz-contigs-1056151.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056055.Dechloromonas-1.fna,1771055,dave elviz,2097,elviz-contigs-1056055.Dechloromonas-1
+./bins/dave_bins/bins/elviz-contigs-1056040.Opitutae-1.fna,1482102,dave elviz,469,elviz-contigs-1056040.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056202.Methylophilus-1.fna,3081737,dave elviz,803,elviz-contigs-1056202.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056163.Comamonadaceae-1.fna,5875173,dave elviz,3161,elviz-contigs-1056163.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056136.Bacteriovorax-1.fna,1831978,dave elviz,2509,elviz-contigs-1056136.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056187.Burkholderiales-1.fna,4495818,dave elviz,3480,elviz-contigs-1056187.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056181.Methylobacter-2.fna,3476039,dave elviz,1168,elviz-contigs-1056181.Methylobacter-2
+./bins/dave_bins/bins/elviz-contigs-1056028.Sphingobacteriales-1.fna,1169534,dave elviz,892,elviz-contigs-1056028.Sphingobacteriales-1
+./bins/dave_bins/bins/elviz-contigs-1056082.Methylosarcina-1.fna,4042602,dave elviz,2235,elviz-contigs-1056082.Methylosarcina-1
+./bins/dave_bins/bins/elviz-contigs-1056154.Methylobacter-1.fna,4299827,dave elviz,2735,elviz-contigs-1056154.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056181.Methylobacter-1.fna,3569284,dave elviz,3087,elviz-contigs-1056181.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056067.Methylotenera-1.fna,3596706,dave elviz,4142,elviz-contigs-1056067.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056241.Methylophilus-1.fna,5286409,dave elviz,1814,elviz-contigs-1056241.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056022.Opitutae-1.fna,1240352,dave elviz,486,elviz-contigs-1056022.Opitutae-1
+./bins/dave_bins/bins/elviz-contigs-1056049.Methylotenera-1.fna,4360423,dave elviz,4796,elviz-contigs-1056049.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056199.Methylobacter-1.fna,2535865,dave elviz,2733,elviz-contigs-1056199.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056157.Flavobacterium-1.fna,1924498,dave elviz,2422,elviz-contigs-1056157.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056019.Bacteriovorax-1.fna,2678528,dave elviz,1328,elviz-contigs-1056019.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056163.Burkholderiales-1.fna,3686925,dave elviz,3580,elviz-contigs-1056163.Burkholderiales-1
+./bins/dave_bins/bins/elviz-contigs-1056238.Methylobacter-1.fna,4363803,dave elviz,6154,elviz-contigs-1056238.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056172.Bacteroidetes-1.fna,3092855,dave elviz,613,elviz-contigs-1056172.Bacteroidetes-1
+./bins/dave_bins/bins/elviz-contigs-1056142.Methylobacter-1.fna,4937328,dave elviz,6827,elviz-contigs-1056142.Methylobacter-1
+./bins/dave_bins/bins/elviz-contigs-1056244.Oxalobacteraceae-1.fna,7198936,dave elviz,2530,elviz-contigs-1056244.Oxalobacteraceae-1
+./bins/dave_bins/bins/elviz-contigs-1056202.Herbaspirillum-1.fna,1642561,dave elviz,388,elviz-contigs-1056202.Herbaspirillum-1
+./bins/dave_bins/bins/elviz-contigs-1056175.Methylophilus-1.fna,5646505,dave elviz,6212,elviz-contigs-1056175.Methylophilus-1
+./bins/dave_bins/bins/elviz-contigs-1056148.Methylotenera-1.fna,3021556,dave elviz,2632,elviz-contigs-1056148.Methylotenera-1
+./bins/dave_bins/bins/elviz-contigs-1056226.Acidovorax-1.fna,7002945,dave elviz,8967,elviz-contigs-1056226.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056202.Comamonadaceae-1.fna,6623109,dave elviz,1984,elviz-contigs-1056202.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056022.Comamonadaceae-1.fna,1762692,dave elviz,1638,elviz-contigs-1056022.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056040.Methylomonas-1.fna,3590166,dave elviz,2284,elviz-contigs-1056040.Methylomonas-1
+./bins/dave_bins/bins/elviz-contigs-1056067.Gammaproteobacteria-1.fna,2829547,dave elviz,2170,elviz-contigs-1056067.Gammaproteobacteria-1
+./bins/dave_bins/bins/elviz-contigs-1056013.Flavobacterium-1.fna,4649105,dave elviz,3112,elviz-contigs-1056013.Flavobacterium-1
+./bins/dave_bins/bins/elviz-contigs-1056274.Acidovorax-1.fna,5961646,dave elviz,6036,elviz-contigs-1056274.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056055.Bacteriovorax-1.fna,2086081,dave elviz,845,elviz-contigs-1056055.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056247.Delftia-1.fna,6187961,dave elviz,804,elviz-contigs-1056247.Delftia-1
+./bins/dave_bins/bins/elviz-contigs-1056223.Acidovorax-1.fna,4395910,dave elviz,7731,elviz-contigs-1056223.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056184.Comamonadaceae-1.fna,3656683,dave elviz,5159,elviz-contigs-1056184.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056166.Herbaspirillum-1.fna,1776182,dave elviz,432,elviz-contigs-1056166.Herbaspirillum-1
+./bins/dave_bins/bins/elviz-contigs-1056052.Fluviicola-1.fna,2070790,dave elviz,252,elviz-contigs-1056052.Fluviicola-1
+./bins/dave_bins/bins/elviz-contigs-1056058.Comamonadaceae-1.fna,3140285,dave elviz,3369,elviz-contigs-1056058.Comamonadaceae-1
+./bins/dave_bins/bins/elviz-contigs-1056091.Rhodocyclales-1.fna,1048423,dave elviz,1237,elviz-contigs-1056091.Rhodocyclales-1
+./bins/dave_bins/bins/elviz-contigs-1056229.Methylobacter-2.fna,3429908,dave elviz,1465,elviz-contigs-1056229.Methylobacter-2
+./bins/dave_bins/bins/elviz-contigs-1056028.Bacteroidetes-1.fna,2333199,dave elviz,1150,elviz-contigs-1056028.Bacteroidetes-1
+./bins/dave_bins/bins/elviz-contigs-1056220.Acidovorax-1.fna,6400177,dave elviz,4541,elviz-contigs-1056220.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056076.Acidovorax-1.fna,8640889,dave elviz,10369,elviz-contigs-1056076.Acidovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056079.Oxalobacteraceae-1.fna,3393616,dave elviz,275,elviz-contigs-1056079.Oxalobacteraceae-1
+./bins/dave_bins/bins/elviz-contigs-1056022.Bacteriovorax-1.fna,2144543,dave elviz,118,elviz-contigs-1056022.Bacteriovorax-1
+./bins/dave_bins/bins/elviz-contigs-1056109.Rhodocyclales-1.fna,1302137,dave elviz,1012,elviz-contigs-1056109.Rhodocyclales-1

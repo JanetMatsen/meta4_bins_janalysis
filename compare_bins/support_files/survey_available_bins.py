@@ -1,6 +1,8 @@
 import glob
 import os
+import re
 
+from Bio import SeqIO
 import pandas as pd
 
 # GOAL: use python3 to enumerate all the files available
@@ -12,11 +14,17 @@ import pandas as pd
 
 
 def bin_contig_count(bin_path):
-    pass
+    # SeqIO.parse returns a generator.  You can make it a list if you
+    # do so right off the bat, but you can't store the generator and
+    # turn it into a list later, for some reason.
+    bin_list = list(SeqIO.parse(bin_path, 'fasta'))
+    return len(bin_list)
 
 
 def bin_length(bin_path):
-    pass
+    bin_generator = SeqIO.parse(bin_path, 'fasta')
+    lengths = map(lambda seq: len(seq.seq), bin_generator)
+    return sum(lengths)
 
 
 def find_all_bins(head_dir, bin_suffix, verbose=False):
@@ -31,22 +39,22 @@ def find_all_bins(head_dir, bin_suffix, verbose=False):
 
 
 def bin_source_from_path(bin_path):
-    name = None  # TODO: use regex or something
-    rename_dict = {'isolate_genomes':"isolate",
-                    'dave_bins':"dave elviz",
-                    'fauzi_bins':"fauzi"}
-    assert(name is in rename_dict.keys())
+    pattern = re.compile(r"/bins/([a-zA-Z0-9_]+)/*")
+    m = pattern.search(bin_path)
+    name = m.group(1)
+    #print(name)
+    rename_dict = {'isolate_genomes': "isolate",
+                   'dave_bins': "dave elviz",
+                   'fauzi_bins': "fauzi"}
+    assert name in rename_dict.keys(), \
+        'Name "{}" is not recognized'.format(name)
     return rename_dict[name]
 
 
-def make_result_dir():
+def make_dir(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
     pass
-
-
-def mummer_two_bins():
-    pass
-
-
 
 
 # loop over the bins and collect a list of dicts
@@ -85,4 +93,6 @@ def bin_info_pandas():
 if __name__ == "__main__":
     df = bin_info_pandas()
     print(df.head())
+    make_dir('./results/')
+    df.to_csv('./results/bin_summary.csv', index=False)
     
