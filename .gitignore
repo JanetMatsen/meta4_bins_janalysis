@@ -6,6 +6,8 @@
 compare_bins/bins/fasta_files--backup/
 compare_bins/bins/fasta_files/
 compare_bins/checkm-inc/
+compare_bins/depreciated
+compare_bins/results/mummer_results/
 # ignore the copies of the bins
 compare_bins/*/bins/*.fna 
 
