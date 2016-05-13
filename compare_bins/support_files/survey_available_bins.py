@@ -90,7 +90,10 @@ def bin_info_pandas():
     df = pd.DataFrame(bin_info_list)
     return df
 
+
 if __name__ == "__main__":
+    print("running mummer_all_bins.py via __name__ == __main__")
+
     df = bin_info_pandas()
     print(df.head())
     make_dir('./results/')
