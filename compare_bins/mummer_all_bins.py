@@ -8,7 +8,7 @@ import pandas as pd
 
 
 def load_summary():
-   return pd.read_csv('./results/bin_summary.csv')
+   return pd.read_csv('./support_files/bins_available.csv')
 
 
 def bin_names_to_coords_filepath(query_bin, ref_bin, results_dir):
@@ -151,10 +151,12 @@ if __name__ == '__main__':
     print(sys.version)
     print(sys.executable)
 
+    # add dir to path so we can import .py files (modules) in there
     sys.path.append('./support_files/')
-    # make ./results/bin_summary.csv if it doesn't exist by running
+
+    # make ./support_files/available_bins.csv if it doesn't exist by running
     # survey_available_bins.py
-    if not os.path.exists('./results/bin_summary.csv'):
+    if not os.path.exists('./support_files/available_bins.csv'):
         subprocess.check_call(['python',
                                './support_files/survey_available_bins.py'])
 

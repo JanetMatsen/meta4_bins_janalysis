@@ -96,6 +96,5 @@ if __name__ == "__main__":
 
     df = bin_info_pandas()
     print(df.head())
-    make_dir('./results/')
-    df.to_csv('./results/bin_summary.csv', index=False)
+    df.to_csv('./support_files/available_bins.csv', index=False)
     
