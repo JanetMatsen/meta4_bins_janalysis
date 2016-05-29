@@ -82,6 +82,7 @@ def percent_identity(dataframe):
     # longest matches.
     longest_rows = pd.merge(dataframe, keeper_rows_df)
     # calculate the length-weighted percent identiy, known as ANI.
+    # TODO: shouldn't it be LEN 1 for this formula?? 
     percent_ident = \
         sum(longest_rows['% IDY']*longest_rows['LEN 2'])*1. / \
         longest_rows['LEN 2'].sum()
