@@ -27,10 +27,10 @@ def bin_length(bin_path):
     return sum(lengths)
 
 
-def find_all_bins(head_dir, bin_suffix, verbose=False):
+def find_all_bins(bin_dir, bin_suffix, verbose=False):
     bin_paths = []
-    bin_dirs = [head_dir + "/bins/*/bins/*" + bin_suffix]
-    path_possibilities = head_dir + "/bins/*/bins/*" + bin_suffix
+    bin_dirs = [bin_dir + "/bins/*/bins/*" + bin_suffix]
+    path_possibilities = bin_dir + "/bins/*/bins/*" + bin_suffix
     print("path possibilities: {}".format(path_possibilities))
     bin_paths = glob.glob(path_possibilities)
     print("number of bin paths: {}".format(len(bin_paths)))
@@ -58,10 +58,11 @@ def make_dir(path):
 
 
 # loop over the bins and collect a list of dicts
-def bin_info_dicts():
+def bin_info_dicts(bin_dir):
     # make a list with one dict per bin
     bin_info_list = []
-    bin_path_list = find_all_bins(head_dir=".", bin_suffix=".fna")
+    bin_path_list = find_all_bins(head_dir=bin_dir, bin_suffix=".fna")
+    bin_path_list += find_all_bins(head_dir=bin_dir, bin_suffix=".fasta")
     # list of possible locations:
     # make a list of bin b
     for bin_path in bin_path_list:
@@ -94,7 +95,7 @@ def bin_info_pandas():
 if __name__ == "__main__":
     print("running mummer_all_bins.py via __name__ == __main__")
 
-    df = bin_info_pandas()
+    df = bin_info_pandas(bin_dir = '/work/meta4_bins/data/bins')
     print(df.head())
     df.to_csv('./support_files/available_bins.csv', index=False)
     
