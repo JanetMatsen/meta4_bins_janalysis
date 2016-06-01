@@ -10,13 +10,15 @@ def extract_contig_ID(string):
 
 def extract_contig_number(string):
     # Ga0081607_1001 --> 1001
-    # todo: why do they start with 1000 ?
     return re.search("Ga[0-9]+_([0-9]+)", string).group(1)
 
 
 def extract_bin_number(string):
     # Ga0081607_1001 --> Ga0081607
-    return re.search("(Ga[0-9]+)_[0-9]+", string).group(1)
+    # Todo: merge with support_files.bin_lengths.extract_bin_number
+    m = re.search("(Ga[0-9]+)_[0-9]+", string)
+    assert m, 'no match found in {}'.format(string)
+    return m.group(1)
 
 
 def extract_common_name(string):
