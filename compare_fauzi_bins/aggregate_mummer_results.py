@@ -214,6 +214,9 @@ def summarize(filepath):
         summary['number alignments aggregated'] = longest_alignments.shape[0]
         summary['frac of query aligned'] = \
             summary['query alignment length total']/summary['query bp']
+        # The new metric developed by Dave/Janet 5/30/2016:
+        summary['estimated % identity'] = \
+            summary['% identity']*summary['frac of query aligned']
         return summary
 
 
@@ -261,9 +264,9 @@ def percent_idty_all_results(filepath_list):
     pass
 
 
-def pivot_identity_table(identity_table):
+def pivot_identity_table(identity_table, value_var="% identity"):
     identity_table = identity_table.pivot(
-        index='query name', columns='ref name', values='% identity')
+        index='query name', columns='ref name', values=value_var)
     identity_table.fillna(value=0, inplace=True)
     return identity_table
 
