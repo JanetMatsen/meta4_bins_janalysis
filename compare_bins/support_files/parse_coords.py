@@ -259,7 +259,7 @@ if __name__ == '__main__':
         logger.info("Using %s for input" % args.infilename)
         try:
             infhandle = open(args.infilename, 'rU')
-            print('infhandle: {}'.format(infhandle))
+            #print('infhandle: {}'.format(infhandle))
         except:
             logger.error("Could not open input file: %s (exiting)" %
                          args.infilename)
