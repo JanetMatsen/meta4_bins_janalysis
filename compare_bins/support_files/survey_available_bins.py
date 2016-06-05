@@ -28,9 +28,9 @@ def bin_length(bin_path):
 
 
 def find_all_bins(bin_dir, bin_suffix, verbose=False):
-    bin_paths = []
-    bin_dirs = [bin_dir + "/bins/*/bins/*" + bin_suffix]
-    path_possibilities = bin_dir + "/bins/*/bins/*" + bin_suffix
+    #bin_paths = []
+    #bin_dirs = [bin_dir + "/bins/*/bins/*" + bin_suffix]
+    path_possibilities = bin_dir + "/*/bins/*" + bin_suffix
     print("path possibilities: {}".format(path_possibilities))
     bin_paths = glob.glob(path_possibilities)
     print("number of bin paths: {}".format(len(bin_paths)))
@@ -40,15 +40,21 @@ def find_all_bins(bin_dir, bin_suffix, verbose=False):
 
 def bin_source_from_path(bin_path):
     pattern = re.compile(r"/bins/([a-zA-Z0-9_]+)/*")
+
     m = pattern.search(bin_path)
+    assert m is not None, "no regex match for {}".format(bin_path)
     name = m.group(1)
+
     #print(name)
-    rename_dict = {'isolate_genomes': "isolate",
-                   'dave_bins': "dave elviz",
-                   'fauzi_bins': "fauzi"}
+    rename_dict = {'isolate': "isolate",
+                   'dave': "dave",
+                   'fauzi': "fauzi"}
     assert name in rename_dict.keys(), \
         'Name "{}" is not recognized'.format(name)
-    return rename_dict[name]
+
+    bin_category = rename_dict[name]
+    #print("bin name for {}: {}".format(bin_path, bin_category))
+    return bin_category
 
 
 def make_dir(path):
@@ -61,8 +67,8 @@ def make_dir(path):
 def bin_info_dicts(bin_dir):
     # make a list with one dict per bin
     bin_info_list = []
-    bin_path_list = find_all_bins(head_dir=bin_dir, bin_suffix=".fna")
-    bin_path_list += find_all_bins(head_dir=bin_dir, bin_suffix=".fasta")
+    bin_path_list = find_all_bins(bin_dir=bin_dir, bin_suffix=".fna")
+    bin_path_list += find_all_bins(bin_dir=bin_dir, bin_suffix=".fasta")
     # list of possible locations:
     # make a list of bin b
     for bin_path in bin_path_list:
@@ -83,9 +89,11 @@ def bin_info_dicts(bin_dir):
         bin_info_list.append(bin_info)
     return bin_info_list
 
+
 # panda-ify the info made by bin_info_dicts()
-def bin_info_pandas():
-    bin_info_list = bin_info_dicts()
+def bin_info_pandas(bin_dir):
+    # Aggregate the dicts of info about each bin
+    bin_info_list = bin_info_dicts(bin_dir)
     print("combine info about {} bins into a pandas df".format(
         len(bin_info_list)))
     df = pd.DataFrame(bin_info_list)
