@@ -5,6 +5,8 @@ ipython_notebooks/160321_unused_read_investigation/160324_explore_unmapped.csv
 
 unused_reads/plots/
 
+compare_fauzi_bins/*.svg
+
 # not sure what these do!
 ._*  
 
