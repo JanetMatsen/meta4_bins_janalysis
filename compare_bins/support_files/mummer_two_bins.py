@@ -7,19 +7,7 @@ import argparse
 import os
 import subprocess
 
-parser = argparse.ArgumentParser(
-    description='Run mummer for a pair of bins, and parse .coords to .tsv.')
 
-parser.add_argument("query_bin_path", type=str, help='path to query bin')
-parser.add_argument("reference_bin_path", type=str,
-                    help='path to reference bin')
-parser.add_argument("result_dir", type=str, help='path to save results to')
-
-# makes a namespace like:
-# Namespace(query_bin_path='path1.fna', reference_bin_path='path2.fasta',
-# result_dir='.')
-args = parser.parse_args()
-# Access like  args.query_bin_path
 
 
 def mummer_two_bins(query_bin_path, ref_bin_path, results_dir):
@@ -114,6 +102,21 @@ def parse_coords(query_bin_path, ref_bin_path, results_dir):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+    description='Run mummer for a pair of bins, and parse .coords to .tsv.')
+
+    parser.add_argument("query_bin_path", type=str, help='path to query bin')
+    parser.add_argument("reference_bin_path", type=str,
+                        help='path to reference bin')
+    parser.add_argument("result_dir", type=str, help='path to save results to')
+
+    # makes a namespace like:
+    # Namespace(query_bin_path='path1.fna', reference_bin_path='path2.fasta',
+    # result_dir='.')
+    args = parser.parse_args()
+    # Access like  args.query_bin_path
+
+
     print("Run MUMmer for query {} and reference {}.  \n "
           "Save to {}".format(args.query_bin_path,
                               args.reference_bin_path,
