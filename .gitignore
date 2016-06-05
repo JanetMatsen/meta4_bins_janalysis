@@ -1,6 +1,12 @@
+# ignore plots in .ipynb dir: 
+ipython_notebooks/plots/
+ipython_notebooks/160304_lost_read_investigation/plots/
+ipython_notebooks/160321_unused_read_investigation/160324_explore_unmapped.csv
+
+unused_reads/plots/
+
 # not sure what these do!
 ._*  
-
 
 # no longer keeping all bins in one dir: one dir for Fauzi, one for Dave, one for isolates.
 compare_bins/bins/fasta_files--backup/
