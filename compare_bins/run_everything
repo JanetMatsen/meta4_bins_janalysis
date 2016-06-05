@@ -4,9 +4,6 @@
 # More info about virtualenv at: janalysis/virtualenv
 source activate m4_janalysis
 
-# prepare files:
-# prepare ./support_files/bins_available.csv, which is used in a loop. 
-python ./support_files/survey_available_bins.py
-
-
-#python mummer_all_bins.py
+python mummer_all_bins.py
+# Note: mummer_all_bins.py makes ./support_files/bins_available.csv 
+# if it doesn't already exist

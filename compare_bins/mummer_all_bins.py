@@ -8,7 +8,11 @@ import pandas as pd
 
 
 def load_summary():
-   return pd.read_csv('./support_files/bins_available.csv')
+    result_path ='./support_files/available_bins.csv'
+    absolute_path = os.path.abspath(result_path)
+    assert os.path.exists(result_path), \
+        "nothing found for {}".format(absolute_path)
+    return pd.read_csv(result_path)
 
 
 def bin_names_to_coords_filepath(query_bin, ref_bin, results_dir):
@@ -159,6 +163,9 @@ if __name__ == '__main__':
     if not os.path.exists('./support_files/available_bins.csv'):
         subprocess.check_call(['python',
                                './support_files/survey_available_bins.py'])
+
+    if not os.path.exists('./results'):
+        os.mkdir('./results')
 
     results_dir = './results/mummer_results'
     if not os.path.exists(results_dir):
