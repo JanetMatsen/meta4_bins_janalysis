@@ -1,3 +1,5 @@
+compare_bins/mummer_results/*
+
 # ignore plots in .ipynb dir: 
 ipython_notebooks/plots/
 ipython_notebooks/160304_lost_read_investigation/plots/
