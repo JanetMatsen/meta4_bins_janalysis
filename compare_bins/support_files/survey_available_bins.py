@@ -66,16 +66,15 @@ def make_dir(path):
 # loop over the bins and collect a list of dicts
 def bin_info_dicts(bin_dir):
     # make a list with one dict per bin
-    bin_info_list = []
-    bin_path_list = find_all_bins(bin_dir=bin_dir, bin_suffix=".fna")
-    bin_path_list += find_all_bins(bin_dir=bin_dir, bin_suffix=".fasta")
+    bin_path_list = find_all_bins(bin_dir=bin_dir, bin_suffix=".fasta")
     # list of possible locations:
     # make a list of bin b
+    bin_info_list = []
     for bin_path in bin_path_list:
         bin_info = {"bin path": bin_path}
 
         # pick out just the name
-        bin_info["name"] = os.path.basename(bin_path).rstrip(".fna")
+        bin_info["name"] = os.path.basename(bin_path).rstrip(".fasta")
 
         # pick out the source of the bin
         bin_info['category'] = bin_source_from_path(bin_path)
