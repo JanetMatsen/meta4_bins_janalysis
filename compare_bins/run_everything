@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# test that worked earlier for one particular mummer pair: 
+# python support_files/mummer_two_bins.py /work/meta4_bins/data/bins/dave/bins/elviz-contigs-1056187.Methylobacter-1.fasta /work/meta4_bins/data/bins/fauzi/bins/Methylobacter-123.fasta ./toy
+
 # Activate my virtualenv for packages like BioPython and envoy.  
 # More info about virtualenv at: janalysis/virtualenv
 source activate m4_janalysis
