@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Activate my virtualenv for packages like BioPython and envoy.  
+# More info about virtualenv at: janalysis/virtualenv
+source activate m4_janalysis
+
+python ./support_files/mummer_some_pairs.py "./support_files/jobs/1--50_rows" "./mummer_results" 'True'
+
