@@ -18,31 +18,61 @@ def mummer_two_bins(query_bin_path, ref_bin_path, results_dir):
     prefix = file_prefix_from_fata_paths(query_bin_path,
                                          ref_bin_path,
                                          results_dir)
-    delta_prefix = prefix + ".delta"
+    print('prefix: {}'.format(prefix))
+    # dir like ./test/elviz-contigs-1056229.Methylotenera-1 instead of
+    results_dir_specific = os.path.dirname(prefix)
+    print('results_dir_specific: {}'.format(results_dir_specific))
+    bin_a_to_b = os.path.basename(prefix)
+    print('bin_a_to_b: {}'.format(bin_a_to_b))
+    stderr_dir = results_dir_specific + '/stdout_stderr/'
+    print('store stderr and some stdout to: {}'.format(stderr_dir))
+    if not os.path.exists(stderr_dir):
+        os.makedirs((stderr_dir))
+    stderr_prefix = results_dir_specific + '/stdout_stderr/' + bin_a_to_b
+
+    # prepare filename for mummer .delta output.
+    delta_prefix = prefix
     print('.delta file prefix: {}'.format(delta_prefix))
 
-    # Make the .delta file
-    # for now allow mummer to run against itself; this is a control.
-    # run these commands:
-    # USAGE: nucmer  [options]  <Reference>  <Query>
-    # so reference is first, then query.
-    nucmer_call = ['/work/software/MUMmer3.23/nucmer',
-                   '--prefix={}'.format(delta_prefix),
-                   ref_bin_path, query_bin_path]
-    print('command to run: \n`{}`'.format(' '.join(nucmer_call)))
-    subprocess.check_call(nucmer_call)
-    # -o makes a .coords file without running show-coords,
-    # but makes the .coords file without coverage columns.
+    # open a file to dump shell standard out to.
+    stdout_nucmer_file = stderr_prefix + ".nucmer.out"
+    stderr_nucmer_file = stderr_prefix + ".nucmer.err"
+    print("stdout_nucmer_file: {}".format(stdout_nucmer_file))
+    print("sterr_nucmer_file: {}".format(stderr_nucmer_file))
+    print("dump stdout, stderr to {}, {}".format(stdout_nucmer_file,
+                                                 stderr_nucmer_file))
+    with open(stdout_nucmer_file, 'w') as out, \
+            open(stderr_nucmer_file, 'w') as err:
+        # Make the .delta file
+        # for now allow mummer to run against itself; this is a control.
+        # run these commands:
+        # USAGE: nucmer  [options]  <Reference>  <Query>
+        # so reference is first, then query.
+        nucmer_call = ['/work/software/MUMmer3.23/nucmer',
+                       '--prefix={}'.format(delta_prefix),
+                       ref_bin_path, query_bin_path]
+        print('command to run: \n`{}`'.format(' '.join(nucmer_call)))
+        subprocess.check_call(nucmer_call, stdout=out, stderr=err)
+        # -o makes a .coords file without running show-coords,
+        # but makes the .coords file without coverage columns.
 
+    # show-coords parses the delta alignment output of NUCmer and PROmer, 
+    # and displays summary information such as position, percent identity 
+    # and so on, of each alignment. It is the most commonly used tool 
+    # for analyzing the delta files.
     coords_path = prefix + ".coords"
-    coords_handle = open(coords_path, 'w')
-    print('coords_path: {}'.format(coords_path))
+    stderr_coords_file = stderr_prefix + ".coords.err"
+    print("dump stdout, stderr to {}, {}".format(coords_path,
+                                                 stderr_coords_file))
 
-    subprocess.check_call(
-        ['/work/software/MUMmer3.23/show-coords',
-         '-rcl', str(delta_prefix + '.delta')],
-        stdout=coords_handle)
+    #coords_handle = open(coords_path, 'w')
+    #print('coords_path: {}'.format(coords_path))
 
+    with open (coords_path, 'w') as out, open(stderr_coords_file, 'w') as err:
+        subprocess.check_call(
+            ['/work/software/MUMmer3.23/show-coords',
+             '-rcl', str(delta_prefix + '.delta')],
+            stdout=out, stderr=err)
 
 def strip_off_fasta_suffix(s):
     """
