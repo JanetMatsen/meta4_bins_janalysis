@@ -4,6 +4,22 @@
 # More info about virtualenv at: janalysis/virtualenv
 source activate m4_janalysis
 
-python mummer_all_bins.py
-# Note: mummer_all_bins.py makes ./support_files/bins_available.csv 
-# if it doesn't already exist
+# prepare the available bins. 
+rm ./support_files/available_bins.csv
+python ./support_files/survey_available_bins.py
+
+# prepare the list of .fasta files for each job's query sequence
+# makes files in ./support_files/jobs/ with a list of bin names. 
+python ./support_files/break_apart_bin_jobs.py
+
+## test run:
+#python ./support_files/mummer_some_pairs.py "./support_files/jobs/13--2_rows" "./test" 'True'
+
+# do all the runs
+# & supresses output so they can all run at once. 
+for job in ./support_files/jobs/job*; do 
+    sh $job &
+done
+# wait will wait until all the background processes are done
+wait
+
