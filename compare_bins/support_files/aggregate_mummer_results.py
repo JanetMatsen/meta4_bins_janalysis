@@ -46,9 +46,9 @@ def load_one_mummer_result(filepath):
     # Split 'TAGS (ref)' = Ga0081624_1057 into a column called 'ref bin'
     # (= 'Ga0081624') and 'ref contig' = 1057
     # Same for 'TAGS (query)
-    df['ref bin'] = df['TAGS (ref)'].apply(
+    df['ref id'] = df['TAGS (ref)'].apply(
         lambda x: name_extractions.extract_bin_number(x))
-    df['query bin'] = df['TAGS (query)'].apply(
+    df['query id'] = df['TAGS (query)'].apply(
         lambda x: name_extractions.extract_bin_number(x))
     df['ref contig'] = df['TAGS (ref)'].apply(
         lambda x: name_extractions.extract_contig_number(x))
@@ -84,18 +84,19 @@ def prepare_result(filepath):
     result = pd.merge(result, query_metainfo)
     result = pd.merge(result, ref_metainfo)
 
-    # prepare and merge the bin_length info:
-    lengths = load_bin_length_summary()
-    query_lengths = prep_summary_for_merge(lengths, 'query ')
-    ref_lengths = prep_summary_for_merge(lengths, 'ref ')
-    result = pd.merge(result, query_lengths)
-    result = pd.merge(result, ref_lengths)
-
     return result
 
 
 
 def plot_identity_vs_len(filepath, save_path='./plots/'):
+    """
+    Make a little scatter plot with a dot for each contig.
+    x = LEN 2 (length of query alignment), y = % IDY.
+
+    :param filepath:
+    :param save_path:
+    :return:
+    """
     df = load_one_mummer_result(filepath)
     if df.shape[0] > 1:
         plot = df.plot.scatter(x='LEN 2', y='% IDY')
@@ -131,6 +132,9 @@ def dataframe_is_one_query_target_pair(dataframe):
 
 def keep_longest_query_match(dataframe):
     """
+    Strategy change 6/7/2016: don't use this!  We are going to use all matches,
+    even though it will lead to double-counting in some cases.
+
     Though MUMMER can return multiple alignments per query contig, we are going
     to only keep the longest match.  It would be better to allow two
     non-overlapping alignments, but this is technically more challenging.
@@ -166,7 +170,7 @@ def length_weighted_percent_identity(dataframe):
     return percent_ident
 
 
-def sum_of_lengths(dataframe):
+def sum_of_query_alignment_lengths(dataframe):
     """
     Calculate the sum of the query lengths of a given dataframe.
 
@@ -214,7 +218,7 @@ def summarize(filepath):
         summary['% identity'] = \
             length_weighted_percent_identity(longest_alignments)
         summary['query alignment length total'] = \
-            sum_of_lengths(longest_alignments)
+            sum_of_query_alignment_lengths(longest_alignments)
         summary['number alignments aggregated'] = longest_alignments.shape[0]
         summary['frac of query aligned'] = \
             summary['query alignment length total']/summary['query bp']
