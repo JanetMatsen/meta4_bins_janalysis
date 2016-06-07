@@ -262,6 +262,7 @@ def percent_idty_all_results(filepath_list):
             # print('no alignments found for {}; '
             #       'omit it from summary'.format(filepath))
             num_empty += 1
+            continue
         else:
             # Check that the dataframe is one row.
             assert summary.shape[0] == 1, \
@@ -306,19 +307,14 @@ def pivot_saved_tsv(saved_tsv_path, out_path):
 
 
 if __name__ == "__main__":
-    test_samples = glob.glob('./mummer_results/*.tsv')
+    test_samples = glob.glob('./mummer_results/*/*.tsv')
     i_res = percent_idty_all_results(test_samples)
-
-    # For Fauzi bins in /work/meta4_bins/janalysis/compare_fauzi_bins,
-    # we need to drop Methylotenera mobilis-49 from all the analysis.
-    # (or rename them appropriately)
-    i_res = i_res[i_res['query name'] != 'Methylotenera mobilis-49']
-    i_res = i_res[i_res['ref name'] != 'Methylotenera mobilis-49']
 
     print('len of test_samples: {}'.format(len(test_samples)))
     print('len of test_samples set: {}'.format(
         len(set(test_samples))))
     unpivoted_path = 'percent_identities.tsv'
+
     i_res.to_csv(unpivoted_path, sep='\t')
     # pivot for seaborn plotting
 
