@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# make it stop if there is a problem. 
+# actually this doesn't work b/c conda throws errors
+# set -eux
+
 # test that worked earlier for one particular mummer pair: 
 # python support_files/mummer_two_bins.py /work/meta4_bins/data/bins/dave/bins/elviz-contigs-1056187.Methylobacter-1.fasta /work/meta4_bins/data/bins/fauzi/bins/Methylobacter-123.fasta ./toy
 
@@ -21,8 +25,9 @@ python ./support_files/break_apart_bin_jobs.py
 # do all the runs
 # & supresses output so they can all run at once. 
 for job in ./support_files/jobs/job*; do 
-    sh $job &
+    # used to call `sh $job &` but this threw an error, likely due to conda python
+    # it doens't throw that error when run this way, so stick with it. 
+    $job &
 done
 # wait will wait until all the background processes are done
 wait
-
