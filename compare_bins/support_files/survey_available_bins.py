@@ -27,6 +27,13 @@ def bin_length(bin_path):
     return sum(lengths)
 
 
+def first_fasta_contig_name_and_id(bin_path):
+    bin_generator = SeqIO.parse(bin_path, 'fasta')
+    one_contig = next(bin_generator)
+    return {'id': one_contig.id, 'name': one_contig.name}
+
+
+
 def find_all_bins(bin_dir, bin_suffix, verbose=False):
     #bin_paths = []
     #bin_dirs = [bin_dir + "/bins/*/bins/*" + bin_suffix]
@@ -63,6 +70,13 @@ def make_dir(path):
     pass
 
 
+def extract_bin_number(string):
+    # Ga0081607_1001 --> Ga0081607
+    m = re.search("(Ga[0-9]+)_[0-9]+", string)
+    assert m, 'no match found in {}'.format(string)
+    return m.group(1)
+
+
 # loop over the bins and collect a list of dicts
 def bin_info_dicts(bin_dir):
     # make a list with one dict per bin
@@ -80,12 +94,21 @@ def bin_info_dicts(bin_dir):
         bin_info['category'] = bin_source_from_path(bin_path)
 
         # find and save the bin's number of base pairs
-        bin_bp = bin_length(bin_path)  # TODO: fill in bin_length()
+        bin_bp = bin_length(bin_path)
         bin_info['bp'] = bin_bp
         # find and save the bin's number of contigs
-        bin_contigs = bin_contig_count(bin_path)  # TODO: fill in function
+        bin_contigs = bin_contig_count(bin_path)
         bin_info['contigs'] = bin_contigs
         bin_info_list.append(bin_info)
+
+        # get the name of the first contig:
+        contig_id_and_name_dict = first_fasta_contig_name_and_id(bin_path)
+        # bin_info['first contig name'] = contig_id_and_name_dict['name']
+        # bin_info['first contig id'] = contig_id_and_name_dict['id']
+
+        # get the general Ga_ type id for each bin
+        first_contig_id = contig_id_and_name_dict['id']
+        bin_info['id'] = extract_bin_number(first_contig_id)
     return bin_info_list
 
 
