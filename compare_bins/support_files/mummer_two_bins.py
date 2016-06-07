@@ -92,6 +92,17 @@ def strip_off_fasta_suffix(s):
 
 
 def file_prefix_from_fata_paths(query_bin_path, ref_bin_path, results_dir):
+    """
+    prepare a string like
+    "my_results_dir/Methylotenera-123_to_Methylotenera-63" from two fasta
+    paths
+
+    :param query_bin_path: string with query bin name
+    :param ref_bin_path: string with reference bin name
+    :param results_dir: directory you will store files in
+    :return:
+    """
+    # the first bin listed is the query bin, and the 2nd is the reference.
     query_name = strip_off_fasta_suffix(os.path.basename(query_bin_path))
     assert query_name is not None, "query name is none: {}".format(query_name)
 
