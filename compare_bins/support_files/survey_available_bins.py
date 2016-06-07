@@ -88,7 +88,7 @@ def bin_info_dicts(bin_dir):
         bin_info = {"bin path": bin_path}
 
         # pick out just the name
-        bin_info["name"] = os.path.basename(bin_path).rstrip(".fasta")
+        bin_info["name"] = os.path.basename(bin_path).rstrip("\.fasta")
 
         # pick out the source of the bin
         bin_info['category'] = bin_source_from_path(bin_path)
