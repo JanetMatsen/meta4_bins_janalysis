@@ -66,7 +66,13 @@ def prep_summary_for_merge(df, prepend_string):
     :return: dataframe with modified column names
     """
     df2 = df.copy()
-    df2.columns = map(lambda x: prepend_string + x, df.columns)
+    # remove the category column, which will cause problems.
+    if 'category' in df2.columns:
+        df2 = df2.drop('category', axis=1)
+    if 'bin path' in df2.columns:
+        df2 = df2.drop('bin path', axis=1)
+    # prepend the string onto each column name
+    df2.columns = map(lambda x: prepend_string + x, df2.columns)
     return df2
 
 
@@ -188,7 +194,7 @@ def summarize(filepath):
 
     assert(summary.shape[0] == 1), \
         "summary dataframe we will append to needs to have 1 row, but in " \
-        "fact has {} rows".format(summary.shape[0])
+        "fact has {} rows.  \n {}".format(summary.shape[0], summary.head())
 
     if longest_alignments.shape[0] == 0:
         # Can't summarise something that didn't get alignments!!
