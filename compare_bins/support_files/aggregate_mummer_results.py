@@ -73,7 +73,9 @@ def prep_summary_for_merge(df, prepend_string):
     :return: dataframe with modified column names
     """
     df2 = df.copy()
+    # remove the bin name, which is inconsistent for Methylobact-98r
     # remove the category column, which will cause problems.
+    df2 = df2.drop('name', axis = 1)
     if 'category' in df2.columns:
         df2 = df2.drop('category', axis=1)
     if 'bin path' in df2.columns:
@@ -99,10 +101,11 @@ def prepare_result(filepath):
         df=load_individual_bin_summaries(),
         prepend_string='ref ')
 
-    def check_merge_failure():
+    def check_merge_failure(merge_name):
         assert result.shape[0] > 0, \
-            'after merging on query metainfo, you only have {} rows ' \
-            'remaining. Did inner merge fail?'.format(result.shape[0])
+            'after merging on {} metainfo, you only have {} rows ' \
+            'remaining. Did inner merge fail?'.format(merge_name,
+                                                      result.shape[0])
 
     def check_merge_name_success():
         unique_query_bin_names = result['query name'].unique()
@@ -116,11 +119,11 @@ def prepare_result(filepath):
                 len(unique_ref_bin_names), result['mummer file'][0]
             )
 
-    result = pd.merge(result, query_metainfo, how='inner', on='query name')
-    check_merge_failure()
+    result = pd.merge(result, query_metainfo, how='inner', on='query id')
+    check_merge_failure('result')
 
-    result = pd.merge(result, ref_metainfo, how='inner', on='ref name')
-    check_merge_failure()
+    result = pd.merge(result, ref_metainfo, how='inner', on='ref id')
+    check_merge_failure('query')
 
     check_merge_name_success()
 
