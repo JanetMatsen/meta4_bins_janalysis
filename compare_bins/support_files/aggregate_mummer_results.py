@@ -32,14 +32,21 @@ def load_one_mummer_result(filepath):
     # Read in parsed MUMMER result.
     df = pd.read_csv(filepath, sep='\t')
 
+    # check that the dataframe is not empty
+    if df.shape[0] < 1:
+        # return empty dataframe
+        return df
+
+    assert df.shape[0] > 0, "dataframe for {} has 0 rows".format(filepath)
+
     # The 2 argument says split at most 2 times.
     df['mummer file'] = filepath.split("/", 2)[2]
 
-    df['query bin'] = \
+    df['query name'] = \
         df['mummer file'].apply(
             lambda x:
             name_extractions.query_and_ref_names_from_path(x)['query'])
-    df['ref bin'] = \
+    df['ref name'] = \
         df['mummer file'].apply(
             lambda x:
             name_extractions.query_and_ref_names_from_path(x)['ref'])
@@ -78,17 +85,44 @@ def prep_summary_for_merge(df, prepend_string):
 
 def prepare_result(filepath):
     result = load_one_mummer_result(filepath)
+    if result.shape[0] == 0:
+        return None
+
     # prepare meta-info for the query bin
     # Customize the generalized metainfo for the query, then the ref.
     query_metainfo = prep_summary_for_merge(
         df=load_individual_bin_summaries(),
         prepend_string='query ')
+
     # prepare meta-info for the ref bin
     ref_metainfo = prep_summary_for_merge(
         df=load_individual_bin_summaries(),
         prepend_string='ref ')
-    result = pd.merge(result, query_metainfo)
-    result = pd.merge(result, ref_metainfo)
+
+    def check_merge_failure():
+        assert result.shape[0] > 0, \
+            'after merging on query metainfo, you only have {} rows ' \
+            'remaining. Did inner merge fail?'.format(result.shape[0])
+
+    def check_merge_name_success():
+        unique_query_bin_names = result['query name'].unique()
+        unique_ref_bin_names = result['ref name'].unique()
+        assert len(unique_query_bin_names) == 1, \
+            'should only have one query name, but have {} for {}'.format(
+                len(unique_query_bin_names), result['mummer file'][0]
+            )
+        assert len(unique_ref_bin_names) == 1, \
+            'should only have one query name, but have {} for {}'.format(
+                len(unique_ref_bin_names), result['mummer file'][0]
+            )
+
+    result = pd.merge(result, query_metainfo, how='inner', on='query name')
+    check_merge_failure()
+
+    result = pd.merge(result, ref_metainfo, how='inner', on='ref name')
+    check_merge_failure()
+
+    check_merge_name_success()
 
     return result
 
@@ -102,14 +136,14 @@ def dataframe_is_one_query_target_pair(dataframe):
     :param dataframe:
     :return:
     """
-    num_query_bins = len(dataframe['query bin'].unique())
-    num_ref_bins = len(dataframe['ref bin'].unique())
+    num_query_bins = len(dataframe['query name'].unique())
+    num_ref_bins = len(dataframe['ref name'].unique())
     if not num_query_bins == 1:
         "Dataframe has a mix of {} query bins: {}".format(
-            num_query_bins, dataframe['query bin'].unique())
+            num_query_bins, dataframe['query name'].unique())
     if not num_ref_bins == 1:
         "Dataframe has a mix of {} reference bins: {}".format(
-            num_query_bins, dataframe['ref bin'].unique())
+            num_query_bins, dataframe['ref name'].unique())
     if (num_query_bins == 1) & (num_ref_bins == 1):
         return True
     else:
@@ -175,7 +209,7 @@ def summarize(filepath):
     """
     # Load the result tsv (meta info gets joined)
     single_result = prepare_result(filepath)
-    if single_result.shape[0] == 0:
+    if single_result is None:
         print('no rows for {}; assume zero similarity'.format(filepath))
         return None
 
@@ -187,7 +221,7 @@ def summarize(filepath):
     # Trim off column names that are unique to a given alignment.
     summary = longest_alignments.copy()
     drop_columns = ['TAGS (ref)', 'TAGS (query)', 'LEN 1', 'LEN 2',
-                   'LEN R', 'LEN Q', 'COV R', 'COV Q', '% IDY',
+                    'LEN R', 'LEN Q', 'COV R', 'COV Q', '% IDY',
                     'ref contig', 'query contig']
     summary.drop(drop_columns, axis=1, inplace=True)
     summary = summary.drop_duplicates()
@@ -219,9 +253,9 @@ def percent_idty_all_results(filepath_list):
     num_with_contents = 0
     summary_all_samples = pd.DataFrame()
     for filepath in filepath_list:
-        #print('analyze {}'.format(filepath))
         # load the dataframe for that file path
 
+        print("summarize {}".format(filepath))
         summary = summarize(filepath)
 
         if summary is None:
@@ -269,11 +303,6 @@ def pivot_saved_tsv(saved_tsv_path, out_path):
     df = pd.read_csv(saved_tsv_path, sep='\t')
     df = pivot_identity_table(df)
     df.to_csv(out_path, sep='\t')
-
-
-def plot_heatmap(pivoted_table):
-    plot = sns.heatmap(res_piv)
-    return plot
 
 
 if __name__ == "__main__":
