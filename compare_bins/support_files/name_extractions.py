@@ -22,7 +22,7 @@ def query_and_ref_names_from_path(filepath):
     """
 
     # \w matches a "word" character: a letter or digit or underbar [a-zA-Z0-9_]
-    search = '/([\w\.-]+)_to_([\w\.-]+).tsv'
+    search = '([\w\.-]+)_to_([\w\.-]+).tsv'
     match = re.search(search, filepath)
     assert match, 'match not found for {} in {}'.format(search, filepath)
     if match:

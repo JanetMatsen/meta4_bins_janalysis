@@ -46,7 +46,7 @@ def find_all_bins(bin_dir, bin_suffix, verbose=False):
 
 
 def bin_source_from_path(bin_path):
-    pattern = re.compile(r"/bins/([a-zA-Z0-9_]+)/*")
+    pattern = re.compile(r"/bins/([a-zA-Z0-9_-]+)/*")
 
     m = pattern.search(bin_path)
     assert m is not None, "no regex match for {}".format(bin_path)
