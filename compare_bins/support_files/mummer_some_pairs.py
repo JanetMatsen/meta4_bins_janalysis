@@ -37,7 +37,7 @@ def analyze_bin_pairs(partial_bins_list, results_dir,
         # other bins as reference within
         result_sub_dir = mummer_two_bins.strip_off_fasta_suffix(
             os.path.basename(query_bin_path))
-        results_dir = results_dir + "/" + result_sub_dir
+        particular_results_dir = results_dir + "/" + result_sub_dir
 
         print("save result in {}".format(results_dir))
 
@@ -47,15 +47,14 @@ def analyze_bin_pairs(partial_bins_list, results_dir,
 
 
             expected_coords_path = \
-                mummer_two_bins.file_prefix_from_fata_paths(query_bin_path,
-                                                            ref_bin_path,
-                                                            results_dir) + \
+                mummer_two_bins.file_prefix_from_fata_paths(
+                    query_bin_path, ref_bin_path, particular_results_dir) + \
                 '.coords'
             coords_exists = os.path.exists(expected_coords_path)
 
             # Command to send to shell:
             command = ['python', "./support_files/mummer_two_bins.py",
-                      query_bin_path, ref_bin_path, results_dir]
+                      query_bin_path, ref_bin_path, particular_results_dir]
 
             if preserve_existing:
 
