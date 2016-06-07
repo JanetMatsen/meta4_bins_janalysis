@@ -7,7 +7,6 @@ bin path,bp,category,contigs,name
 /work/meta4_bins/data/bins/fauzi/bins/Acidovorax-123.fasta,2739181,fauzi,18,Acidovorax-123
 /work/meta4_bins/data/bins/fauzi/bins/Acidovorax-79.fasta,2771065,fauzi,98,Acidovorax-79
 /work/meta4_bins/data/bins/fauzi/bins/Methylobacter-123.fasta,4765737,fauzi,260,Methylobacter-123
-/work/meta4_bins/data/bins/fauzi/bins/Acidovora-69x.fasta,3012106,fauzi,445,Acidovora-69x
 /work/meta4_bins/data/bins/fauzi/bins/Methylotenera_mobilis-49-1.fasta,2965008,fauzi,226,Methylotenera_mobilis-49-1
 /work/meta4_bins/data/bins/fauzi/bins/Methylophilus_methylotrophus-55.fasta,2904013,fauzi,17,Methylophilus_methylotrophus-55
 /work/meta4_bins/data/bins/fauzi/bins/Methylophilaceae-49.fasta,1632950,fauzi,201,Methylophilaceae-49
@@ -31,6 +30,7 @@ bin path,bp,category,contigs,name
 /work/meta4_bins/data/bins/fauzi/bins/Methylophilus_methylotrophus-129-2.fasta,2330742,fauzi,87,Methylophilus_methylotrophus-129-2
 /work/meta4_bins/data/bins/fauzi/bins/Acidovorax-21.fasta,1834216,fauzi,446,Acidovorax-21
 /work/meta4_bins/data/bins/fauzi/bins/Burkholderiales-55.fasta,5322952,fauzi,53,Burkholderiales-55
+/work/meta4_bins/data/bins/fauzi/bins/Acidovorax-69.fasta,3012106,fauzi,445,Acidovorax-69
 /work/meta4_bins/data/bins/fauzi/bins/Acidovorax-98.fasta,3368916,fauzi,359,Acidovorax-98
 /work/meta4_bins/data/bins/fauzi/bins/Burkholderiales-76.fasta,4626775,fauzi,107,Burkholderiales-76
 /work/meta4_bins/data/bins/fauzi/bins/Methylosarcina_lacus-69.fasta,4110993,fauzi,217,Methylosarcina_lacus-69
