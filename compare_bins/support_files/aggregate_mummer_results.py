@@ -364,16 +364,20 @@ def percent_idty_all_results(filepath_list):
 
 
 def pivot_identity_table(identity_table, value_var="% identity"):
-    identity_table = identity_table.pivot(
-        index='query name', columns='ref name', values=value_var)
-    identity_table.fillna(value=0, inplace=True)
-    return identity_table
+    # TODO: update for the two metrics of percent identity
+    # identity_table = identity_table.pivot(
+    #     index='query name', columns='ref name', values=value_var)
+    # identity_table.fillna(value=0, inplace=True)
+    # return identity_table
+    pass
 
 
 def pivot_saved_tsv(saved_tsv_path, out_path):
-    df = pd.read_csv(saved_tsv_path, sep='\t')
-    df = pivot_identity_table(df)
-    df.to_csv(out_path, sep='\t')
+    # TODO: update for the two metrics of percent identity
+    # df = pd.read_csv(saved_tsv_path, sep='\t')
+    # df = pivot_identity_table(df)
+    # df.to_csv(out_path, sep='\t')
+    pass
 
 
 if __name__ == "__main__":
@@ -388,5 +392,5 @@ if __name__ == "__main__":
     i_res.to_csv(unpivoted_path, sep='\t')
     # pivot for seaborn plotting
 
-    pivoted_path = 'percent_identities--pivoted.tsv'
-    pivot_saved_tsv(unpivoted_path, pivoted_path)
+    # pivoted_path = 'percent_identities--pivoted.tsv'
+    # pivot_saved_tsv(unpivoted_path, pivoted_path)
