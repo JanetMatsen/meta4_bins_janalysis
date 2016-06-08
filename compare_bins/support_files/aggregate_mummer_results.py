@@ -73,9 +73,6 @@ def prep_summary_for_merge(df, prepend_string):
     :return: dataframe with modified column names
     """
     df2 = df.copy()
-    # remove the bin name, which is inconsistent for Methylobact-98r
-    # remove the category column, which will cause problems.
-    df2 = df2.drop('name', axis = 1)
     if 'category' in df2.columns:
         df2 = df2.drop('category', axis=1)
     if 'bin path' in df2.columns:
@@ -83,6 +80,30 @@ def prep_summary_for_merge(df, prepend_string):
     # prepend the string onto each column name
     df2.columns = map(lambda x: prepend_string + x, df2.columns)
     return df2
+
+
+def check_column_uniformity(dataframe, colname):
+    """
+    Check uniformity of a column.  Useful when ensuring merges worked
+     correctly.
+
+    :param dataframe:
+    :param colname:
+    :return:
+    """
+    if colname in dataframe.columns:
+        unique_col_values = dataframe[colname].unique()
+        num_unique_values = len(unique_col_values)
+        assert num_unique_values == 1, \
+            'There are {} unique values for {}: \n {}'.format(
+                num_unique_values, colname, unique_col_values)
+    return None
+
+
+def check_columns_uniformity(dataframe, colname_list):
+    for colname in colname_list:
+        check_column_uniformity(dataframe, colname)
+    return None
 
 
 def prepare_result(filepath):
@@ -100,6 +121,7 @@ def prepare_result(filepath):
     ref_metainfo = prep_summary_for_merge(
         df=load_individual_bin_summaries(),
         prepend_string='ref ')
+
 
     def check_merge_failure(merge_name):
         assert result.shape[0] > 0, \
@@ -119,11 +141,21 @@ def prepare_result(filepath):
                 len(unique_ref_bin_names), result['mummer file'][0]
             )
 
-    result = pd.merge(result, query_metainfo, how='inner', on='query id')
-    check_merge_failure('result')
-
-    result = pd.merge(result, ref_metainfo, how='inner', on='ref id')
+    # print(result.columns)
+    # print(query_metainfo.columns)
+    result = pd.merge(result, query_metainfo, how='inner',
+                      on=['query id', 'query name'])
     check_merge_failure('query')
+    check_columns_uniformity(
+        result, ['ref id', 'query id', 'query contigs', 'ref contigs'])
+
+    # print(result.columns)
+    # print(ref_metainfo.columns)
+    result = pd.merge(result, ref_metainfo, how='inner',
+                      on=['ref id', 'ref name'])
+    check_merge_failure('referemce')
+    check_columns_uniformity(
+        result, ['ref id', 'query id', 'query contigs', 'ref contigs'])
 
     check_merge_name_success()
 
@@ -206,9 +238,10 @@ def sum_of_query_alignment_lengths(dataframe):
 def summarize(filepath):
     """
     Return a summary dataframe with the % identity and fraction aligned.
+    There should only be one row in this dataframe!
 
-    :param filepath:
-    :return:
+    :param filepath: path to mummer .coords parsed into .tsv format
+    :return: a one-row summary dataframe
     """
     # Load the result tsv (meta info gets joined)
     single_result = prepare_result(filepath)
@@ -221,6 +254,8 @@ def summarize(filepath):
     # contig as long as you don't double count alignment regions.
     longest_alignments = keep_longest_query_match(single_result)
 
+    # Prepare a single-row summary for this pair of bins.  Will append %
+    # identity on to it.
     # Trim off column names that are unique to a given alignment.
     summary = longest_alignments.copy()
     drop_columns = ['TAGS (ref)', 'TAGS (query)', 'LEN 1', 'LEN 2',
