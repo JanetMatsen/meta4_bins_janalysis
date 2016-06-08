@@ -90,25 +90,32 @@ def bin_info_dicts(bin_dir):
         # pick out just the name
         bin_info["name"] = os.path.basename(bin_path).rstrip("\.fasta")
 
+
         # pick out the source of the bin
-        bin_info['category'] = bin_source_from_path(bin_path)
+        bin_category = bin_source_from_path(bin_path)
+        bin_info['category'] = bin_category
 
         # find and save the bin's number of base pairs
         bin_bp = bin_length(bin_path)
         bin_info['bp'] = bin_bp
+
         # find and save the bin's number of contigs
         bin_contigs = bin_contig_count(bin_path)
         bin_info['contigs'] = bin_contigs
-        bin_info_list.append(bin_info)
 
         # get the name of the first contig:
         contig_id_and_name_dict = first_fasta_contig_name_and_id(bin_path)
-        # bin_info['first contig name'] = contig_id_and_name_dict['name']
-        # bin_info['first contig id'] = contig_id_and_name_dict['id']
 
-        # get the general Ga_ type id for each bin
-        first_contig_id = contig_id_and_name_dict['id']
-        bin_info['id'] = extract_bin_number(first_contig_id)
+        if bin_category == 'isolate':
+            # TODO: stuff
+            bin_info_list.append(bin_info)
+        else:
+
+            # get the general Ga_ type id for each bin
+            first_contig_id = contig_id_and_name_dict['id']
+            bin_info['id'] = extract_bin_number(first_contig_id)
+            bin_info_list.append(bin_info)
+
     return bin_info_list
 
 
