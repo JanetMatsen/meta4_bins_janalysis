@@ -133,7 +133,6 @@ def prepare_result(filepath):
         df=load_individual_bin_summaries(),
         prepend_string='ref ')
 
-
     def check_merge_failure(merge_name):
         assert result.shape[0] > 0, \
             'after merging on {} metainfo, you only have {} rows ' \
@@ -249,19 +248,22 @@ def summarize(filepath):
     Return a summary dataframe with the % identity and fraction aligned.
     There should only be one row in this dataframe!
 
+    Metrics with (1) are using the single longest alignment for each contig.
+    Metrics with (2) use all alignments, and may over-report values.
+
     :param filepath: path to mummer .coords parsed into .tsv format
     :return: a one-row summary dataframe
     """
     # Load the result tsv (meta info gets joined)
-    single_result = prepare_result(filepath)
-    if single_result is None:
+    mummer_result = prepare_result(filepath)
+    if mummer_result is None:
         print('no rows for {}; assume zero similarity'.format(filepath))
         return None
 
     # As of 6/1/2016 we are only keeping the longest length in an alignment,
     # even though it is likely better to keep multiple alignments per query
     # contig as long as you don't double count alignment regions.
-    longest_alignments = keep_longest_query_match(single_result)
+    longest_alignments = keep_longest_query_match(mummer_result)
 
     # Prepare a single-row summary for this pair of bins.  Will append %
     # identity on to it.
@@ -276,7 +278,6 @@ def summarize(filepath):
     if 'query contig' in summary.columns:
         summary.drop('query contig', axis=1, inplace=True)
 
-
     summary = summary.drop_duplicates()
 
     assert(summary.shape[0] == 1), \
@@ -288,16 +289,30 @@ def summarize(filepath):
         return None
 
     else:
-        summary['% identity'] = \
+        summary['% identity (1)'] = \
             length_weighted_percent_identity(longest_alignments)
-        summary['query alignment length total'] = \
+        summary['query alignment length total (1)'] = \
             sum_of_query_alignment_lengths(longest_alignments)
-        summary['number alignments aggregated'] = longest_alignments.shape[0]
-        summary['frac of query aligned'] = \
-            summary['query alignment length total']/summary['query bp']
+        summary['number alignments aggregated (1)'] = \
+            longest_alignments.shape[0]
+        summary['frac of query aligned (1)'] = \
+            summary['query alignment length total (1)']/summary['query bp']
         # The new metric developed by Dave/Janet 5/30/2016:
-        summary['estimated % identity'] = \
-            summary['% identity']*summary['frac of query aligned']
+        summary['estimated % identity (1)'] = \
+            summary['% identity (1)']*summary['frac of query aligned (1)']
+
+        # Do the same using *all* alignments, not just the longest ones.
+        # summary['% identity (2)'] = \
+        #     length_weighted_percent_identity(longest_alignments)
+        # summary['query alignment length total (2)'] = \
+        #     sum_of_query_alignment_lengths(longest_alignments)
+        # summary['number alignments aggregated (2)'] = \
+        #     longest_alignments.shape[0]
+        # summary['frac of query aligned (2)'] = \
+        #     summary['query alignment length total']/summary['query bp']
+        # # The new metric developed by Dave/Janet 5/30/2016:
+        # summary['estimated % identity (2)'] = \
+        #     summary['% identity (2)']*summary['frac of query aligned (2)']
         return summary
 
 
