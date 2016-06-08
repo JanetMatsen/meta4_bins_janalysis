@@ -152,8 +152,8 @@ def prepare_result(filepath):
                 len(unique_ref_bin_names), result['mummer file'][0]
             )
 
-    print(result.columns)
-    print(query_metainfo.columns)
+    # print(result.columns)
+    # print(query_metainfo.columns)
     result = pd.merge(result, query_metainfo, how='inner')
     check_merge_failure('query')
     check_columns_uniformity(
@@ -268,9 +268,15 @@ def summarize(filepath):
     # Trim off column names that are unique to a given alignment.
     summary = longest_alignments.copy()
     drop_columns = ['TAGS (ref)', 'TAGS (query)', 'LEN 1', 'LEN 2',
-                    'LEN R', 'LEN Q', 'COV R', 'COV Q', '% IDY',
-                    'ref contig', 'query contig']
+                    'LEN R', 'LEN Q', 'COV R', 'COV Q', '% IDY']
     summary.drop(drop_columns, axis=1, inplace=True)
+    # get the "sometimes" column names:
+    if 'ref contig' in summary.columns:
+        summary.drop('ref contig', axis=1, inplace=True)
+    if 'query contig' in summary.columns:
+        summary.drop('query contig', axis=1, inplace=True)
+
+
     summary = summary.drop_duplicates()
 
     assert(summary.shape[0] == 1), \
