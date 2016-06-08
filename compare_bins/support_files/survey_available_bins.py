@@ -5,6 +5,9 @@ import re
 from Bio import SeqIO
 import pandas as pd
 
+import name_extractions
+
+
 # GOAL: use python3 to enumerate all the files available
 # calculate # of contigs in each, and # of bp.
 # save survey to a .tsv file
@@ -45,36 +48,11 @@ def find_all_bins(bin_dir, bin_suffix, verbose=False):
     return bin_paths
 
 
-def bin_source_from_path(bin_path):
-    pattern = re.compile(r"/bins/([a-zA-Z0-9_-]+)/*")
-
-    m = pattern.search(bin_path)
-    assert m is not None, "no regex match for {}".format(bin_path)
-    name = m.group(1)
-
-    #print(name)
-    rename_dict = {'isolate': "isolate",
-                   'dave': "dave",
-                   'fauzi': "fauzi"}
-    assert name in rename_dict.keys(), \
-        'Name "{}" is not recognized'.format(name)
-
-    bin_category = rename_dict[name]
-    #print("bin name for {}: {}".format(bin_path, bin_category))
-    return bin_category
-
-
 def make_dir(path):
     if not os.path.exists(path):
         os.makedirs(path)
     pass
 
-
-def extract_bin_number(string):
-    # Ga0081607_1001 --> Ga0081607
-    m = re.search("(Ga[0-9]+)_[0-9]+", string)
-    assert m, 'no match found in {}'.format(string)
-    return m.group(1)
 
 
 # loop over the bins and collect a list of dicts
@@ -92,7 +70,7 @@ def bin_info_dicts(bin_dir):
 
 
         # pick out the source of the bin
-        bin_category = bin_source_from_path(bin_path)
+        bin_category = name_extractions.bin_source_from_path(bin_path)
         bin_info['category'] = bin_category
 
         # find and save the bin's number of base pairs
@@ -107,13 +85,15 @@ def bin_info_dicts(bin_dir):
         contig_id_and_name_dict = first_fasta_contig_name_and_id(bin_path)
 
         if bin_category == 'isolate':
-            # TODO: stuff
+            # There isn't a consistent 'id' type field for the isolates.
             bin_info_list.append(bin_info)
+
         else:
 
             # get the general Ga_ type id for each bin
             first_contig_id = contig_id_and_name_dict['id']
-            bin_info['id'] = extract_bin_number(first_contig_id)
+            bin_info['id'] = \
+                name_extractions.extract_bin_number(first_contig_id)
             bin_info_list.append(bin_info)
 
     return bin_info_list

@@ -44,3 +44,23 @@ def extract_contig_number(string):
     return re.search("Ga[0-9]+_([0-9]+)", string).group(1)
 
 
+def bin_source_from_path(bin_path):
+    pattern = re.compile(r"/bins/([a-zA-Z0-9_-]+)/*")
+
+    m = pattern.search(bin_path)
+    assert m is not None, "no regex match for {}".format(bin_path)
+    name = m.group(1)
+
+    #print(name)
+    rename_dict = {'isolate': "isolate",
+                   'dave': "dave",
+                   'fauzi': "fauzi"}
+    assert name in rename_dict.keys(), \
+        'Name "{}" is not recognized'.format(name)
+
+    bin_category = rename_dict[name]
+    #print("bin name for {}: {}".format(bin_path, bin_category))
+    return bin_category
+
+
+
