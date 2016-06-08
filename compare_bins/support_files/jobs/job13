@@ -4,5 +4,5 @@
 # More info about virtualenv at: janalysis/virtualenv
 source activate m4_janalysis
 
-python ./support_files/mummer_some_pairs.py "./support_files/jobs/12--50_rows" "./mummer_results" 'True'
+python ./support_files/mummer_some_pairs.py "./support_files/jobs/13--6_rows" "./mummer_results" 'True'
 
