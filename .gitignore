@@ -1,4 +1,6 @@
 compare_bins/mummer_results/*
+# pretty much done with the all-bin/genome comparison, so ignore until I delete
+compare_bins_orig/*
 
 # ignore plots in .ipynb dir: 
 ipython_notebooks/plots/
