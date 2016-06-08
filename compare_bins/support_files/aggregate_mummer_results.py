@@ -53,14 +53,18 @@ def load_one_mummer_result(filepath):
     # Split 'TAGS (ref)' = Ga0081624_1057 into a column called 'ref bin'
     # (= 'Ga0081624') and 'ref contig' = 1057
     # Same for 'TAGS (query)
-    df['ref id'] = df['TAGS (ref)'].apply(
-        lambda x: name_extractions.extract_bin_number(x))
-    df['query id'] = df['TAGS (query)'].apply(
-        lambda x: name_extractions.extract_bin_number(x))
-    df['ref contig'] = df['TAGS (ref)'].apply(
-        lambda x: name_extractions.extract_contig_number(x))
-    df['query contig'] = df['TAGS (query)'].apply(
-        lambda x: name_extractions.extract_contig_number(x))
+    # Only works for Dave and Fazui bins, so put in a try clause.
+    try:
+        df['ref id'] = df['TAGS (ref)'].apply(
+            lambda x: name_extractions.extract_bin_number(x))
+        df['query id'] = df['TAGS (query)'].apply(
+            lambda x: name_extractions.extract_bin_number(x))
+        df['ref contig'] = df['TAGS (ref)'].apply(
+            lambda x: name_extractions.extract_contig_number(x))
+        df['query contig'] = df['TAGS (query)'].apply(
+            lambda x: name_extractions.extract_contig_number(x))
+    except:
+        pass
     return df
 
 
@@ -107,6 +111,13 @@ def check_columns_uniformity(dataframe, colname_list):
 
 
 def prepare_result(filepath):
+    """
+    Load a MUMmer result as .tsv, and load on the info about the query and
+    reference bins
+
+    :param filepath: path to parsed MUMmer result (tsv)
+    :return: dataframe with one row per MUMmer match.
+    """
     result = load_one_mummer_result(filepath)
     if result.shape[0] == 0:
         return None
@@ -141,18 +152,16 @@ def prepare_result(filepath):
                 len(unique_ref_bin_names), result['mummer file'][0]
             )
 
-    # print(result.columns)
-    # print(query_metainfo.columns)
-    result = pd.merge(result, query_metainfo, how='inner',
-                      on=['query id', 'query name'])
+    print(result.columns)
+    print(query_metainfo.columns)
+    result = pd.merge(result, query_metainfo, how='inner')
     check_merge_failure('query')
     check_columns_uniformity(
         result, ['ref id', 'query id', 'query contigs', 'ref contigs'])
 
     # print(result.columns)
     # print(ref_metainfo.columns)
-    result = pd.merge(result, ref_metainfo, how='inner',
-                      on=['ref id', 'ref name'])
+    result = pd.merge(result, ref_metainfo, how='inner')
     check_merge_failure('referemce')
     check_columns_uniformity(
         result, ['ref id', 'query id', 'query contigs', 'ref contigs'])
