@@ -302,17 +302,19 @@ def summarize(filepath):
             summary['% identity (1)']*summary['frac of query aligned (1)']
 
         # Do the same using *all* alignments, not just the longest ones.
-        # summary['% identity (2)'] = \
-        #     length_weighted_percent_identity(longest_alignments)
-        # summary['query alignment length total (2)'] = \
-        #     sum_of_query_alignment_lengths(longest_alignments)
-        # summary['number alignments aggregated (2)'] = \
-        #     longest_alignments.shape[0]
-        # summary['frac of query aligned (2)'] = \
-        #     summary['query alignment length total']/summary['query bp']
-        # # The new metric developed by Dave/Janet 5/30/2016:
-        # summary['estimated % identity (2)'] = \
-        #     summary['% identity (2)']*summary['frac of query aligned (2)']
+        summary['% identity (2)'] = \
+            length_weighted_percent_identity(mummer_result)
+        summary['query alignment length total (2)'] = \
+            sum_of_query_alignment_lengths(mummer_result)
+        summary['number alignments aggregated (2)'] = \
+            mummer_result.shape[0]
+        summary['frac of query aligned (2)'] = \
+            summary['query alignment length total (2)']/summary['query bp']
+        # The new metric developed by Dave/Janet 5/30/2016:
+        summary['estimated % identity (2)'] = \
+            summary['% identity (2)']*summary['frac of query aligned (2)']
+
+        # That's it!
         return summary
 
 
