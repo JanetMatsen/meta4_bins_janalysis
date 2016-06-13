@@ -31,3 +31,7 @@ for job in ./support_files/jobs/job*; do
 done
 # wait will wait until all the background processes are done
 wait
+
+# once all the jobs are done, aggregate the MUMmer .tsv files into a summary tsv. 
+# Note: as of 160613, this final .py script was run by hand. 
+python ./support_files/aggregate_mummer_results.py 
