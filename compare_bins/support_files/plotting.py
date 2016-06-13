@@ -31,21 +31,27 @@ def plot_identity_vs_len(filepath, save_path='./plots/'):
 
 
 def plot_old_versus_new_ani(dataframe, column_pair_lists):
-    fig, axs = plt.subplots(1, len(column_pair_lists), figsize=(10, 6))
+    plot_width = 4.5*len(column_pair_lists)
+    fig, axs = plt.subplots(1, len(column_pair_lists),
+                            figsize=(plot_width, 4))
 
     for i, tup in enumerate(column_pair_lists):
         print(i)
         print(tup)
 
+        metric_name = name_extractions.summary_stat_type(tup[0])
+
+        plot_ax = axs[i]
+
         low = dataframe[tup[0]].min()
         high = dataframe[tup[0]].max()
-        plt.plot([low, high], [low, high], '--', c='gray', lw=2)
+        plot_ax.plot([low, high], [low, high], '--',
+                     c='gray', lw=2)
         # plt.ylim((low, high))
         # plt.xlim((low, high))
-        plot_ax = axs[i]
         print(plot_ax)
         dataframe.plot(kind='scatter', ax=plot_ax,
-                       x=tup[0], y=tup[1], title='abc')
+                       x=tup[0], y=tup[1], title=metric_name, alpha=0.5)
     sns.despine()
 
 
