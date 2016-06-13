@@ -63,4 +63,11 @@ def bin_source_from_path(bin_path):
     return bin_category
 
 
+def summary_stat_type(colname):
+    # E.g. "% identity (2)" --> "% identity"
+    regex = "([ %_\w-]+) \([0-9]\)"
+    m = re.search(regex, colname)
+    assert m, 'no match found for {} in {}'.format(regex, colname)
+    return m.group(1)
+
 
