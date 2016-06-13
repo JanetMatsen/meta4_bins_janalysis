@@ -51,7 +51,7 @@ def plot_old_versus_new_ani(dataframe, column_pair_lists):
         # plt.xlim((low, high))
         print(plot_ax)
         dataframe.plot(kind='scatter', ax=plot_ax,
-                       x=tup[0], y=tup[1], title=metric_name, alpha=0.5)
+                       x=tup[0], y=tup[1], title=metric_name, alpha=0.2)
     sns.despine()
 
 
