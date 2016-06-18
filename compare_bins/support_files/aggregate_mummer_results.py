@@ -105,6 +105,14 @@ def check_column_uniformity(dataframe, colname):
 
 
 def check_columns_uniformity(dataframe, colname_list):
+    """
+    Make sure all the values in a column are uniform, for each column in
+    the specified list.
+
+    :param dataframe: dataframe to check
+    :param colname_list: columns to check uniformity of
+    :return:
+    """
     for colname in colname_list:
         check_column_uniformity(dataframe, colname)
     return None
@@ -260,7 +268,7 @@ def summarize(filepath):
         print('no rows for {}; assume zero similarity'.format(filepath))
         return None
 
-    # As of 6/1/2016 we are only keeping the longest length in an alignment,
+    # As of 6/1/2016 we were only keeping the longest length in an alignment,
     # even though it is likely better to keep multiple alignments per query
     # contig as long as you don't double count alignment regions.
     longest_alignments = keep_longest_query_match(mummer_result)
@@ -319,6 +327,13 @@ def summarize(filepath):
 
 
 def percent_idty_all_results(filepath_list):
+    """
+    Calculate the summary statistics for each mummer results file, and
+    store in one summary dataframe
+
+    :param filepath_list: list or iterator of paths to .tsv files
+    :return: dataframe summarising statistics of each pair-wise analysis.
+    """
     num_empty = 0
     num_with_contents = 0
     summary_all_samples = pd.DataFrame()
@@ -356,28 +371,12 @@ def percent_idty_all_results(filepath_list):
     ))
     return summary_all_samples
 
-    # merge individual summaries into an umbrella pandas
-    # include a file path to that bin.
-    # merge on the info about the individual bins
-    # return summary dataframe.
-    pass
-
 
 def pivot_identity_table(identity_table, value_var="% identity"):
-    # TODO: update for the two metrics of percent identity
-    # identity_table = identity_table.pivot(
-    #     index='query name', columns='ref name', values=value_var)
-    # identity_table.fillna(value=0, inplace=True)
-    # return identity_table
-    pass
-
-
-def pivot_saved_tsv(saved_tsv_path, out_path):
-    # TODO: update for the two metrics of percent identity
-    # df = pd.read_csv(saved_tsv_path, sep='\t')
-    # df = pivot_identity_table(df)
-    # df.to_csv(out_path, sep='\t')
-    pass
+    identity_table = identity_table.pivot(
+        index='query name', columns='ref name', values=value_var)
+    identity_table.fillna(value=0, inplace=True)
+    return identity_table
 
 
 if __name__ == "__main__":
@@ -390,7 +389,3 @@ if __name__ == "__main__":
     unpivoted_path = 'percent_identities.tsv'
 
     i_res.to_csv(unpivoted_path, sep='\t')
-    # pivot for seaborn plotting
-
-    # pivoted_path = 'percent_identities--pivoted.tsv'
-    # pivot_saved_tsv(unpivoted_path, pivoted_path)
